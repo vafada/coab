@@ -86,5 +86,11 @@ namespace Classes
         {
             sort_treasure = value;
         }
+
+        public static bool instant_text = true;
+        public static void InstantText(bool value)
+        {
+            instant_text = value;
+        }
     }
 }

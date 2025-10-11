@@ -96,7 +96,10 @@ namespace engine
 
                 if (gbl.DelayBetweenCharacters)
                 {
-                    seg049.SysDelay(gbl.game_speed_var * 3);
+                    if (!Cheats.instant_text) 
+                    {
+                        seg049.SysDelay(gbl.game_speed_var * 3);
+                    }
                 }
 
                 text_index += 1;

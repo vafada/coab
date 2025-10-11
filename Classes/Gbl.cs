@@ -553,7 +553,7 @@ namespace Classes
         public static bool savingThrowMade;
         public static SaveVerseType saveVerseType; //byte_1D2D1
 
-        public static bool printCommands = false;
+        public static bool printCommands = true;
 
         public static DaxBlock sky_dax_250;
         public static DaxBlock sky_dax_251;

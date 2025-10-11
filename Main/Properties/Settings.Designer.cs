@@ -202,5 +202,17 @@ namespace Main.Properties {
                 this["AnimationOn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool InstantTextOn {
+            get {
+                return ((bool)(this["InstantTextOn"]));
+            }
+            set {
+                this["InstantTextOn"] = value;
+            }
+        }
     }
 }

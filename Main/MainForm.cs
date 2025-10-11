@@ -111,8 +111,9 @@ namespace Main
 			Classes.Cheats.NoRaceLevelLimits(Settings.Default.NoRaceClassLimits);
 			Classes.Cheats.NoRaceClassRestrictions(Settings.Default.NoRaceClassLimits);
 			Classes.Cheats.SortTreasureSet(Settings.Default.SortTreasure);
+            Classes.Cheats.InstantText(Settings.Default.InstantTextOn);
 
-			engine.seg044.SetSound(Settings.Default.SoundOn);
+            engine.seg044.SetSound(Settings.Default.SoundOn);
             engine.seg044.SetPicture(Settings.Default.PictureOn);
             engine.seg044.SetAnimation(Settings.Default.AnimationOn);
 		}
@@ -267,5 +268,13 @@ namespace Main
 			Classes.Cheats.SortTreasureSet(flipped);
 		}
 
- 	}
+        private void instantTextOnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool flipped = !Settings.Default.InstantTextOn;
+            Settings.Default.InstantTextOn = flipped;
+            Settings.Default.Save();
+
+            Classes.Cheats.InstantText(flipped);
+        }
+    }
 }
