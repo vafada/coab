@@ -176,7 +176,7 @@
     <Compile Include="ovr019.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr020.cs">
+    <Compile Include="PlayerCharacteristics.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr021.cs">
@@ -188,7 +188,7 @@
     <Compile Include="ovr023.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr024.cs">
+    <Compile Include="PlayerAffects.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr025.cs">

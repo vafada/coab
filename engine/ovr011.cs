@@ -67,7 +67,7 @@ namespace engine
                         if (gbl.BackGroundTiles[gbl.mapToBackGroundTile[posX, posY]].tile_index == 0x16 &&
                             gbl.byte_1AD3D != 0 &&
                             byte_1AD3E &&
-                            ovr024.roll_dice(10, 1) <= 5)
+                            PlayerAffects.roll_dice(10, 1) <= 5)
                         {
                             gbl.mapToBackGroundTile[posX, posY] = gbl.Tile_Table; // Table
 
@@ -80,7 +80,7 @@ namespace engine
                                     tmpY >= 0 && tmpY <= 0x18)
                                 {
                                     if (gbl.BackGroundTiles[gbl.mapToBackGroundTile[tmpX, tmpY]].tile_index == 0x16 &&
-                                        ovr024.roll_dice(10, 1) <= 9)
+                                        PlayerAffects.roll_dice(10, 1) <= 9)
                                     {
                                         gbl.mapToBackGroundTile[posX, posY] = gbl.Tile_Chair; // Chair
                                     }
@@ -562,9 +562,9 @@ namespace engine
                 var_1 = 0x4B;
             }
 
-            if (ovr024.roll_dice(100, 1) <= var_1)
+            if (PlayerAffects.roll_dice(100, 1) <= var_1)
             {
-                int map_x = 0x22 - ovr024.roll_dice(4, 5);
+                int map_x = 0x22 - PlayerAffects.roll_dice(4, 5);
 
                 while (((map_x + 2) % 7) > 0)
                 {
@@ -575,14 +575,14 @@ namespace engine
                 {
                     if (map_x <= 0x31)
                     {
-                        gbl.mapToBackGroundTile[map_x, map_y] = ovr024.roll_dice(2, 1) + 0x3B;
+                        gbl.mapToBackGroundTile[map_x, map_y] = PlayerAffects.roll_dice(2, 1) + 0x3B;
 
                         if (map_x < 0x31)
                         {
-                            gbl.mapToBackGroundTile[map_x + 1, map_y] = ovr024.roll_dice(2, 1) + 0x3D;
+                            gbl.mapToBackGroundTile[map_x + 1, map_y] = PlayerAffects.roll_dice(2, 1) + 0x3D;
                         }
 
-                        if (ovr024.roll_dice(20, 1) == 1)
+                        if (PlayerAffects.roll_dice(20, 1) == 1)
                         {
                             SetGroundTile_40(map_x, map_y);
                         }
@@ -632,16 +632,16 @@ namespace engine
                     {
                         if (gbl.BackGroundTiles[gbl.mapToBackGroundTile[mapX, mapY]].tile_index == 22 &&
                             gbl.BackGroundTiles[gbl.mapToBackGroundTile[mapX, mapY - 1]].tile_index == 22 &&
-                            neededRoll >= ovr024.roll_dice(100, 1))
+                            neededRoll >= PlayerAffects.roll_dice(100, 1))
                         {
-                            if (neededRoll >= ovr024.roll_dice(100, 1))
+                            if (neededRoll >= PlayerAffects.roll_dice(100, 1))
                             {
-                                gbl.mapToBackGroundTile[mapX, mapY] = ovr024.roll_dice(2, 1) + 0x29;
+                                gbl.mapToBackGroundTile[mapX, mapY] = PlayerAffects.roll_dice(2, 1) + 0x29;
                             }
                             else
                             {
-                                gbl.mapToBackGroundTile[mapX, mapY - 1] = ovr024.roll_dice(5, 1) + 0x1F;
-                                gbl.mapToBackGroundTile[mapX, mapY] = ovr024.roll_dice(5, 1) + 0x24;
+                                gbl.mapToBackGroundTile[mapX, mapY - 1] = PlayerAffects.roll_dice(5, 1) + 0x1F;
+                                gbl.mapToBackGroundTile[mapX, mapY] = PlayerAffects.roll_dice(5, 1) + 0x24;
                             }
                         }
                     }
@@ -652,27 +652,27 @@ namespace engine
 
         static void SetGroupMapStepped(int stepE, int stepD, int stepC, int stepB, int stepA, int map_y, int map_x) // sub_37CA2
         {
-            int roll = ovr024.roll_dice(100, 1);
+            int roll = PlayerAffects.roll_dice(100, 1);
 
             if (roll <= stepA)
             {
-                gbl.mapToBackGroundTile[map_x, map_y] = ovr024.roll_dice(2, 1) + 0x39;
+                gbl.mapToBackGroundTile[map_x, map_y] = PlayerAffects.roll_dice(2, 1) + 0x39;
             }
             else if (roll <= stepA + stepB)
             {
-                gbl.mapToBackGroundTile[map_x, map_y] = ovr024.roll_dice(2, 1) + 0x2f;
+                gbl.mapToBackGroundTile[map_x, map_y] = PlayerAffects.roll_dice(2, 1) + 0x2f;
             }
             else if (roll <= stepA + stepB + stepC)
             {
-                gbl.mapToBackGroundTile[map_x, map_y] = ovr024.roll_dice(4, 1) + 0x2B;
+                gbl.mapToBackGroundTile[map_x, map_y] = PlayerAffects.roll_dice(4, 1) + 0x2B;
             }
             else if (roll <= stepA + stepB + stepC + stepD)
             {
-                gbl.mapToBackGroundTile[map_x, map_y] = ovr024.roll_dice(3, 1) + 0x36;
+                gbl.mapToBackGroundTile[map_x, map_y] = PlayerAffects.roll_dice(3, 1) + 0x36;
             }
             else if (roll <= stepA + stepB + stepC + stepD + stepE)
             {
-                gbl.mapToBackGroundTile[map_x, map_y] = ovr024.roll_dice(4, 1) + 0x31;
+                gbl.mapToBackGroundTile[map_x, map_y] = PlayerAffects.roll_dice(4, 1) + 0x31;
             }
         }
 
@@ -1211,8 +1211,8 @@ namespace engine
             ovr025.RedrawCombatScreen();
             foreach (Player player in gbl.TeamList)
             {
-                ovr024.CheckAffectsEffect(player, CheckType.Type_8);
-                ovr024.CheckAffectsEffect(player, CheckType.Type_22);
+                PlayerAffects.CheckAffectsEffect(player, CheckType.Type_8);
+                PlayerAffects.CheckAffectsEffect(player, CheckType.Type_22);
             }
 
             ovr014.calc_enemy_health_percentage();

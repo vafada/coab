@@ -417,7 +417,7 @@ namespace engine
         {
             sbyte bonus = 0;
 
-            int roll = ovr024.roll_dice(20, 1);
+            int roll = PlayerAffects.roll_dice(20, 1);
 
             if (roll >= 1 && roll <= 14)
             {
@@ -458,7 +458,7 @@ namespace engine
 
                 if (item.type == ItemType.Javelin)
                 {
-                    int var_1 = ovr024.roll_dice(5, 1);
+                    int var_1 = PlayerAffects.roll_dice(5, 1);
                     if (var_1 == 5)
                     {
                         var_4 = 6;
@@ -700,7 +700,7 @@ namespace engine
             }
             else if (type == ItemType.MUScroll || type == ItemType.ClrcScroll)
             {
-                byte spellsCount = ovr024.roll_dice(3, 1);
+                byte spellsCount = PlayerAffects.roll_dice(3, 1);
 
                 if (item.type == ItemType.MUScroll)
                 {
@@ -720,30 +720,30 @@ namespace engine
 
                 for (int var_3 = 1; var_3 <= spellsCount; var_3++)
                 {
-                    int var_1 = ovr024.roll_dice(5, 1);
+                    int var_1 = PlayerAffects.roll_dice(5, 1);
 
                     if (item.type == ItemType.MUScroll)
                     {
                         switch (var_1)
                         {
                             case 1:
-                                var_5 = (byte)(ovr024.roll_dice(13, 1) + 8);
+                                var_5 = (byte)(PlayerAffects.roll_dice(13, 1) + 8);
                                 break;
 
                             case 2:
-                                var_5 = (byte)(ovr024.roll_dice(7, 1) + 28);
+                                var_5 = (byte)(PlayerAffects.roll_dice(7, 1) + 28);
                                 break;
 
                             case 3:
-                                var_5 = (byte)(ovr024.roll_dice(0x0B, 1) + 44);
+                                var_5 = (byte)(PlayerAffects.roll_dice(0x0B, 1) + 44);
                                 break;
 
                             case 4:
-                                var_5 = (byte)(ovr024.roll_dice(9, 1) + 80);
+                                var_5 = (byte)(PlayerAffects.roll_dice(9, 1) + 80);
                                 break;
 
                             case 5:
-                                var_5 = (byte)(ovr024.roll_dice(4, 1) + 90);
+                                var_5 = (byte)(PlayerAffects.roll_dice(4, 1) + 90);
                                 break;
                         }
                     }
@@ -752,23 +752,23 @@ namespace engine
                         switch (var_1)
                         {
                             case 1:
-                                var_5 = ovr024.roll_dice(8, 1);
+                                var_5 = PlayerAffects.roll_dice(8, 1);
                                 break;
 
                             case 2:
-                                var_5 = (byte)(ovr024.roll_dice(7, 1) + 0x15);
+                                var_5 = (byte)(PlayerAffects.roll_dice(7, 1) + 0x15);
                                 break;
 
                             case 3:
-                                var_5 = (byte)(ovr024.roll_dice(8, 1) + 0x24);
+                                var_5 = (byte)(PlayerAffects.roll_dice(8, 1) + 0x24);
                                 break;
 
                             case 4:
-                                var_5 = (byte)(ovr024.roll_dice(5, 1) + 0x41);
+                                var_5 = (byte)(PlayerAffects.roll_dice(5, 1) + 0x41);
                                 break;
 
                             case 5:
-                                var_5 = (byte)(ovr024.roll_dice(6, 1) + 0x46);
+                                var_5 = (byte)(PlayerAffects.roll_dice(6, 1) + 0x46);
                                 break;
                         }
                     }
@@ -791,7 +791,7 @@ namespace engine
             }
             else if (type == ItemType.Potion)
             {
-                int var_1 = ovr024.roll_dice(8, 1);
+                int var_1 = PlayerAffects.roll_dice(8, 1);
 
                 if (var_1 >= 1 && var_1 <= 5)
                 {
@@ -912,7 +912,7 @@ namespace engine
                         {
                             gbl.SelectedPlayer.Money.AddCoins(Money.Gems, -1);
 
-                            int roll = ovr024.roll_dice(100, 1);
+                            int roll = PlayerAffects.roll_dice(100, 1);
 
                             if (roll >= 1 && roll <= 25)
                             {
@@ -982,7 +982,7 @@ namespace engine
                         {
                             gbl.SelectedPlayer.Money.AddCoins(Money.Jewelry, -1);
 
-                            int roll = ovr024.roll_dice(100, 1);
+                            int roll = PlayerAffects.roll_dice(100, 1);
 
                             if (roll >= 1 && roll <= 10)
                             {

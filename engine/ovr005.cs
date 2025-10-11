@@ -74,7 +74,7 @@ namespace engine
             {
                 if (buy_cure(1000, "Cure Blindness"))
                 {
-                    ovr024.remove_affect(null, Affects.blinded, gbl.SelectedPlayer);
+                    PlayerAffects.remove_affect(null, Affects.blinded, gbl.SelectedPlayer);
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace engine
                     gbl.cureSpell = true;
                     for (int i = 0; i < 6; i++)
                     {
-                        ovr024.remove_affect(null, disease_types[i], gbl.SelectedPlayer);
+                        PlayerAffects.remove_affect(null, disease_types[i], gbl.SelectedPlayer);
                     }
 
                     gbl.cureSpell = false;
@@ -113,24 +113,24 @@ namespace engine
                 case 1:
                     if (buy_cure(100, "Cure Light Wounds"))
                     {
-                        int heal_amount = ovr024.roll_dice(8, 1);
-                        ovr024.heal_player(0, heal_amount, gbl.SelectedPlayer);
+                        int heal_amount = PlayerAffects.roll_dice(8, 1);
+                        PlayerAffects.heal_player(0, heal_amount, gbl.SelectedPlayer);
                     }
                     break;
 
                 case 2:
                     if (buy_cure(350, "Cure Serious Wounds"))
                     {
-                        int heal_amount = ovr024.roll_dice(8, 2) + 1;
-                        ovr024.heal_player(0, heal_amount, gbl.SelectedPlayer);
+                        int heal_amount = PlayerAffects.roll_dice(8, 2) + 1;
+                        PlayerAffects.heal_player(0, heal_amount, gbl.SelectedPlayer);
                     }
                     break;
 
                 case 3:
                     if (buy_cure(600, "Cure Critical Wounds"))
                     {
-                        int heal_amount = ovr024.roll_dice(8, 3) + 3;
-                        ovr024.heal_player(0, heal_amount, gbl.SelectedPlayer);
+                        int heal_amount = PlayerAffects.roll_dice(8, 3) + 3;
+                        PlayerAffects.heal_player(0, heal_amount, gbl.SelectedPlayer);
                     }
                     break;
 
@@ -139,20 +139,20 @@ namespace engine
                     {
                         int heal_amount = gbl.SelectedPlayer.hit_point_max;
                         heal_amount -= gbl.SelectedPlayer.hit_point_current;
-                        heal_amount -= ovr024.roll_dice(4, 1);
+                        heal_amount -= PlayerAffects.roll_dice(4, 1);
 
-                        ovr024.heal_player(0, heal_amount, gbl.SelectedPlayer);
-                        ovr024.remove_affect(null, Affects.blinded, gbl.SelectedPlayer);
+                        PlayerAffects.heal_player(0, heal_amount, gbl.SelectedPlayer);
+                        PlayerAffects.remove_affect(null, Affects.blinded, gbl.SelectedPlayer);
 
                         for (int i = 0; i < 6; i++)
                         {
-                            ovr024.remove_affect(null, disease_types[i], gbl.SelectedPlayer);
+                            PlayerAffects.remove_affect(null, disease_types[i], gbl.SelectedPlayer);
                         }
 
-                        ovr024.remove_affect(null, Affects.feeblemind, gbl.SelectedPlayer);
+                        PlayerAffects.remove_affect(null, Affects.feeblemind, gbl.SelectedPlayer);
 
-                        ovr024.CalcStatBonuses(Stat.INT, gbl.SelectedPlayer);
-                        ovr024.CalcStatBonuses(Stat.WIS, gbl.SelectedPlayer);
+                        PlayerAffects.CalcStatBonuses(Stat.INT, gbl.SelectedPlayer);
+                        PlayerAffects.CalcStatBonuses(Stat.WIS, gbl.SelectedPlayer);
                     }
                     break;
             }
@@ -177,8 +177,8 @@ namespace engine
                 {
                     gbl.cureSpell = true;
 
-                    ovr024.remove_affect(null, Affects.animate_dead, player);
-                    ovr024.remove_affect(null, Affects.poisoned, player);
+                    PlayerAffects.remove_affect(null, Affects.animate_dead, player);
+                    PlayerAffects.remove_affect(null, Affects.poisoned, player);
 
                     gbl.cureSpell = false;
 
@@ -252,9 +252,9 @@ namespace engine
                 {
                     gbl.cureSpell = true;
 
-                    ovr024.remove_affect(null, Affects.poisoned, gbl.SelectedPlayer);
-                    ovr024.remove_affect(null, Affects.slow_poison, gbl.SelectedPlayer);
-                    ovr024.remove_affect(null, Affects.poison_damage, gbl.SelectedPlayer);
+                    PlayerAffects.remove_affect(null, Affects.poisoned, gbl.SelectedPlayer);
+                    PlayerAffects.remove_affect(null, Affects.slow_poison, gbl.SelectedPlayer);
+                    PlayerAffects.remove_affect(null, Affects.poison_damage, gbl.SelectedPlayer);
 
                     gbl.cureSpell = false;
                 }
@@ -431,7 +431,7 @@ namespace engine
                         break;
 
                     case 'V':
-                        ovr020.viewPlayer();
+                        PlayerCharacteristics.viewPlayer();
                         break;
 
                     case 'T':
@@ -481,11 +481,11 @@ namespace engine
                         break;
 
                     case 'G':
-                        ovr020.scroll_team_list(input_key);
+                        PlayerCharacteristics.scroll_team_list(input_key);
                         break;
 
                     case 'O':
-                        ovr020.scroll_team_list(input_key);
+                        PlayerCharacteristics.scroll_team_list(input_key);
                         break;
                 }
 

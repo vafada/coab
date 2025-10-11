@@ -20,7 +20,7 @@ namespace engine
 
             gbl.resetMovesLeft = false;
 
-            ovr024.CheckAffectsEffect(player, CheckType.Movement);
+            PlayerAffects.CheckAffectsEffect(player, CheckType.Movement);
 
             player.attack2_AttacksLeft = (byte)ThisRoundActionCount(gbl.halfActionsLeft);
 
@@ -28,7 +28,7 @@ namespace engine
 
             if (player.in_combat == true)
             {
-                action.delay = (sbyte)(ovr024.roll_dice(6, 1) + ovr025.DexReactionAdj(player));
+                action.delay = (sbyte)(PlayerAffects.roll_dice(6, 1) + ovr025.DexReactionAdj(player));
 
                 if (action.delay < 1)
                 {
@@ -73,7 +73,7 @@ namespace engine
 
             gbl.resetMovesLeft = true;
 
-            ovr024.CheckAffectsEffect(player, CheckType.Movement);
+            PlayerAffects.CheckAffectsEffect(player, CheckType.Movement);
 
             gbl.resetMovesLeft = false;
 
@@ -83,7 +83,7 @@ namespace engine
 
         static void sub_3E192(int index, Player target, Player attacker)
         {
-            gbl.damage = ovr024.roll_dice_save(attacker.attackDiceSize(index), attacker.attackDiceCount(index));
+            gbl.damage = PlayerAffects.roll_dice_save(attacker.attackDiceSize(index), attacker.attackDiceCount(index));
             gbl.damage += attacker.attackDamageBonus(index);
 
             if (gbl.damage < 0)
@@ -97,8 +97,8 @@ namespace engine
             }
 
             gbl.damage_flags = 0;
-            ovr024.CheckAffectsEffect(attacker, CheckType.SpecialAttacks);
-            ovr024.CheckAffectsEffect(target, CheckType.Type_5);
+            PlayerAffects.CheckAffectsEffect(attacker, CheckType.SpecialAttacks);
+            PlayerAffects.CheckAffectsEffect(target, CheckType.Type_5);
         }
 
 
@@ -183,7 +183,7 @@ namespace engine
 
             if (actualDamage > 0)
             {
-                ovr024.TryLooseSpell(target);
+                PlayerAffects.TryLooseSpell(target);
             }
 
             if (target.in_combat == false)
@@ -205,9 +205,9 @@ namespace engine
 
                 line += 2;
 
-                ovr024.RemoveCombatAffects(target);
+                PlayerAffects.RemoveCombatAffects(target);
 
-                ovr024.CheckAffectsEffect(target, CheckType.Death);
+                PlayerAffects.CheckAffectsEffect(target, CheckType.Death);
 
                 if (target.in_combat == false)
                 {
@@ -440,7 +440,7 @@ namespace engine
                 {
                     gets_away = true;
                 }
-                else if (var_3 == var_4 && ovr024.roll_dice(2, 1) == 1)
+                else if (var_3 == var_4 && PlayerAffects.roll_dice(2, 1) == 1)
                 {
                     gets_away = true;
                 }
@@ -448,7 +448,7 @@ namespace engine
 
             if (gets_away == true)
             {
-                ovr024.RemoveFromCombat("Got Away", Status.running, player);
+                PlayerAffects.RemoveFromCombat("Got Away", Status.running, player);
             }
             else
             {
@@ -485,7 +485,7 @@ namespace engine
             }
 
             gbl.resetMovesLeft = false;
-            ovr024.CheckAffectsEffect(player, CheckType.Movement);
+            PlayerAffects.CheckAffectsEffect(player, CheckType.Movement);
 
             int attacks = ThisRoundActionCount(gbl.halfActionsLeft);
 
@@ -580,7 +580,7 @@ namespace engine
                 {
                     gbl.targetInvisible = false;
 
-                    ovr024.CheckAffectsEffect(targetA, CheckType.Visibility);
+                    PlayerAffects.CheckAffectsEffect(targetA, CheckType.Visibility);
 
                     if (gbl.targetInvisible == false)
                     {
@@ -588,7 +588,7 @@ namespace engine
 
                         targetB.actions.target = targetA;
 
-                        ovr024.CheckAffectsEffect(targetB, CheckType.None);
+                        PlayerAffects.CheckAffectsEffect(targetB, CheckType.None);
 
                         targetB.actions.target = old_target;
                     }
@@ -616,8 +616,8 @@ namespace engine
             player.actions.hasTurnedUndead = true;
 
             byte var_3 = 6;
-            int var_2 = ovr024.roll_dice(12, 1);
-            int var_1 = ovr024.roll_dice(20, 1);
+            int var_2 = PlayerAffects.roll_dice(12, 1);
+            int var_1 = PlayerAffects.roll_dice(20, 1);
 
             int clericLvl = player.SkillLevel(SkillType.Cleric);
 
@@ -749,7 +749,7 @@ namespace engine
                 gbl.bytes_1D900[attacker.actions.attackIdx] += 1;
 
                 DisplayAttackMessage(true, 1, target.hit_point_current + 5, AttackType.Slay, target, attacker);
-                ovr024.remove_invisibility(attacker);
+                PlayerAffects.remove_invisibility(attacker);
 
                 attacker.attack1_AttacksLeft = 0;
                 attacker.attack2_AttacksLeft = 0;
@@ -771,7 +771,7 @@ namespace engine
                 }
 
                 ovr025.reclac_player_values(target);
-                ovr024.CheckAffectsEffect(target, CheckType.Type_11);
+                PlayerAffects.CheckAffectsEffect(target, CheckType.Type_11);
 
                 if (CanBackStabTarget(target, attacker) == true)
                 {
@@ -818,7 +818,7 @@ namespace engine
 
                         gbl.bytes_1D900[attackIdx] += 1;
 
-                        if (ovr024.PC_CanHitTarget(target_ac, target, attacker) ||
+                        if (PlayerAffects.PC_CanHitTarget(target_ac, target, attacker) ||
                             target.IsHeld() == true)
                         {
                             gbl.bytes_1D2C9[attackIdx] += 1;
@@ -830,7 +830,7 @@ namespace engine
 
                             if (target.in_combat == true)
                             {
-                                ovr024.CheckAffectsEffect(attacker, (CheckType)attackIdx + 1);
+                                PlayerAffects.CheckAffectsEffect(attacker, (CheckType)attackIdx + 1);
                             }
 
                             if (target.in_combat == false)
@@ -1191,7 +1191,7 @@ namespace engine
                 }
                 else
                 {
-                    var_4 = ovr024.roll_dice(4, 2);
+                    var_4 = PlayerAffects.roll_dice(4, 2);
                 }
 
                 bool stop_loop = false;
@@ -1379,7 +1379,7 @@ namespace engine
 
             if (spell_id == 0)
             {
-                spell_id = ovr020.spell_menu2(out var_6, ref var_5, SpellSource.Cast, SpellLoc.memory);
+                spell_id = PlayerCharacteristics.spell_menu2(out var_6, ref var_5, SpellSource.Cast, SpellLoc.memory);
             }
 
             if (spell_id > 0 &&
@@ -2272,7 +2272,7 @@ namespace engine
                 while (tryCount > 0 && target_found == false && nearTargets.Count > 0)
                 {
                     tryCount--;
-                    int roll = ovr024.roll_dice(nearTargets.Count, 1);
+                    int roll = PlayerAffects.roll_dice(nearTargets.Count, 1);
 
                     var epi = nearTargets[roll - 1];
                     target = epi.player;
@@ -2312,11 +2312,11 @@ namespace engine
             {
                 target = attacker.actions.target;
                 ovr025.DisplayPlayerStatusString(true, 12, "engulfs " + target.name, attacker);
-                ovr024.add_affect(false, ovr033.GetPlayerIndex(target), 0, Affects.clear_movement, target);
+                PlayerAffects.add_affect(false, ovr033.GetPlayerIndex(target), 0, Affects.clear_movement, target);
 
                 ovr013.CallAffectTable(Effect.Add, null, target, Affects.clear_movement);
-                ovr024.add_affect(false, ovr024.roll_dice(4, 2), 0, Affects.reduce, target);
-                ovr024.add_affect(true, ovr033.GetPlayerIndex(target), 0, Affects.affect_8b, attacker);
+                PlayerAffects.add_affect(false, PlayerAffects.roll_dice(4, 2), 0, Affects.reduce, target);
+                PlayerAffects.add_affect(true, ovr033.GetPlayerIndex(target), 0, Affects.affect_8b, attacker);
             }
         }
 
@@ -2373,9 +2373,9 @@ namespace engine
                         ovr025.DisplayPlayerStatusString(true, 10, "fires a disintegrate ray", attacker);
                         LoadMissleIconAndDraw(5, target, attacker);
 
-                        if (ovr024.RollSavingThrow(0, SaveVerseType.BreathWeapon, target) == false)
+                        if (PlayerAffects.RollSavingThrow(0, SaveVerseType.BreathWeapon, target) == false)
                         {
-                            ovr024.KillPlayer("is disintergrated", Status.gone, target);
+                            PlayerAffects.KillPlayer("is disintergrated", Status.gone, target);
                         }
 
                         sub_421C1(false, ref range, attacker);
@@ -2387,9 +2387,9 @@ namespace engine
                         ovr025.DisplayPlayerStatusString(true, 10, "fires a stone to flesh ray", attacker);
                         LoadMissleIconAndDraw(10, target, attacker);
 
-                        if (ovr024.RollSavingThrow(0, SaveVerseType.Petrification, target) == false)
+                        if (PlayerAffects.RollSavingThrow(0, SaveVerseType.Petrification, target) == false)
                         {
-                            ovr024.KillPlayer("is Stoned", Status.stoned, target);
+                            PlayerAffects.KillPlayer("is Stoned", Status.stoned, target);
                         }
 
                         sub_421C1(false, ref range, attacker);
@@ -2401,9 +2401,9 @@ namespace engine
                         ovr025.DisplayPlayerStatusString(true, 10, "fires a death ray", attacker);
                         LoadMissleIconAndDraw(5, target, attacker);
 
-                        if (ovr024.RollSavingThrow(0, 0, target) == false)
+                        if (PlayerAffects.RollSavingThrow(0, 0, target) == false)
                         {
-                            ovr024.KillPlayer("is killed", Status.dead, target);
+                            PlayerAffects.KillPlayer("is killed", Status.dead, target);
                         }
 
                         sub_421C1(false, ref range, attacker);
@@ -2415,7 +2415,7 @@ namespace engine
                         ovr025.DisplayPlayerStatusString(true, 10, "wounds you", attacker);
                         LoadMissleIconAndDraw(5, target, attacker);
 
-                        ovr024.damage_person(false, 0, ovr024.roll_dice_save(8, 2) + 1, target);
+                        PlayerAffects.damage_person(false, 0, PlayerAffects.roll_dice_save(8, 2) + 1, target);
                         sub_421C1(false, ref range, attacker);
                     }
                     else if ((attacksTired & 0x10) == 0)
@@ -2448,14 +2448,14 @@ namespace engine
                 player.in_combat == false ||
                 gbl.spell_target.in_combat == false)
             {
-                ovr024.remove_affect(null, Affects.clear_movement, gbl.spell_target);
-                ovr024.remove_affect(null, Affects.reduce, gbl.spell_target);
+                PlayerAffects.remove_affect(null, Affects.clear_movement, gbl.spell_target);
+                PlayerAffects.remove_affect(null, Affects.reduce, gbl.spell_target);
 
                 if (add_remove == Effect.Add)
                 {
                     affect.callAffectTable = false;
 
-                    ovr024.remove_affect(affect, Affects.affect_8b, player);
+                    PlayerAffects.remove_affect(affect, Affects.affect_8b, player);
                 }
             }
             else
@@ -2471,9 +2471,9 @@ namespace engine
 
                 if (gbl.spell_target.in_combat == false)
                 {
-                    ovr024.remove_affect(null, Affects.affect_8b, player);
-                    ovr024.remove_affect(null, Affects.clear_movement, gbl.spell_target);
-                    ovr024.remove_affect(null, Affects.reduce, gbl.spell_target);
+                    PlayerAffects.remove_affect(null, Affects.affect_8b, player);
+                    PlayerAffects.remove_affect(null, Affects.clear_movement, gbl.spell_target);
+                    PlayerAffects.remove_affect(null, Affects.reduce, gbl.spell_target);
                 }
             }
         }
@@ -2489,11 +2489,11 @@ namespace engine
                 player.in_combat == false ||
                 gbl.spell_target.in_combat == false)
             {
-                ovr024.remove_affect(null, Affects.clear_movement, gbl.spell_target);
+                PlayerAffects.remove_affect(null, Affects.clear_movement, gbl.spell_target);
                 if (arg_0 == Effect.Add)
                 {
                     affect.callAffectTable = false;
-                    ovr024.remove_affect(affect, Affects.owlbear_hug_round_attack, player);
+                    PlayerAffects.remove_affect(affect, Affects.owlbear_hug_round_attack, player);
                 }
             }
             else
@@ -2510,8 +2510,8 @@ namespace engine
 
                 if (gbl.spell_target.in_combat == false)
                 {
-                    ovr024.remove_affect(null, Affects.owlbear_hug_round_attack, player);
-                    ovr024.remove_affect(null, Affects.clear_movement, gbl.spell_target);
+                    PlayerAffects.remove_affect(null, Affects.owlbear_hug_round_attack, player);
+                    PlayerAffects.remove_affect(null, Affects.clear_movement, gbl.spell_target);
                 }
             }
         }
@@ -2524,10 +2524,10 @@ namespace engine
                 gbl.spell_target = player.actions.target;
                 ovr025.DisplayPlayerStatusString(true, 12, "hugs " + gbl.spell_target.name, player);
 
-                ovr024.add_affect(false, ovr033.GetPlayerIndex(gbl.spell_target), 0, Affects.clear_movement, gbl.spell_target);
+                PlayerAffects.add_affect(false, ovr033.GetPlayerIndex(gbl.spell_target), 0, Affects.clear_movement, gbl.spell_target);
                 ovr013.CallAffectTable(Effect.Add, null, gbl.spell_target, Affects.clear_movement);
 
-                ovr024.add_affect(true, ovr033.GetPlayerIndex(gbl.spell_target), 0, Affects.owlbear_hug_round_attack, player);
+                PlayerAffects.add_affect(true, ovr033.GetPlayerIndex(gbl.spell_target), 0, Affects.owlbear_hug_round_attack, player);
             }
         }
 

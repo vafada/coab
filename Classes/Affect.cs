@@ -52,7 +52,7 @@ namespace Classes
         prot_from_evil_10_radius = 0x2d,
         prot_from_good_10_radius = 0x2e,
         dwarf_and_gnome_vs_giants = 0x2f,
-        affect_30 = 0x30,
+        gnome_vs_gnoll = 0x30,
         prayer = 0x31,
         hot_fire_shield = 0x32,
         snake_charm = 0x33,

@@ -64,14 +64,14 @@ namespace engine
                         if (player.stats2.Str00.cur >= 0x5b &&
                             player.stats2.Str00.cur <= 99)
                         {
-                            if (ovr024.roll_dice(6, 1) == 1)
+                            if (PlayerAffects.roll_dice(6, 1) == 1)
                             {
                                 bash_worked = true;
                             }
                         }
                         else if (player.stats2.Str00.cur == 100)
                         {
-                            if (ovr024.roll_dice(6, 1) <= 2)
+                            if (PlayerAffects.roll_dice(6, 1) <= 2)
                             {
                                 bash_worked = true;
                             }
@@ -84,7 +84,7 @@ namespace engine
                     else if (player.stats2.Str.full == 19 ||
                              player.stats2.Str.full == 20)
                     {
-                        if (ovr024.roll_dice(6, 1) <= 3)
+                        if (PlayerAffects.roll_dice(6, 1) <= 3)
                         {
                             bash_worked = true;
                         }
@@ -92,21 +92,21 @@ namespace engine
                     else if (player.stats2.Str.full == 21 ||
                              player.stats2.Str.full == 22)
                     {
-                        if (ovr024.roll_dice(6, 1) <= 4)
+                        if (PlayerAffects.roll_dice(6, 1) <= 4)
                         {
                             bash_worked = true;
                         }
                     }
                     else if (player.stats2.Str.full == 23)
                     {
-                        if (ovr024.roll_dice(6, 1) <= 5)
+                        if (PlayerAffects.roll_dice(6, 1) <= 5)
                         {
                             bash_worked = true;
                         }
                     }
                     else if (player.stats2.Str.full == 24)
                     {
-                        if (ovr024.roll_dice(8, 1) <= 7)
+                        if (PlayerAffects.roll_dice(8, 1) <= 7)
                         {
                             bash_worked = true;
                         }
@@ -126,21 +126,21 @@ namespace engine
 
                     if (str >= 3 && str <= 7)
                     {
-                        if (ovr024.roll_dice(6, 1) == 1)
+                        if (PlayerAffects.roll_dice(6, 1) == 1)
                         {
                             bash_worked = true;
                         }
                     }
                     else if (str >= 8 && str <= 15)
                     {
-                        if (ovr024.roll_dice(6, 1) <= 2)
+                        if (PlayerAffects.roll_dice(6, 1) <= 2)
                         {
                             bash_worked = true;
                         }
                     }
                     else if (str == 15 || str == 17)
                     {
-                        if (ovr024.roll_dice(6, 1) <= 3)
+                        if (PlayerAffects.roll_dice(6, 1) <= 3)
                         {
                             bash_worked = true;
                         }
@@ -152,7 +152,7 @@ namespace engine
                         {
                             bash_worked = true;
 
-                            if (ovr024.roll_dice(6, 1) <= 3)
+                            if (PlayerAffects.roll_dice(6, 1) <= 3)
                             {
                                 bash_worked = true;
                             }
@@ -160,7 +160,7 @@ namespace engine
                         else if (player.stats2.Str00.cur >= 51 &&
                             player.stats2.Str00.cur <= 99)
                         {
-                            if (ovr024.roll_dice(6, 1) <= 4)
+                            if (PlayerAffects.roll_dice(6, 1) <= 4)
                             {
                                 bash_worked = true;
                             }
@@ -168,7 +168,7 @@ namespace engine
                         }
                         else if (player.stats2.Str00.cur == 100)
                         {
-                            if (ovr024.roll_dice(6, 1) <= 5)
+                            if (PlayerAffects.roll_dice(6, 1) <= 5)
                             {
                                 bash_worked = true;
                             }
@@ -176,28 +176,28 @@ namespace engine
                     }
                     else if (str == 19 || str == 20)
                     {
-                        if (ovr024.roll_dice(8, 1) <= 7)
+                        if (PlayerAffects.roll_dice(8, 1) <= 7)
                         {
                             bash_worked = true;
                         }
                     }
                     else if (str == 21)
                     {
-                        if (ovr024.roll_dice(10, 1) <= 9)
+                        if (PlayerAffects.roll_dice(10, 1) <= 9)
                         {
                             bash_worked = true;
                         }
                     }
                     else if (str == 22 || str == 23)
                     {
-                        if (ovr024.roll_dice(12, 1) <= 11)
+                        if (PlayerAffects.roll_dice(12, 1) <= 11)
                         {
                             bash_worked = true;
                         }
                     }
                     else if (str == 24)
                     {
-                        if (ovr024.roll_dice(20, 1) <= 19)
+                        if (PlayerAffects.roll_dice(20, 1) <= 19)
                         {
                             bash_worked = true;
                         }
@@ -232,7 +232,7 @@ namespace engine
             {
                 if (door_picked) break;
 
-                if (ovr024.roll_dice(100, 1) <= player.thief_skills[1] &&
+                if (PlayerAffects.roll_dice(100, 1) <= player.thief_skills[1] &&
                     player.health_status == Status.okey)
                 {
                     door_picked = true;
@@ -389,7 +389,7 @@ namespace engine
 
                             case 'V':
                                 gbl.menuSelectedWord = 1;
-                                ovr020.viewPlayer();
+                                PlayerCharacteristics.viewPlayer();
                                 break;
 
                             case 'E':
@@ -443,7 +443,7 @@ namespace engine
                                 break;
 
                             default:
-                                ovr020.scroll_team_list(input_key);
+                                PlayerCharacteristics.scroll_team_list(input_key);
                                 ovr025.PartySummary(gbl.SelectedPlayer);
                                 break;
                         }

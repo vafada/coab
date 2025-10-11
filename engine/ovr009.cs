@@ -69,7 +69,7 @@ namespace engine
 
                 foreach (Player player in gbl.TeamList)
                 {
-                    int roll = ovr024.roll_dice(100, 1);
+                    int roll = PlayerAffects.roll_dice(100, 1);
 
                     if (player.actions.delay > max_delay)
                     {
@@ -105,7 +105,7 @@ namespace engine
             player.actions.AttacksReceived = 0;
             player.actions.directionChanges = 0;
             player.actions.guarding = false;
-            ovr024.CheckAffectsEffect(player, CheckType.PlayerRestrained);
+            PlayerAffects.CheckAffectsEffect(player, CheckType.PlayerRestrained);
 
             if (player.actions.delay > 0)
             {
@@ -122,11 +122,11 @@ namespace engine
                 ovr025.reclac_player_values(player);
                 gbl.display_hitpoints_ac = true;
                 ovr025.CombatDisplayPlayerSummary(player);
-                ovr024.CheckAffectsEffect(player, CheckType.Type_15);
+                PlayerAffects.CheckAffectsEffect(player, CheckType.Type_15);
 
                 if (player.actions.spell_id == 0)
                 {
-                    ovr024.CheckAffectsEffect(player, CheckType.Confusion);
+                    PlayerAffects.CheckAffectsEffect(player, CheckType.Confusion);
                 }
 
                 if (player.actions.delay > 0)
@@ -188,7 +188,7 @@ namespace engine
                                     break;
 
                                 case 'V':
-                                    var_2 = ovr020.viewPlayer();
+                                    var_2 = PlayerCharacteristics.viewPlayer();
                                     ovr014.reclac_attacks(player);
                                     if (var_2 == false)
                                     {
@@ -202,7 +202,7 @@ namespace engine
 
                                 case 'U':
                                     gbl.menuSelectedWord = 2;
-                                    ovr020.PlayerItemsMenu(ref var_2);
+                                    PlayerCharacteristics.PlayerItemsMenu(ref var_2);
                                     ovr014.reclac_attacks(player);
                                     if (var_2 == false)
                                     {
@@ -368,8 +368,8 @@ namespace engine
 
             foreach (Player player in gbl.TeamList)
             {
-                ovr024.CheckAffectsEffect(player, CheckType.Type_19);
-                ovr024.in_poison_cloud(0, player);
+                PlayerAffects.CheckAffectsEffect(player, CheckType.Type_19);
+                PlayerAffects.in_poison_cloud(0, player);
 
                 if (player.health_status == Status.dying)
                 {
@@ -562,7 +562,7 @@ namespace engine
                                     ovr025.clear_actions(player);
                                 }
 
-                                ovr024.in_poison_cloud(1, player);
+                                PlayerAffects.in_poison_cloud(1, player);
 
                                 if (player.IsHeld())
                                 {

@@ -85,7 +85,7 @@ namespace engine
         internal static bool PlayerAddItem(Item item) /*was overloaded */
         {
             bool wouldOverload;
-            if (ovr020.canCarry(item, gbl.SelectedPlayer) == true)
+            if (PlayerCharacteristics.canCarry(item, gbl.SelectedPlayer) == true)
             {
                 ovr025.string_print01("Overloaded");
                 wouldOverload = true;
@@ -196,7 +196,7 @@ namespace engine
                         break;
 
                     case 'V':
-                        ovr020.viewPlayer();
+                        PlayerCharacteristics.viewPlayer();
                         break;
 
                     case 'T':
@@ -246,11 +246,11 @@ namespace engine
                         break;
 
                     case 'G':
-                        ovr020.scroll_team_list(inputKey);
+                        PlayerCharacteristics.scroll_team_list(inputKey);
                         break;
 
                     case 'O':
-                        ovr020.scroll_team_list(inputKey);
+                        PlayerCharacteristics.scroll_team_list(inputKey);
                         break;
                 }
 

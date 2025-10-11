@@ -157,11 +157,11 @@ namespace engine
                             for (int lvl = 0; lvl <= (skillLevel - 2); lvl++)
                             {
                                 /* unk_1A7C6 = seg600:44B6 */
-                                player.spellCastCount[2, 0] += ovr020.MU_spell_lvl_learn[lvl, 0];
-                                player.spellCastCount[2, 1] += ovr020.MU_spell_lvl_learn[lvl, 1];
-                                player.spellCastCount[2, 2] += ovr020.MU_spell_lvl_learn[lvl, 2];
-                                player.spellCastCount[2, 3] += ovr020.MU_spell_lvl_learn[lvl, 3];
-                                player.spellCastCount[2, 4] += ovr020.MU_spell_lvl_learn[lvl, 4];
+                                player.spellCastCount[2, 0] += PlayerCharacteristics.MU_spell_lvl_learn[lvl, 0];
+                                player.spellCastCount[2, 1] += PlayerCharacteristics.MU_spell_lvl_learn[lvl, 1];
+                                player.spellCastCount[2, 2] += PlayerCharacteristics.MU_spell_lvl_learn[lvl, 2];
+                                player.spellCastCount[2, 3] += PlayerCharacteristics.MU_spell_lvl_learn[lvl, 3];
+                                player.spellCastCount[2, 4] += PlayerCharacteristics.MU_spell_lvl_learn[lvl, 4];
                             }
                             break;
                     }
@@ -610,7 +610,7 @@ namespace engine
             {
                 if (SecondClassAllowed(_class, player) == true)
                 {
-                    list.Add(new MenuItem(ovr020.classString[(int)_class]));
+                    list.Add(new MenuItem(PlayerCharacteristics.classString[(int)_class]));
                 }
             }
 
@@ -643,7 +643,7 @@ namespace engine
             player.attacksCount = 2;
             int newClass = 0;
 
-            while (newClass <= 7 && ovr020.classString[newClass] != list_ptr.Text)
+            while (newClass <= 7 && PlayerCharacteristics.classString[newClass] != list_ptr.Text)
             {
                 newClass++;
             }
@@ -679,7 +679,7 @@ namespace engine
 
             player._class = (ClassId)newClass;
 
-            TextRenderer.DisplayStatusText(0, 10, player.name + " is now a 1st level " + ovr020.classString[newClass] + ".");
+            TextRenderer.DisplayStatusText(0, 10, player.name + " is now a 1st level " + PlayerCharacteristics.classString[newClass] + ".");
 
             player.spellList.Clear();
 

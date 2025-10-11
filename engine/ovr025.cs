@@ -325,7 +325,7 @@ namespace engine
 
 				if (player.in_combat == false)
 				{
-					TextRenderer.displayString(ovr020.statusString[(int)player.health_status], 0, 15, line + 1, 0x17);
+					TextRenderer.displayString(PlayerCharacteristics.statusString[(int)player.health_status], 0, 15, line + 1, 0x17);
 				}
 				else if (player.IsHeld() == true)
 				{

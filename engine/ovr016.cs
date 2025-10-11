@@ -173,7 +173,7 @@ namespace engine
                 {
                     bool var_3;
 
-                    spell_id = ovr020.spell_menu2(out var_3, ref index, SpellSource.Cast, SpellLoc.memory);
+                    spell_id = PlayerCharacteristics.spell_menu2(out var_3, ref index, SpellSource.Cast, SpellLoc.memory);
 
                     if (spell_id != 0)
                     {
@@ -308,7 +308,7 @@ namespace engine
                 int index = -1;
                 gbl.menuSelectedWord = 1;
 
-                byte spellId = ovr020.spell_menu2(out var_2, ref index, 0, SpellLoc.memorize);
+                byte spellId = PlayerCharacteristics.spell_menu2(out var_2, ref index, 0, SpellLoc.memorize);
                 bool redraw = true;
 
                 if (var_2 == true)
@@ -339,7 +339,7 @@ namespace engine
                     }
                     else
                     {
-                        spellId = ovr020.spell_menu2(out var_2, ref index, SpellSource.Memorize, SpellLoc.grimoire);
+                        spellId = PlayerCharacteristics.spell_menu2(out var_2, ref index, SpellSource.Memorize, SpellLoc.grimoire);
                         redraw = true;
 
                         if (spellId == 0)
@@ -357,7 +357,7 @@ namespace engine
                 {
                     index = -1;
 
-                    spellId = ovr020.spell_menu2(out var_2, ref index, 0, SpellLoc.memorize);
+                    spellId = PlayerCharacteristics.spell_menu2(out var_2, ref index, 0, SpellLoc.memorize);
 
                     if (var_2 == true &&
                         KeyInputHandler.yes_no(gbl.alertMenuColors, "Memorize these spells? ") == 'N')
@@ -385,7 +385,7 @@ namespace engine
                 var_1 = 0;
                 int var_8 = -1;
 
-                ovr020.spell_menu2(out var_2, ref var_8, 0, SpellLoc.scribe);
+                PlayerCharacteristics.spell_menu2(out var_2, ref var_8, 0, SpellLoc.scribe);
                 redraw = true;
 
                 if (var_2 == true)
@@ -408,7 +408,7 @@ namespace engine
 
                 while (var_1 == 0)
                 {
-                    int var_4 = ovr020.spell_menu2(out var_2, ref var_8, SpellSource.Scribe, SpellLoc.scrolls);
+                    int var_4 = PlayerCharacteristics.spell_menu2(out var_2, ref var_8, SpellSource.Scribe, SpellLoc.scrolls);
 
                     if (var_4 == 0)
                     {
@@ -482,7 +482,7 @@ namespace engine
                 {
                     var_8 = -1;
 
-                    ovr020.spell_menu2(out var_2, ref var_8, 0, SpellLoc.scribe);
+                    PlayerCharacteristics.spell_menu2(out var_2, ref var_8, 0, SpellLoc.scribe);
 
                     if (var_2 == true &&
                         KeyInputHandler.yes_no(gbl.alertMenuColors, "Scribe these spells? ") == 'N')
@@ -609,7 +609,7 @@ namespace engine
 
                 if (controlKey == true)
                 {
-                    ovr020.scroll_team_list(inputKey);
+                    PlayerCharacteristics.scroll_team_list(inputKey);
                     ovr025.PartySummary(gbl.SelectedPlayer);
                 }
                 else
@@ -698,7 +698,7 @@ namespace engine
                 {
                     if (reorderState == 0)
                     {
-                        ovr020.scroll_team_list(inputKey);
+                        PlayerCharacteristics.scroll_team_list(inputKey);
                         ovr025.PartySummary(gbl.SelectedPlayer);
                     }
                     else
@@ -841,7 +841,7 @@ namespace engine
 
                 if (controlKey == true)
                 {
-                    ovr020.scroll_team_list(inputKey);
+                    PlayerCharacteristics.scroll_team_list(inputKey);
                     ovr025.PartySummary(gbl.SelectedPlayer);
                 }
                 else
@@ -884,15 +884,15 @@ namespace engine
                         switch (id)
                         {
                             case 3:
-                                HealingAvailable += ovr024.roll_dice(8, 1);
+                                HealingAvailable += PlayerAffects.roll_dice(8, 1);
                                 break;
 
                             case 0x3A:
-                                HealingAvailable += ovr024.roll_dice(8, 2) + 1;
+                                HealingAvailable += PlayerAffects.roll_dice(8, 2) + 1;
                                 break;
 
                             case 0x47:
-                                HealingAvailable += ovr024.roll_dice(8, 3) + 3;
+                                HealingAvailable += PlayerAffects.roll_dice(8, 3) + 3;
                                 break;
                         }
                     }
@@ -907,17 +907,17 @@ namespace engine
         {
             for (int i = 0; i < numCureLight; i++)
             {
-                healingAvailable += ovr024.roll_dice(8, 1);
+                healingAvailable += PlayerAffects.roll_dice(8, 1);
             }
 
             for (int i = 0; i < numCureSerious; i++)
             {
-                healingAvailable += ovr024.roll_dice(8, 2) + 1;
+                healingAvailable += PlayerAffects.roll_dice(8, 2) + 1;
             }
 
             for (int i = 0; i < numCureCritical; i++)
             {
-                healingAvailable += ovr024.roll_dice(8, 3) + 3;
+                healingAvailable += PlayerAffects.roll_dice(8, 3) + 3;
             }
         }
 
@@ -1022,7 +1022,7 @@ namespace engine
                     }
 
                     if (damge_taken > 0 &&
-                        ovr024.heal_player(0, damge_taken, player) == true &&
+                        PlayerAffects.heal_player(0, damge_taken, player) == true &&
                         damge_taken <= healingAvailable)
                     {
                         healingAvailable -= damge_taken;
@@ -1104,7 +1104,7 @@ namespace engine
 
                 if (special_key == true)
                 {
-                    ovr020.scroll_team_list(input_key);
+                    PlayerCharacteristics.scroll_team_list(input_key);
                     ovr025.PartySummary(gbl.SelectedPlayer);
                 }
                 else
@@ -1121,7 +1121,7 @@ namespace engine
 
                         case 'V':
                             gbl.menuSelectedWord = 1;
-                            ovr020.viewPlayer();
+                            PlayerCharacteristics.viewPlayer();
                             break;
 
                         case 'M':

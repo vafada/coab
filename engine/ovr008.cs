@@ -1181,7 +1181,7 @@ namespace engine
 
                 if (special_key_pressed == true)
                 {
-                    ovr020.scroll_team_list(key_pressed);
+                    PlayerCharacteristics.scroll_team_list(key_pressed);
                     ovr025.PartySummary(gbl.SelectedPlayer);
                     key_pressed = '\0';
                 }
@@ -1362,7 +1362,7 @@ namespace engine
                     robChance = (robChance > 50) ? robChance - 50 : 0;
                 }
 
-                return (ovr024.roll_dice(100, 1) <= robChance);
+                return (PlayerAffects.roll_dice(100, 1) <= robChance);
             });
         }
 

@@ -749,32 +749,32 @@ namespace engine
                     {
                         case Race.halfling:
                             player.icon_size = 1;
-                            ovr024.add_affect(false, 0xff, 0, Affects.con_saving_bonus, player);
+                            PlayerAffects.add_affect(false, 0xff, 0, Affects.con_saving_bonus, player);
                             break;
 
                         case Race.dwarf:
                             player.icon_size = 1;
-                            ovr024.add_affect(false, 0xff, 0, Affects.con_saving_bonus, player);
-                            ovr024.add_affect(false, 0xff, 0, Affects.dwarf_vs_orc, player);
-                            ovr024.add_affect(false, 0xff, 0, Affects.dwarf_and_gnome_vs_giants, player);
+                            PlayerAffects.add_affect(false, 0xff, 0, Affects.con_saving_bonus, player);
+                            PlayerAffects.add_affect(false, 0xff, 0, Affects.dwarf_vs_orc, player);
+                            PlayerAffects.add_affect(false, 0xff, 0, Affects.dwarf_and_gnome_vs_giants, player);
                             break;
 
                         case Race.gnome:
                             player.icon_size = 1;
-                            ovr024.add_affect(false, 0xff, 0, Affects.con_saving_bonus, player);
-                            ovr024.add_affect(false, 0xff, 0, Affects.gnome_vs_man_sized_giant, player);
-                            ovr024.add_affect(false, 0xff, 0, Affects.dwarf_and_gnome_vs_giants, player);
-                            ovr024.add_affect(false, 0xff, 0, Affects.affect_30, player);
+                            PlayerAffects.add_affect(false, 0xff, 0, Affects.con_saving_bonus, player);
+                            PlayerAffects.add_affect(false, 0xff, 0, Affects.gnome_vs_man_sized_giant, player);
+                            PlayerAffects.add_affect(false, 0xff, 0, Affects.dwarf_and_gnome_vs_giants, player);
+                            PlayerAffects.add_affect(false, 0xff, 0, Affects.gnome_vs_gnoll, player);
                             break;
 
                         case Race.elf:
                             player.icon_size = 2;
-                            ovr024.add_affect(false, 0xff, 0, Affects.elf_resist_sleep, player);
+                            PlayerAffects.add_affect(false, 0xff, 0, Affects.elf_resist_sleep, player);
                             break;
 
                         case Race.half_elf:
                             player.icon_size = 2;
-                            ovr024.add_affect(false, 0xff, 0, Affects.halfelf_resistance, player);
+                            PlayerAffects.add_affect(false, 0xff, 0, Affects.halfelf_resistance, player);
                             break;
 
                         default:

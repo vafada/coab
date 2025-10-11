@@ -944,8 +944,8 @@ namespace engine
             byte var_9 = (byte)((var_5 + 2) - var_8);
             byte var_A = (byte)((var_7 + 2) - var_6);
 
-            byte var_1 = ovr024.roll_dice(6, 1);
-            byte var_2 = ovr024.roll_dice(6, 1);
+            byte var_1 = PlayerAffects.roll_dice(6, 1);
+            byte var_2 = PlayerAffects.roll_dice(6, 1);
 
             if (var_1 <= var_9)
             {
@@ -1101,11 +1101,11 @@ namespace engine
             {
                 for (int count = 0; count < (block_id - 0x80); count++)
                 {
-                    int var_63 = ovr024.roll_dice(100, 1);
+                    int var_63 = PlayerAffects.roll_dice(100, 1);
 
                     if (var_63 >= 1 && var_63 <= 60)
                     {
-                        int var_64 = ovr024.roll_dice(100, 1);
+                        int var_64 = PlayerAffects.roll_dice(100, 1);
 
                         if ((var_64 >= 1 && var_64 <= 47) ||
                             (var_64 >= 50 && var_64 <= 59))
@@ -1121,7 +1121,7 @@ namespace engine
                         }
                         else if (var_64 >= 60 && var_64 <= 90)
                         {
-                            var_64 = ovr024.roll_dice(10, 1);
+                            var_64 = PlayerAffects.roll_dice(10, 1);
 
                             if (var_64 >= 1 && var_64 <= 4)
                             {
@@ -1171,7 +1171,7 @@ namespace engine
                     }
                     else if (var_63 >= 0x5B && var_63 <= 0x62)
                     {
-                        int var_62 = ovr024.roll_dice(15, 1);
+                        int var_62 = PlayerAffects.roll_dice(15, 1);
 
                         if (var_62 >= 1 && var_62 <= 9)
                         {
@@ -1603,12 +1603,12 @@ namespace engine
             int dam_plus = ovr008.vm_GetCmdValue(4);
             byte var_6 = (byte)ovr008.vm_GetCmdValue(5);
 
-            int damage = ovr024.roll_dice(dice_size, dice_count) + dam_plus;
+            int damage = PlayerAffects.roll_dice(dice_size, dice_count) + dam_plus;
 
             byte rnd_player_id = 0;
             if ((var_1 & 0x40) == 0)
             {
-                rnd_player_id = ovr024.roll_dice(gbl.area2_ptr.party_size, 1);
+                rnd_player_id = PlayerAffects.roll_dice(gbl.area2_ptr.party_size, 1);
             }
 
             if ((var_1 & 0x80) != 0)
@@ -1624,7 +1624,7 @@ namespace engine
                         {
                             ovr008.sub_32200(player03, damage);
                         }
-                        else if (ovr024.RollSavingThrow(saveBonus, (SaveVerseType)bonusType, player03) == false)
+                        else if (PlayerAffects.RollSavingThrow(saveBonus, (SaveVerseType)bonusType, player03) == false)
                         {
                             ovr008.sub_32200(player03, damage);
                         }
@@ -1639,7 +1639,7 @@ namespace engine
                     if ((var_6 & 0x80) != 0)
                     {
                         if (bonusType == 0 ||
-                            ovr024.RollSavingThrow(saveBonus, (SaveVerseType)(bonusType - 1), gbl.SelectedPlayer) == false)
+                            PlayerAffects.RollSavingThrow(saveBonus, (SaveVerseType)(bonusType - 1), gbl.SelectedPlayer) == false)
                         {
                             ovr008.sub_32200(gbl.SelectedPlayer, damage);
                         }
@@ -1652,7 +1652,7 @@ namespace engine
                     {
                         Player target = gbl.TeamList[rnd_player_id - 1];
 
-                        if (ovr024.RollSavingThrow(saveBonus, (SaveVerseType)bonusType, target) == false)
+                        if (PlayerAffects.RollSavingThrow(saveBonus, (SaveVerseType)bonusType, target) == false)
                         {
                             ovr008.sub_32200(target, damage);
                         }
@@ -1667,15 +1667,15 @@ namespace engine
             {
                 for (int i = 0; i < var_1; i++)
                 {
-                    rnd_player_id = ovr024.roll_dice(gbl.area2_ptr.party_size, 1);
+                    rnd_player_id = PlayerAffects.roll_dice(gbl.area2_ptr.party_size, 1);
                     Player player03 = gbl.TeamList[rnd_player_id - 1];
 
-                    if (ovr024.CanHitTarget(var_6, player03) == true)
+                    if (PlayerAffects.CanHitTarget(var_6, player03) == true)
                     {
                         ovr008.sub_32200(player03, damage);
                     }
 
-                    damage = ovr024.roll_dice(dice_size, dice_count) + dam_plus;
+                    damage = PlayerAffects.roll_dice(dice_size, dice_count) + dam_plus;
                 }
             }
 

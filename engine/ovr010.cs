@@ -19,17 +19,17 @@ namespace engine
 
             int var_1 = player.actions.field_15;
 
-            if (var_1 == 0 || var_1 == 4 || ovr024.roll_dice(4, 1) == 1)
+            if (var_1 == 0 || var_1 == 4 || PlayerAffects.roll_dice(4, 1) == 1)
             {
-                var_1 = ovr024.roll_dice(8, 1);
+                var_1 = PlayerAffects.roll_dice(8, 1);
 
                 if (var_1 != 8)
                 {
-                    var_1 = ovr024.roll_dice(2, 1) + 4;
+                    var_1 = PlayerAffects.roll_dice(2, 1) + 4;
                 }
                 else
                 {
-                    var_1 = ovr024.roll_dice(4, 1);
+                    var_1 = PlayerAffects.roll_dice(4, 1);
                 }
             }
 
@@ -130,7 +130,7 @@ namespace engine
                 {
                     Player tmpPlayer = sc.player;
 
-                    if (ovr024.RollSavingThrow(save_bonus, spell_entry.saveVerse, sc.player) == false)
+                    if (PlayerAffects.RollSavingThrow(save_bonus, spell_entry.saveVerse, sc.player) == false)
                     {
                         result = true;
                     }
@@ -189,7 +189,7 @@ namespace engine
                 teamCount > 0 &&
                 gbl.area_ptr.can_cast_spells == false)
             {
-                int prioritisToTry = ovr024.roll_dice(7, 1);
+                int prioritisToTry = PlayerAffects.roll_dice(7, 1);
                 for (int i = 0; i < prioritisToTry; i++)
                 {
                     int priority = 7 - i;
@@ -221,7 +221,7 @@ namespace engine
             if (bestWand != null)
             {
                 bool var_15 = false; /* simeon */
-                ovr020.UseMagicItem(ref var_15, bestWand);
+                PlayerCharacteristics.UseMagicItem(ref var_15, bestWand);
                 return true;
             }
 
@@ -245,7 +245,7 @@ namespace engine
 
             byte spell_id = 0;
             byte priority = 7;
-            int var_5B = ovr024.roll_dice(7, 1);
+            int var_5B = PlayerAffects.roll_dice(7, 1);
             int var_5D = 1;
 
 
@@ -258,7 +258,7 @@ namespace engine
                     {
                         for (int var_5E = 1; var_5E < 4 && spell_id == 0; var_5E++)
                         {
-                            int random_spell_index = ovr024.roll_dice(spells_count, 1) - 1;
+                            int random_spell_index = PlayerAffects.roll_dice(spells_count, 1) - 1;
                             byte random_spell_id = spell_list[random_spell_index];
 
                             if (ShouldCastSpellX(priority, random_spell_id, player))
@@ -338,7 +338,7 @@ namespace engine
                         player.HasAffect(Affects.minor_globe_of_invulnerability) == false &&
                         player.actions.fleeing == false)
                     {
-                        if (ovr024.RollSavingThrow(0, 0, player) == false)
+                        if (PlayerAffects.RollSavingThrow(0, 0, player) == false)
                         {
                             move_cost = player.actions.move + 1;
                         }
@@ -384,7 +384,7 @@ namespace engine
                 player.actions.delay > 0)
             {
                 if (player.control_morale < Control.NPC_Base ||
-                   (player.control_morale >= Control.NPC_Base && gbl.enemyHealthPercentage <= (ovr024.roll_dice(100, 1) + gbl.monster_morale)) ||
+                   (player.control_morale >= Control.NPC_Base && gbl.enemyHealthPercentage <= (PlayerAffects.roll_dice(100, 1) + gbl.monster_morale)) ||
                     player.combat_team == CombatTeam.Enemy)
                 {
                     if (player.actions.moral_failure == true ||
@@ -397,7 +397,7 @@ namespace engine
                         }
                         else
                         {
-                            player.actions.field_15 = ovr024.roll_dice(2, 1);
+                            player.actions.field_15 = PlayerAffects.roll_dice(2, 1);
                             dir = gbl.mapDirection - (((gbl.mapDirection + 2) % 4) / 2) + 8;
 
                             if (player.combat_team == CombatTeam.Ours)
@@ -494,7 +494,7 @@ namespace engine
                                     ovr025.clear_actions(player);
                                 }
 
-                                ovr024.in_poison_cloud(1, player);
+                                PlayerAffects.in_poison_cloud(1, player);
                             }
                         }
                         return;
@@ -513,7 +513,7 @@ namespace engine
             byte_1AB18 = 8;
             byte_1AB19 = 0;
 
-            ovr024.CheckAffectsEffect(player, CheckType.Type_14);
+            PlayerAffects.CheckAffectsEffect(player, CheckType.Type_14);
 
             if (player.combat_team == CombatTeam.Ours &&
                 ovr025.bandage(true) == true)
@@ -615,7 +615,7 @@ namespace engine
                         }
                         else
                         {
-                            int roll = ovr024.roll_dice(nearTargets.Count, 1);
+                            int roll = PlayerAffects.roll_dice(nearTargets.Count, 1);
 
                             target = nearTargets[roll - 1].player;
 
@@ -762,7 +762,7 @@ namespace engine
             bool var_1 = false;
             player.actions.moral_failure = false;
 
-            ovr024.RemoveAttackersAffects(player);
+            PlayerAffects.RemoveAttackersAffects(player);
 
             if (player.actions.fleeing == true)
             {
@@ -777,7 +777,7 @@ namespace engine
                 {
                     gbl.monster_morale = 0;
                 }
-                ovr024.CheckAffectsEffect(player, CheckType.Morale);
+                PlayerAffects.CheckAffectsEffect(player, CheckType.Morale);
 
                 if (gbl.monster_morale < (100 - ((player.hit_point_current * 100) / player.hit_point_max)) ||
                     gbl.monster_morale == 0)
@@ -785,7 +785,7 @@ namespace engine
                     //byte var_3 = gbl.byte_1D2CC;
                     gbl.monster_morale = gbl.enemyHealthPercentage;
 
-                    ovr024.CheckAffectsEffect(player, CheckType.Morale);
+                    PlayerAffects.CheckAffectsEffect(player, CheckType.Morale);
 
                     if (gbl.monster_morale < (100 - gbl.area2_ptr.field_58C) ||
                         gbl.monster_morale == 0 ||
@@ -796,12 +796,12 @@ namespace engine
                         if (var_2 <= (ovr014.CalcMoves(player) / 2))
                         {
                             player.actions.moral_failure = true;
-                            ovr024.remove_affect(null, Affects.affect_4a, player);
-                            ovr024.remove_affect(null, Affects.weap_dragon_slayer, player);
+                            PlayerAffects.remove_affect(null, Affects.affect_4a, player);
+                            PlayerAffects.remove_affect(null, Affects.weap_dragon_slayer, player);
                         }
                         else if (player.stats2.Int.full > 5)
                         {
-                            ovr024.RemoveFromCombat("Surrenders", Status.unconscious, player);
+                            PlayerAffects.RemoveFromCombat("Surrenders", Status.unconscious, player);
 
                             var_1 = true;
                             ovr025.clear_actions(player);
@@ -997,7 +997,7 @@ namespace engine
             {
                 if (player.activeItems.primaryWeapon != null)
                 {
-                    ovr020.ready_Item(player.activeItems.primaryWeapon);
+                    PlayerCharacteristics.ready_Item(player.activeItems.primaryWeapon);
                 }
 
                 ovr025.reclac_player_values(player);
@@ -1010,7 +1010,7 @@ namespace engine
 
                 if (weapon != null)
                 {
-                    ovr020.ready_Item(weapon);
+                    PlayerCharacteristics.ready_Item(weapon);
                 }
 
                 itemsChanged = true;
@@ -1031,12 +1031,12 @@ namespace engine
                 if (player.activeItems.secondaryWeapon == null ||
                     player.activeItems.secondaryWeapon.cursed == true)
                 {
-                    ovr020.ready_Item(weapon);
+                    PlayerCharacteristics.ready_Item(weapon);
                     itemsChanged = true;
                 }
                 else
                 {
-                    ovr020.ready_Item(player.activeItems.secondaryWeapon);
+                    PlayerCharacteristics.ready_Item(player.activeItems.secondaryWeapon);
                     itemsChanged = true;
                 }
             }
@@ -1044,13 +1044,13 @@ namespace engine
             {
                 if (player.activeItems.secondaryWeapon != null)
                 {
-                    ovr020.ready_Item(player.activeItems.secondaryWeapon);
+                    PlayerCharacteristics.ready_Item(player.activeItems.secondaryWeapon);
                 }
                 ovr025.reclac_player_values(player);
 
                 if (best_weapon != null)
                 {
-                    ovr020.ready_Item(best_weapon);
+                    PlayerCharacteristics.ready_Item(best_weapon);
                 }
 
                 itemsChanged = true;

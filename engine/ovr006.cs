@@ -243,7 +243,7 @@ namespace engine
                         gbl.partyAnimatedCount++;
                     }
 
-                    System.Array.ForEach(affects_array, affect => ovr024.remove_affect(null, affect, player));
+                    System.Array.ForEach(affects_array, affect => PlayerAffects.remove_affect(null, affect, player));
                 }
 
                 if (gbl.battleWon == true)
@@ -530,11 +530,11 @@ namespace engine
                                 break;
 
                             case 'G':
-                                ovr020.scroll_team_list(key);
+                                PlayerCharacteristics.scroll_team_list(key);
                                 break;
 
                             case 'O':
-                                ovr020.scroll_team_list(key);
+                                PlayerCharacteristics.scroll_team_list(key);
                                 break;
                         }
 
@@ -612,7 +612,7 @@ namespace engine
                 switch (input_key)
                 {
                     case 'V':
-                        ovr020.viewPlayer();
+                        PlayerCharacteristics.viewPlayer();
                         break;
 
                     case 'T':
@@ -660,12 +660,12 @@ namespace engine
                         break;
 
                     case 'G':
-                        ovr020.scroll_team_list(input_key);
+                        PlayerCharacteristics.scroll_team_list(input_key);
                         ovr025.PartySummary(gbl.SelectedPlayer);
                         break;
 
                     case 'O':
-                        ovr020.scroll_team_list(input_key);
+                        PlayerCharacteristics.scroll_team_list(input_key);
                         ovr025.PartySummary(gbl.SelectedPlayer);
                         break;
                 }

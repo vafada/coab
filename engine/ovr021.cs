@@ -79,7 +79,7 @@ namespace engine
 
                         foreach (Affect remove in removeList)
                         {
-                            ovr024.remove_affect(remove, remove.type, player);
+                            PlayerAffects.remove_affect(remove, remove.type, player);
                         }
 
                         // Not sure why we are doing this again, but this is what the orig code did...
@@ -365,7 +365,7 @@ namespace engine
 
                 foreach (Player player in gbl.TeamList)
                 {
-                    if (ovr024.heal_player(0, 1, player) == true)
+                    if (PlayerAffects.heal_player(0, 1, player) == true)
                     {
                         update_ui = true;
                     }
@@ -591,7 +591,7 @@ namespace engine
                         {
                             gbl.rest_incounter_count = 0;
 
-                            if (ovr024.roll_dice(100, 1) <= gbl.area2_ptr.rest_incounter_percentage)
+                            if (PlayerAffects.roll_dice(100, 1) <= gbl.area2_ptr.rest_incounter_percentage)
                             {
                                 ovr025.ClearPlayerTextArea();
                                 display_resting_time(0);
