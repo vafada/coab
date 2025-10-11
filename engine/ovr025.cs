@@ -774,13 +774,13 @@ namespace engine
 
 		internal static void string_print01(string text)
 		{
-			ovr027.ClearPromptAreaNoUpdate();
+			KeyInputHandler.ClearPromptAreaNoUpdate();
 
 			TextRenderer.displayString(text, 0, 10, 0x18, 0);
 
 			TextRenderer.GameDelay();
 
-			ovr027.ClearPromptAreaNoUpdate();
+			KeyInputHandler.ClearPromptAreaNoUpdate();
 		}
 
 
@@ -888,7 +888,7 @@ namespace engine
 			byte[] pathDir = new byte[0x94];
 
 
-			seg051.FillChar(8, 0x94, pathDir);
+			StringRandomIOUtils.FillChar(8, 0x94, pathDir);
 
 			int var_AF = 0;
 			int frame = 0;
@@ -1536,7 +1536,7 @@ namespace engine
 				bool useOverlay = (gbl.game_state == GameState.Camping || gbl.game_state == GameState.AfterCombat);
 				bool special_key;
 
-				input_key = ovr027.displayInput(out special_key, useOverlay, 1, gbl.defaultMenuColors, "Select" + text, prompt + " ");
+				input_key = KeyInputHandler.displayInput(out special_key, useOverlay, 1, gbl.defaultMenuColors, "Select" + text, prompt + " ");
 
 				int index = gbl.TeamList.IndexOf(player);
 

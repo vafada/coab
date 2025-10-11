@@ -1161,7 +1161,7 @@ namespace engine
 
             foreach (Player player in to_remove)
             {
-                gbl.SelectedPlayer = ovr018.FreeCurrentPlayer(player, false, true);
+                gbl.SelectedPlayer = StartGameScreen.FreeCurrentPlayer(player, false, true);
             }
         }
 
@@ -1178,7 +1178,7 @@ namespace engine
             gbl.bigpic_block_id = 0xff;
             gbl.current_head_id = 0xff;
             gbl.current_body_id = 0xff;
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
             TextRenderer.GameDelay();
 
             TextRenderer.displayString("A battle begins...", 0, 0x0a, 0x18, 0);

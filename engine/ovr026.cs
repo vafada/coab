@@ -189,7 +189,7 @@ namespace engine
             {
                 byte class_lvl = player.ClassLevel[_class];
 
-                player.thac0 = System.Math.Max(ovr018.thac0_table[_class, class_lvl], player.thac0);
+                player.thac0 = System.Math.Max(StartGameScreen.thac0_table[_class, class_lvl], player.thac0);
                 player.HitDice = System.Math.Max(class_lvl, player.HitDice);
             }
 
@@ -215,7 +215,7 @@ namespace engine
                 if (player.ClassLevel[skill] > 0 ||
                     (player.ClassLevelsOld[skill] > 0 && player.ClassLevelsOld[skill] < player.HitDice))
                 {
-                    player.classFlags += ovr018.unk_1A1B2[skill];
+                    player.classFlags += StartGameScreen.unk_1A1B2[skill];
                 }
             }
 
@@ -243,9 +243,9 @@ namespace engine
                         }
                     }
 
-                    if (ovr018.thac0_table[class_index, skill_lvl] > player.thac0)
+                    if (StartGameScreen.thac0_table[class_index, skill_lvl] > player.thac0)
                     {
-                        player.thac0 = ovr018.thac0_table[class_index, skill_lvl];
+                        player.thac0 = StartGameScreen.thac0_table[class_index, skill_lvl];
                     }
                 }
 
@@ -630,7 +630,7 @@ namespace engine
 
             do
             {
-                input_key = ovr027.sl_select_item(out list_ptr, ref index, ref var_F, show_exit, list,
+                input_key = KeyInputHandler.sl_select_item(out list_ptr, ref index, ref var_F, show_exit, list,
                     0x16, 0x26, 2, 1, gbl.defaultMenuColors, "Select", string.Empty);
 
                 if (input_key == 0)

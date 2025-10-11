@@ -104,31 +104,31 @@ namespace engine
 
                 unk_1ADFB[var_5].field_4 = 1;
 
-                byte var_15 = (byte)(seg051.Random(20) + 25);
+                byte var_15 = (byte)(StringRandomIOUtils.Random(20) + 25);
 
                 if (gbl.byte_1ADFA < var_15)
                 {
                     gbl.byte_1ADFA = var_15;
                 }
 
-                int var_16 = seg051.Random(5) + 5;
+                int var_16 = StringRandomIOUtils.Random(5) + 5;
                 int var_18 = var_16 + 15;
 
-                var_C = seg051.Random__Real() * (System.Math.PI * 2.0);
-                var_12 = seg051.Random__Real() * (System.Math.PI * 2.0);
+                var_C = StringRandomIOUtils.Random__Real() * (System.Math.PI * 2.0);
+                var_12 = StringRandomIOUtils.Random__Real() * (System.Math.PI * 2.0);
 
-                d = (seg051.Random(10) + 24) * System.Math.Sin(var_C) * System.Math.Sin(var_12);
+                d = (StringRandomIOUtils.Random(10) + 24) * System.Math.Sin(var_C) * System.Math.Sin(var_12);
                 int var_1A = (int)d + arg_6;
 
-                d = (seg051.Random(10) + 24) * System.Math.Cos(var_C) * System.Math.Sin(var_12);
+                d = (StringRandomIOUtils.Random(10) + 24) * System.Math.Cos(var_C) * System.Math.Sin(var_12);
                 int var_1C = (int)d + arg_4;
 
                 for (int var_4 = 1; var_4 <= 0x28; var_4++)
                 {
                     Struct_1ADF6 var_21 = gbl.dword_1ADF6[var_4 + ((var_5) * 40) - 1];
 
-                    var_C = seg051.Random__Real() * (System.Math.PI * 2.0);
-                    var_12 = seg051.Random__Real() * (System.Math.PI * 2.0);
+                    var_C = StringRandomIOUtils.Random__Real() * (System.Math.PI * 2.0);
+                    var_12 = StringRandomIOUtils.Random__Real() * (System.Math.PI * 2.0);
 
                     var_21.field_00 = arg_A;
                     var_21.field_02 = arg_8;
@@ -145,9 +145,9 @@ namespace engine
                     var_21.field_10 = 1;
                     var_21.field_12 = 1;
 
-                    var_21.field_13 = (byte)(var_16 + seg051.Random(7) - 4);
-                    var_21.field_14 = (byte)(var_18 + seg051.Random(11) - 6);
-                    var_21.field_15 = (byte)(var_15 + seg051.Random(7));
+                    var_21.field_13 = (byte)(var_16 + StringRandomIOUtils.Random(7) - 4);
+                    var_21.field_14 = (byte)(var_18 + StringRandomIOUtils.Random(11) - 6);
+                    var_21.field_15 = (byte)(var_15 + StringRandomIOUtils.Random(7));
 
                     /*HACK commented out this code as it does not make sense
                     var_21.field_16 = var_21.field_16;
@@ -325,7 +325,7 @@ namespace engine
 
                     var_B = GetPixel(var_4, var_2);
 
-                    SetPixel((byte)(seg051.Random(7) + 8), var_4, var_2);
+                    SetPixel((byte)(StringRandomIOUtils.Random(7) + 8), var_4, var_2);
                 }
 
                 KeyInputQueue.SysDelay(0x0F);
@@ -365,21 +365,21 @@ namespace engine
             do
             {
                 if (gbl.byte_1AE0A == 0 &&
-                    seg051.Random(10000) < 1)
+                    StringRandomIOUtils.Random(10000) < 1)
                 {
-                    seg051.FillChar(1, 3, gbl.unk_1AE0B);
-                    gbl.byte_1AE1B = seg051.Random((byte)2);
+                    StringRandomIOUtils.FillChar(1, 3, gbl.unk_1AE0B);
+                    gbl.byte_1AE1B = StringRandomIOUtils.Random((byte)2);
 
                     for (byte i = 0; i < gbl.byte_1AE1B; i++)
                     {
-                        gbl.unk_1AE0B[i] = (byte)(seg051.Random(5) + 2);
+                        gbl.unk_1AE0B[i] = (byte)(StringRandomIOUtils.Random(5) + 2);
                     }
 
                     gbl.word_1AE0F = 65;
                     gbl.word_1AE11 = 65;
-                    gbl.word_1AE13 = (ushort)(seg051.Random(20) + 35);
+                    gbl.word_1AE13 = (ushort)(StringRandomIOUtils.Random(20) + 35);
 
-                    gbl.word_1AE15 = (short)(-(seg051.Random(5) + 50));
+                    gbl.word_1AE15 = (short)(-(StringRandomIOUtils.Random(5) + 50));
 
                     gbl.word_1AE19 = gbl.word_1AE15;
                     gbl.word_1AE17 = gbl.word_1AE13;
@@ -490,7 +490,7 @@ namespace engine
             ShowAnimation(1, 0x4a, 3, 3);
 
             TextRenderer.DisplayAndPause("Press any key to continue.", 13);
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
 
             TextRenderer.press_any_key(aIAmTrappedWith, true, 10, TextRegion.NormalBottom);
             TextRenderer.press_any_key(aWhereArmiesHav, false, 10, TextRegion.NormalBottom);
@@ -500,7 +500,7 @@ namespace engine
             ShowAnimation(1, 0x4B, 3, 3);
 
             TextRenderer.DisplayAndPause("Press any key to continue.", 13);
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
 
             TextRenderer.press_any_key(aYouAreCertainH, true, 10, TextRegion.NormalBottom);
             TextRenderer.press_any_key(aFinalBondFades, false, 10, TextRegion.NormalBottom);
@@ -522,7 +522,7 @@ namespace engine
             TextRenderer.press_any_key(aThisFoulPlaceT, false, 10, TextRegion.NormalBottom);
 
             TextRenderer.DisplayAndPause("Press any key to continue.", 13);
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
             ovr030.load_bigpic(0x7A);
 
             ovr030.draw_bigpic();

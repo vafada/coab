@@ -220,7 +220,7 @@ namespace engine
 
 			do
 			{
-				input_key = ovr027.sl_select_item(out selected, ref index, ref var_61, show_exit, gbl.spell_string_list,
+				input_key = KeyInputHandler.sl_select_item(out selected, ref index, ref var_61, show_exit, gbl.spell_string_list,
 					end_y, 0x26, 5, 1, gbl.defaultMenuColors, text, prompt_text);
 
 			} while (asc_5C1D1.MemberOf(input_key) == false);
@@ -691,7 +691,7 @@ namespace engine
 					TextRenderer.displayString(SpellNames[spell_id], 0, 10, 0x13, 1);
 					TextRenderer.displayString("can't be cast here...", 0, 10, 0x14, 1);
 
-					if (ovr027.yes_no(gbl.defaultMenuColors, "Lose it? ") == 'Y')
+					if (KeyInputHandler.yes_no(gbl.defaultMenuColors, "Lose it? ") == 'Y')
 					{
 						caster.spellList.ClearSpell(spell_id);
 					}
@@ -701,7 +701,7 @@ namespace engine
 					TextRenderer.displayString("That Item", 0, 10, 0x13, 1);
 					TextRenderer.displayString("is a combat-only item...", 0, 10, 0x14, 1);
 
-					if (ovr027.yes_no(gbl.defaultMenuColors, "Use it? ") == 'Y')
+					if (KeyInputHandler.yes_no(gbl.defaultMenuColors, "Use it? ") == 'Y')
 					{
 						arg_0 = true;
 					}
@@ -790,7 +790,7 @@ namespace engine
 						stillCast = false;
 					}
 					else if (quick_fight == QuickFight.True ||
-							ovr027.yes_no(gbl.alertMenuColors, "Abort Spell? ") == 'Y')
+							KeyInputHandler.yes_no(gbl.alertMenuColors, "Abort Spell? ") == 'Y')
 					{
 						ovr025.string_print01("Spell Aborted");
 						if (gbl.spell_from_item == false)
@@ -2141,13 +2141,13 @@ namespace engine
 					if (lvl > 0 &&
 						lvl <= max_lvl)
 					{
-						if (ovr018.exp_table[skill, lvl] > 0 &&
-							ovr018.exp_table[skill, lvl] < max_exp &&
+						if (StartGameScreen.exp_table[skill, lvl] > 0 &&
+							StartGameScreen.exp_table[skill, lvl] < max_exp &&
 							Limits.RaceStatLevelRestricted((ClassId)skill, player) == false)
 						{
 							max_lvl = lvl;
 							var_C = skill;
-							max_exp = ovr018.exp_table[skill, lvl];
+							max_exp = StartGameScreen.exp_table[skill, lvl];
 						}
 					}
 				}
@@ -2538,7 +2538,7 @@ namespace engine
 				}
 				else
 				{
-					input_key = ovr027.displayInput(false, 0, gbl.defaultMenuColors, "Hot Cold", "flame type: ");
+					input_key = KeyInputHandler.displayInput(false, 0, gbl.defaultMenuColors, "Hot Cold", "flame type: ");
 				}
 
 				if (input_key == 'H')
@@ -2555,7 +2555,7 @@ namespace engine
 				}
 				else
 				{
-					input_key = ovr027.displayInput(false, 0, gbl.defaultMenuColors, "Yes No", "Abort spell? ");
+					input_key = KeyInputHandler.displayInput(false, 0, gbl.defaultMenuColors, "Yes No", "Abort spell? ");
 
 					if (input_key == 'Y')
 					{

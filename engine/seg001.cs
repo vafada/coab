@@ -116,7 +116,7 @@ namespace engine
             gbl.displayInputSecondsToWait = 30;
             gbl.displayInputTimeoutValue = 'D';
 
-            char inputKey = ovr027.displayInput(false, 0, gbl.defaultMenuColors, "Play Demo", "Curse of the Azure Bonds v1.3 ");
+            char inputKey = KeyInputHandler.displayInput(false, 0, gbl.defaultMenuColors, "Play Demo", "Curse of the Azure Bonds v1.3 ");
 
             gbl.displayInputSecondsToWait = 0;
             gbl.displayInputTimeoutValue = '\0';
@@ -146,7 +146,7 @@ namespace engine
 
                 if (gbl.inDemo == false)
                 {
-                    ovr018.startGameMenu();
+                    StartGameScreen.startGameMenu();
                 }
 
                 ovr003.sub_29758();
@@ -161,7 +161,7 @@ namespace engine
                     gbl.displayInputSecondsToWait = 10;
                     gbl.displayInputTimeoutValue = 'D';
 
-                    inputKey = ovr027.displayInput(false, 0, gbl.defaultMenuColors, "Play Demo", "Curse of the Azure Bonds v1.3 ");
+                    inputKey = KeyInputHandler.displayInput(false, 0, gbl.defaultMenuColors, "Play Demo", "Curse of the Azure Bonds v1.3 ");
 
                     gbl.displayInputSecondsToWait = 0;
                     gbl.displayInputTimeoutValue = '\0';
@@ -181,7 +181,7 @@ namespace engine
 
         static void InitFirst() /* sub_39054 */
         {
-            seg051.Randomize();
+            StringRandomIOUtils.Randomize();
 
             gbl.area_ptr = new Area1();
             gbl.area2_ptr = new Area2();
@@ -201,7 +201,7 @@ namespace engine
             gbl.cursor_bkup = new DaxBlock(0, 1, 1, 8);
             gbl.cursor = new DaxBlock(0, 1, 1, 8);
 
-            seg051.FillChar(0xf, gbl.cursor.bpp, gbl.cursor.data);
+            StringRandomIOUtils.FillChar(0xf, gbl.cursor.bpp, gbl.cursor.data);
 
             gbl.symbol_8x8_set = new DaxBlock[5];
             gbl.symbol_8x8_set[0] = null;
@@ -305,7 +305,7 @@ namespace engine
             gbl.sky_dax_252 = null;
             gbl.gameWon = false;
             TextRenderer.Load8x8Tiles();
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
             TextRenderer.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
 
             Render8By8Symbol.Load8x8D(4, 0xca);
@@ -389,7 +389,7 @@ namespace engine
             gbl.focusCombatAreaOnPlayer = true;
             gbl.bigpic_block_id = 0x0FF;
             gbl.silent_training = false;
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
             gbl.menuSelectedWord = 1;
             gbl.game_state = GameState.DungeonMap;
             gbl.last_game_state = 0;

@@ -57,7 +57,7 @@ namespace engine
 
         internal static short AskNumberValue(byte fgColor, string prompt, int maxValue) // sub_592AD
         {
-            ovr027.ClearPromptAreaNoUpdate();
+            KeyInputHandler.ClearPromptAreaNoUpdate();
             TextRenderer.displayString(prompt, 0, fgColor, 0x18, 0);
 
             int prompt_width = prompt.Length;
@@ -94,14 +94,14 @@ namespace engine
                 else if (inputKey == 8 && currentValueStr.Length > 0)
                 {
                     int i = currentValueStr.Length - 1;
-                    currentValueStr = seg051.Copy(i, 0, currentValueStr);
+                    currentValueStr = StringRandomIOUtils.Copy(i, 0, currentValueStr);
 
 					TextRenderer.displaySpaceChar(0x18, xCol-1);
                     xCol--;
                 }
             } while (inputKey != 0x0D && inputKey != 0x1B);
 
-            ovr027.ClearPromptAreaNoUpdate();
+            KeyInputHandler.ClearPromptAreaNoUpdate();
 
             int var_44;
             if (inputKey == 0x1B || 
@@ -372,7 +372,7 @@ namespace engine
 				int dummyIndex = 0;
 
 				MenuItem var_C;
-				char input_key = ovr027.sl_select_item(out var_C, ref dummyIndex, ref var_118, true, money,
+				char input_key = KeyInputHandler.sl_select_item(out var_C, ref dummyIndex, ref var_118, true, money,
 					8, 15, 2, 2, gbl.defaultMenuColors, "Select", "Select type of coin ");
 
 				if (var_C == null || input_key == 0)
@@ -904,7 +904,7 @@ namespace engine
 
                     prompt += " Exit";
 
-                    char input_key = ovr027.displayInput(out special_key, false, 1, gbl.defaultMenuColors, prompt, "Appraise : ");
+                    char input_key = KeyInputHandler.displayInput(out special_key, false, 1, gbl.defaultMenuColors, prompt, "Appraise : ");
 
                     if (input_key == 'G')
                     {
@@ -961,7 +961,7 @@ namespace engine
                                 must_sell = false;
                             }
 
-                            input_key = ovr027.displayInput(out special_key, false, 1, gbl.defaultMenuColors, sell_text, "You can : ");
+                            input_key = KeyInputHandler.displayInput(out special_key, false, 1, gbl.defaultMenuColors, sell_text, "You can : ");
 
                             if (input_key == 'K' && must_sell == false)
                             {
@@ -986,31 +986,31 @@ namespace engine
 
                             if (roll >= 1 && roll <= 10)
                             {
-                                value = (short)(seg051.Random(900) + 100);
+                                value = (short)(StringRandomIOUtils.Random(900) + 100);
                             }
                             else if (roll >= 11 && roll <= 20)
                             {
-                                value = (short)(seg051.Random(1000) + 200);
+                                value = (short)(StringRandomIOUtils.Random(1000) + 200);
                             }
                             else if (roll >= 21 && roll <= 40)
                             {
-                                value = (short)(seg051.Random(1500) + 300);
+                                value = (short)(StringRandomIOUtils.Random(1500) + 300);
                             }
                             else if (roll >= 41 && roll <= 50)
                             {
-                                value = (short)(seg051.Random(2500) + 500);
+                                value = (short)(StringRandomIOUtils.Random(2500) + 500);
                             }
                             else if (roll >= 51 && roll <= 70)
                             {
-                                value = (short)(seg051.Random(5000) + 1000);
+                                value = (short)(StringRandomIOUtils.Random(5000) + 1000);
                             }
                             else if (roll >= 0x47 && roll <= 0x5A)
                             {
-                                value = (short)(seg051.Random(6000) + 2000);
+                                value = (short)(StringRandomIOUtils.Random(6000) + 2000);
                             }
                             else if (roll >= 0x5B && roll <= 0x64)
                             {
-                                value = (short)(seg051.Random(10000) + 2000);
+                                value = (short)(StringRandomIOUtils.Random(10000) + 2000);
                             }
                             else
                             {
@@ -1033,7 +1033,7 @@ namespace engine
                                 must_sell = false;
                             }
 
-                            input_key = ovr027.displayInput(out special_key, false, 1, gbl.defaultMenuColors, sell_text, "You can : ");
+                            input_key = KeyInputHandler.displayInput(out special_key, false, 1, gbl.defaultMenuColors, sell_text, "You can : ");
 
                             if (input_key == 'K' && must_sell == false)
                             {

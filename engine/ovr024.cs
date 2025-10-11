@@ -589,7 +589,7 @@ namespace engine
 
             for (int i = 0; i < dice_count; i++)
             {
-                roll_total += seg051.Random(dice_size) + 1;
+                roll_total += StringRandomIOUtils.Random(dice_size) + 1;
             }
 
             byte byte_total = (byte)roll_total;

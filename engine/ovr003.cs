@@ -142,7 +142,7 @@ namespace engine
 
             ushort loc = gbl.cmd_opps[2].Word;
 
-            byte val = seg051.Random(rand_max);
+            byte val = StringRandomIOUtils.Random(rand_max);
 
             VmLog.WriteLine("CMD_Random: Max: {0} Loc: {1} Val: {2}", rand_max, new MemLoc(loc), val);
 
@@ -203,7 +203,7 @@ namespace engine
                 {
                     gbl.restore_player_ptr = false;
                 }
-                gbl.SelectedPlayer = ovr018.FreeCurrentPlayer(gbl.SelectedPlayer, true, false);
+                gbl.SelectedPlayer = StartGameScreen.FreeCurrentPlayer(gbl.SelectedPlayer, true, false);
 
                 ovr025.PartySummary(gbl.SelectedPlayer);
                 gbl.redrawPartySummary1 = false;
@@ -749,7 +749,7 @@ namespace engine
 
             ovr008.vm_SetMemoryValue(menu_selected, loc);
 
-            ovr027.ClearPromptAreaNoUpdate();
+            KeyInputHandler.ClearPromptAreaNoUpdate();
         }
 
         /// <summary>
@@ -1531,7 +1531,7 @@ namespace engine
                 }
             } while (init_max != 0);
 
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
             gbl.DelayBetweenCharacters = false;
             gbl.byte_1EE95 = false;
         }
@@ -1940,7 +1940,7 @@ namespace engine
 
             if (var_1 == 0)
             {
-                ovr018.startGameMenu();
+                StartGameScreen.startGameMenu();
                 if (gbl.lastDaxBlockId != 0x50 &&
                     gbl.area_ptr.inDungeon == 0)
                 {
@@ -1962,8 +1962,8 @@ namespace engine
                     play_ptr.in_combat = true;
                 }
 
-                ovr018.startGameMenu();
-                char saveYes = ovr027.yes_no(gbl.defaultMenuColors, "You've won. Save before quitting? ");
+                StartGameScreen.startGameMenu();
+                char saveYes = KeyInputHandler.yes_no(gbl.defaultMenuColors, "You've won. Save before quitting? ");
 
                 if (saveYes == 'Y')
                 {
@@ -2010,7 +2010,7 @@ namespace engine
 
             VmLog.WriteLine("CMD_Dump: Player: {0}", gbl.SelectedPlayer);
 
-            gbl.SelectedPlayer = ovr018.FreeCurrentPlayer(gbl.SelectedPlayer, true, false);
+            gbl.SelectedPlayer = StartGameScreen.FreeCurrentPlayer(gbl.SelectedPlayer, true, false);
 
             gbl.LastSelectedPlayer = gbl.SelectedPlayer;
 
@@ -2283,7 +2283,7 @@ namespace engine
             {
                 while (gbl.TeamList.Count > 0)
                 {
-                    ovr018.FreeCurrentPlayer(gbl.TeamList[0], true, true);
+                    StartGameScreen.FreeCurrentPlayer(gbl.TeamList[0], true, true);
                 }
                 gbl.SelectedPlayer = null;
             }

@@ -607,7 +607,7 @@ namespace engine
         internal static void turns_undead(Player player)
         {
             ovr025.DisplayPlayerStatusString(false, 10, "turns undead...", player);
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
             TextRenderer.GameDelay();
 
             bool any_turned = false;
@@ -1723,7 +1723,7 @@ namespace engine
             {
                 result = true;
             }
-            else if (ovr027.yes_no(gbl.defaultMenuColors, "Attack Ally: ") != 'Y')
+            else if (KeyInputHandler.yes_no(gbl.defaultMenuColors, "Attack Ally: ") != 'Y')
             {
                 result = false;
             }
@@ -1797,7 +1797,7 @@ namespace engine
             gbl.display_hitpoints_ac = true;
             ovr025.CombatDisplayPlayerSummary(target);
 
-            char input_key = ovr027.displayInput(false, 1, gbl.defaultMenuColors, text, "Aim:");
+            char input_key = KeyInputHandler.displayInput(false, 1, gbl.defaultMenuColors, text, "Aim:");
 
             return input_key;
         }
@@ -1976,7 +1976,7 @@ namespace engine
                     text = "Target " + text;
                 }
 
-                input_key = ovr027.displayInput(false, 1, gbl.defaultMenuColors, text, "(Use Cursor keys) ");
+                input_key = KeyInputHandler.displayInput(false, 1, gbl.defaultMenuColors, text, "(Use Cursor keys) ");
 
                 switch (input_key)
                 {

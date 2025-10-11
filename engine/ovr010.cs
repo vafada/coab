@@ -8,7 +8,7 @@ namespace engine
         internal static void PlayerQuickFight(Player player) // sub_3504B
         {
             bool var_2 = process_input_in_monsters_turn(player);
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
             ovr025.ClearPlayerTextArea();
 
             if (player.in_combat == false)

@@ -17,7 +17,7 @@ namespace engine
         {
             ovr025.DisplayPlayerStatusString(false, 0, text, gbl.SelectedPlayer);
 
-            char ret_val = ovr027.yes_no(gbl.defaultMenuColors, "cast cure anyway: ");
+            char ret_val = KeyInputHandler.yes_no(gbl.defaultMenuColors, "cast cure anyway: ");
 
             ovr025.ClearPlayerTextArea();
 
@@ -32,7 +32,7 @@ namespace engine
 
             bool buy = false;
 
-            if ('Y' == ovr027.yes_no(gbl.defaultMenuColors, "pay for cure "))
+            if ('Y' == KeyInputHandler.yes_no(gbl.defaultMenuColors, "pay for cure "))
             {
                 if (cost <= gbl.SelectedPlayer.Money.GetGoldWorth())
                 {
@@ -311,7 +311,7 @@ namespace engine
                 stringList.Add(new MenuItem(temple_sl[i]));
             }
 
-            ovr027.ClearPromptAreaNoUpdate();
+            KeyInputHandler.ClearPromptAreaNoUpdate();
             bool redrawMenuItems = true;
             FrameRenderer.DrawFrame_WildernessMap();
 
@@ -321,7 +321,7 @@ namespace engine
                 TextRenderer.displayString(text, 0, 15, 1, 1);
                 MenuItem dummySelected;
 
-                char sl_output = ovr027.sl_select_item(out dummySelected, ref sl_index, ref redrawMenuItems, false,
+                char sl_output = KeyInputHandler.sl_select_item(out dummySelected, ref sl_index, ref redrawMenuItems, false,
                     stringList, 15, 0x26, 4, 2, gbl.defaultMenuColors, "Heal Exit", string.Empty);
 
                 if (sl_output == 'H' || sl_output == 0x0d)
@@ -419,7 +419,7 @@ namespace engine
                 }
 
                 bool ctrl_key;
-                char input_key = ovr027.displayInput(out ctrl_key, false, 1, gbl.defaultMenuColors, text, string.Empty);
+                char input_key = KeyInputHandler.displayInput(out ctrl_key, false, 1, gbl.defaultMenuColors, text, string.Empty);
 
                 switch (input_key)
                 {

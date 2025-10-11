@@ -320,7 +320,7 @@ namespace engine
 
                     foreach (Player player in to_remove)
                     {
-                        gbl.SelectedPlayer = ovr018.FreeCurrentPlayer(player, true, false);
+                        gbl.SelectedPlayer = StartGameScreen.FreeCurrentPlayer(player, true, false);
                     }
                 }
                 else
@@ -341,7 +341,7 @@ namespace engine
 
                     foreach (Player player in to_remove)
                     {
-                        gbl.SelectedPlayer = ovr018.FreeCurrentPlayer(player, true, false);
+                        gbl.SelectedPlayer = StartGameScreen.FreeCurrentPlayer(player, true, false);
                     }
 
                     gbl.area2_ptr.party_size = 0;
@@ -436,7 +436,7 @@ namespace engine
             TextRenderer.displayString(text, 0, 10, 5, 1);
             TextRenderer.displayString("experience points.", 0, 10, 7, 1);
 
-            ovr027.displayInput(false, 1, new MenuColorSet(15, 15, 15), "press <enter>/<return> to continue", string.Empty);
+            KeyInputHandler.displayInput(false, 1, new MenuColorSet(15, 15, 15), "press <enter>/<return> to continue", string.Empty);
         }
 
 
@@ -459,7 +459,7 @@ namespace engine
 
             bool redrawMenuItems = true;
             MenuItem selected;
-            key = ovr027.sl_select_item(out selected, ref index, ref redrawMenuItems, true, list,
+            key = KeyInputHandler.sl_select_item(out selected, ref index, ref redrawMenuItems, true, list,
                  0x16, 0x26, 1, 1, gbl.defaultMenuColors, "Take", "Items: ");
 
             selectedItem = selected != null ? selected.Item : null;
@@ -511,7 +511,7 @@ namespace engine
                     bool done = false;
                     do
                     {
-                        char key = ovr027.displayInput(true, 1, gbl.defaultMenuColors, "Money Items Exit", "Take: ");
+                        char key = KeyInputHandler.displayInput(true, 1, gbl.defaultMenuColors, "Money Items Exit", "Take: ");
 
                         switch (key)
                         {
@@ -607,7 +607,7 @@ namespace engine
                 }
 
                 bool ctrl_key;
-                char input_key = ovr027.displayInput(out ctrl_key, true, 1, gbl.defaultMenuColors, text, "");
+                char input_key = KeyInputHandler.displayInput(out ctrl_key, true, 1, gbl.defaultMenuColors, text, "");
 
                 switch (input_key)
                 {
@@ -703,7 +703,7 @@ namespace engine
 
             foreach (KeyValuePair<Player, bool> kvp in to_remove)
             {
-                ovr018.FreeCurrentPlayer(kvp.Key, true, kvp.Value);
+                StartGameScreen.FreeCurrentPlayer(kvp.Key, true, kvp.Value);
             }
 
             gbl.SelectedPlayer = gbl.TeamList.Count > 0 ? gbl.TeamList[0] : null;
@@ -755,7 +755,7 @@ namespace engine
                     }
                 }
 
-                ovr027.displayInput(false, 1, new MenuColorSet(15, 15, 15), "press <enter>/<return> to continue", string.Empty);
+                KeyInputHandler.displayInput(false, 1, new MenuColorSet(15, 15, 15), "press <enter>/<return> to continue", string.Empty);
             }
         }
 

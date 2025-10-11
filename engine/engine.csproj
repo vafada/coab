@@ -170,7 +170,7 @@
     <Compile Include="ovr017.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr018.cs">
+    <Compile Include="StartGameScreen.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr019.cs">
@@ -197,7 +197,7 @@
     <Compile Include="ovr026.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr027.cs">
+    <Compile Include="KeyInputHandler.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr028.cs">
@@ -248,7 +248,7 @@
     <Compile Include="KeyInputQueue.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="seg051.cs">
+    <Compile Include="StringRandomIOUtils.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

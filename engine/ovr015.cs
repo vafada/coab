@@ -359,7 +359,7 @@ namespace engine
                 {
                     bool special_key;
 
-                    input_key = ovr027.displayInput(out special_key, false, 1, gbl.defaultMenuColors, "Area Cast View Encamp Search Look", string.Empty);
+                    input_key = KeyInputHandler.displayInput(out special_key, false, 1, gbl.defaultMenuColors, "Area Cast View Encamp Search Look", string.Empty);
 
                     if (special_key == false)
                     {
@@ -509,7 +509,7 @@ namespace engine
                         {
                             prompt += " Exit";
 
-                            input = ovr027.displayInput(out var_2, false, 0, gbl.defaultMenuColors, prompt, "Locked. ");
+                            input = KeyInputHandler.displayInput(out var_2, false, 0, gbl.defaultMenuColors, prompt, "Locked. ");
 
                             switch (input)
                             {
@@ -552,7 +552,7 @@ namespace engine
                         {
                             prompt += " Exit";
 
-                            input = ovr027.displayInput(out var_2, false, 0, gbl.defaultMenuColors, prompt, "Locked. ");
+                            input = KeyInputHandler.displayInput(out var_2, false, 0, gbl.defaultMenuColors, prompt, "Locked. ");
 
                             switch (input)
                             {

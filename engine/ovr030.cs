@@ -41,7 +41,7 @@ namespace engine
                 {
                     if (gbl.AnimationsOn)
                     {
-                        ovr027.ClearPromptAreaNoUpdate();
+                        KeyInputHandler.ClearPromptAreaNoUpdate();
                         TextRenderer.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
                     }
 
@@ -141,7 +141,7 @@ namespace engine
 
                         if (gbl.AnimationsOn)
                         {
-                            ovr027.ClearPromptAreaNoUpdate();
+                            KeyInputHandler.ClearPromptAreaNoUpdate();
                         }
                     }
                 }

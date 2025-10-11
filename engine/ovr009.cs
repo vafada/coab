@@ -176,7 +176,7 @@ namespace engine
                             {
                                 case 'Q':
                                     SetPlayerQuickFight(player);
-                                    ovr027.ClearPromptArea();
+                                    KeyInputHandler.ClearPromptArea();
                                     seg043.clear_keyboard();
                                     KeyInputQueue.SysDelay(0x0C8);
                                     var_2 = true;
@@ -270,7 +270,7 @@ namespace engine
                                     {
                                         SetPlayerQuickFight(p);
                                     }
-                                    ovr027.ClearPromptArea();
+                                    KeyInputHandler.ClearPromptArea();
                                     KeyInputQueue.SysDelay(0x0C8);
 
                                     var_2 = true;
@@ -346,7 +346,7 @@ namespace engine
             do
             {
                 bool ctrlKey;
-                arg_0 = ovr027.displayInput(out ctrlKey, false, 1, gbl.defaultMenuColors, menuText, string.Empty);
+                arg_0 = KeyInputHandler.displayInput(out ctrlKey, false, 1, gbl.defaultMenuColors, menuText, string.Empty);
 
                 if (ctrlKey == true &&
                     unk_33748.MemberOf(arg_0) == false)
@@ -356,7 +356,7 @@ namespace engine
 
             } while (unk_33768.MemberOf(arg_0) == false);
 
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
         }
 
 
@@ -404,7 +404,7 @@ namespace engine
             if (gbl.friends_count > 1 &&
                 gbl.foe_count == 0 &&
                 gbl.inDemo == false &&
-                ovr027.yes_no(gbl.defaultMenuColors, "Continue Battle:") == 'Y')
+                KeyInputHandler.yes_no(gbl.defaultMenuColors, "Continue Battle:") == 'Y')
             {
                 battleOver = false;
             }
@@ -432,7 +432,7 @@ namespace engine
                 {
                     string text = string.Format("Move/Attack, Move Left = {0} ", player.actions.move / 2);
 
-                    arg_4 = ovr027.displayInput(false, 1, new MenuColorSet(15, 10, 10), string.Empty, text);
+                    arg_4 = KeyInputHandler.displayInput(false, 1, new MenuColorSet(15, 10, 10), string.Empty, text);
                 }
 
                 switch (arg_4)
@@ -507,7 +507,7 @@ namespace engine
                     }
                     else if (ground_tile == 0)
                     {
-                        char b = ovr027.yes_no(gbl.defaultMenuColors, "Flee:");
+                        char b = KeyInputHandler.yes_no(gbl.defaultMenuColors, "Flee:");
                         if (b == 'Y')
                         {
                             arg_0 = true;
@@ -636,7 +636,7 @@ namespace engine
 
             while (input != '\0' && input != 'E' && turnEnded == false)
             {
-                input = ovr027.displayInput(false, 0, gbl.defaultMenuColors, menuText, string.Empty);
+                input = KeyInputHandler.displayInput(false, 0, gbl.defaultMenuColors, menuText, string.Empty);
 
                 switch (input)
                 {
@@ -690,7 +690,7 @@ namespace engine
 
                 menu += "Exit";
 
-                input = ovr027.displayInput(false, 0, gbl.defaultMenuColors, menu, text);
+                input = KeyInputHandler.displayInput(false, 0, gbl.defaultMenuColors, menu, text);
 
                 if (input == 0x53)
                 {

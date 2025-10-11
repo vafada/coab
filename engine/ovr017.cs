@@ -158,7 +158,7 @@ namespace engine
                 arg_0.Length == 0 &&
                 seg042.file_find(Path.Combine(Config.GetSavePath(), file_text) + ext_text) == true)
             {
-                input_key = ovr027.yes_no(gbl.alertMenuColors, "Overwrite " + file_text + "? ");
+                input_key = KeyInputHandler.yes_no(gbl.alertMenuColors, "Overwrite " + file_text + "? ");
 
                 if (input_key == 'N')
                 {
@@ -175,21 +175,21 @@ namespace engine
 
             file.Assign(filePath + ext_text);
 
-            seg051.Rewrite(file);
+            StringRandomIOUtils.Rewrite(file);
 
-            seg051.BlockWrite(Player.StructSize, player.ToByteArray(), file);
-            seg051.Close(file);
+            StringRandomIOUtils.BlockWrite(Player.StructSize, player.ToByteArray(), file);
+            StringRandomIOUtils.Close(file);
 
             seg042.delete_file(filePath + ".swg");
 
             if (player.items.Count > 0)
             {
                 file.Assign(filePath + ".swg");
-                seg051.Rewrite(file);
+                StringRandomIOUtils.Rewrite(file);
 
-                player.items.ForEach(item => seg051.BlockWrite(Item.StructSize, item.ToByteArray(), file));
+                player.items.ForEach(item => StringRandomIOUtils.BlockWrite(Item.StructSize, item.ToByteArray(), file));
 
-                seg051.Close(file);
+                StringRandomIOUtils.Close(file);
             }
 
             seg042.delete_file(filePath + ".fx");
@@ -197,14 +197,14 @@ namespace engine
             if (player.affects.Count > 0)
             {
                 file.Assign(filePath + ".fx");
-                seg051.Rewrite(file);
+                StringRandomIOUtils.Rewrite(file);
 
                 foreach (Affect affect in player.affects)
                 {
-                    seg051.BlockWrite(Affect.StructSize, affect.ToByteArray(), file);
+                    StringRandomIOUtils.BlockWrite(Affect.StructSize, affect.ToByteArray(), file);
                 }
 
-                seg051.Close(file);
+                StringRandomIOUtils.Close(file);
             }
         }
 
@@ -454,7 +454,7 @@ namespace engine
             gbl.SelectedPlayer = previousSelectPlayer;
 
             player.hit_point_max = hf_player.field_21;
-            player.hit_point_rolled = (byte)(player.hit_point_max - ovr018.get_con_hp_adj(player));
+            player.hit_point_rolled = (byte)(player.hit_point_max - StartGameScreen.get_con_hp_adj(player));
             player.hit_point_current = hf_player.field_20;
         }
 
@@ -466,7 +466,7 @@ namespace engine
 
             do
             {
-                ovr018.train_player();
+                StartGameScreen.train_player();
             } while (gbl.can_train_no_more == false);
 
             gbl.silent_training = false;
@@ -495,8 +495,8 @@ namespace engine
             if (gbl.import_from == ImportSource.Curse)
             {
                 byte[] data = new byte[Player.StructSize];
-                seg051.BlockRead(Player.StructSize, data, file);
-                seg051.Close(file);
+                StringRandomIOUtils.BlockRead(Player.StructSize, data, file);
+                StringRandomIOUtils.Close(file);
 
                 player = new Player(data, 0);
 
@@ -504,8 +504,8 @@ namespace engine
             else if (gbl.import_from == ImportSource.Pool)
             {
                 byte[] data = new byte[PoolRadPlayer.StructSize];
-                seg051.BlockRead(PoolRadPlayer.StructSize, data, file);
-                seg051.Close(file);
+                StringRandomIOUtils.BlockRead(PoolRadPlayer.StructSize, data, file);
+                StringRandomIOUtils.Close(file);
 
                 PoolRadPlayer poolRadPlayer = new PoolRadPlayer(data);
 
@@ -514,8 +514,8 @@ namespace engine
             else if (gbl.import_from == ImportSource.Hillsfar)
             {
                 byte[] data = new byte[HillsFarPlayer.StructSize];
-                seg051.BlockRead(HillsFarPlayer.StructSize, data, file);
-                seg051.Close(file);
+                StringRandomIOUtils.BlockRead(HillsFarPlayer.StructSize, data, file);
+                StringRandomIOUtils.Close(file);
 
                 HillsFarPlayer var_1C4 = new HillsFarPlayer(data);
 
@@ -542,7 +542,7 @@ namespace engine
 
                 while (true)
                 {
-                    if (seg051.BlockRead(Item.StructSize, data, file) == Item.StructSize)
+                    if (StringRandomIOUtils.BlockRead(Item.StructSize, data, file) == Item.StructSize)
                     {
                         player.items.Add(new Item(data, 0));
                     }
@@ -552,7 +552,7 @@ namespace engine
                     }
                 }
 
-                seg051.Close(file);
+                StringRandomIOUtils.Close(file);
             }
 
             filename = Path.Combine(Config.GetSavePath(), arg_8 + ".fx");
@@ -563,7 +563,7 @@ namespace engine
 
                 while (true)
                 {
-                    if (seg051.BlockRead(Affect.StructSize, data, file) == Affect.StructSize)
+                    if (StringRandomIOUtils.BlockRead(Affect.StructSize, data, file) == Affect.StructSize)
                     {
                         Affect tmp_affect = new Affect(data, 0);
 
@@ -575,7 +575,7 @@ namespace engine
                     }
                 }
 
-                seg051.Close(file);
+                StringRandomIOUtils.Close(file);
             }
 
             filename = Path.Combine(Config.GetSavePath(), arg_8 + ".spc");
@@ -588,7 +588,7 @@ namespace engine
 
                     while (true)
                     {
-                        if (seg051.BlockRead(Affect.StructSize, data, file) == Affect.StructSize)
+                        if (StringRandomIOUtils.BlockRead(Affect.StructSize, data, file) == Affect.StructSize)
                         {
                             if (asc_49280.MemberOf(data[0]) == true)
                             {
@@ -602,7 +602,7 @@ namespace engine
                         }
                     }
 
-                    seg051.Close(file);
+                    StringRandomIOUtils.Close(file);
 
                 }
             }
@@ -632,8 +632,8 @@ namespace engine
 
                 byte[] data = new byte[Player.StructSize];
 
-                seg051.BlockRead(Player.StructSize, data, file);
-                seg051.Close(file);
+                StringRandomIOUtils.BlockRead(Player.StructSize, data, file);
+                StringRandomIOUtils.Close(file);
 
                 player = new Player(data, 0);
 
@@ -690,8 +690,8 @@ namespace engine
 
                     seg042.find_and_open_file(out file, false, savename);
 
-                    seg051.BlockRead(PoolRadPlayer.StructSize, data, file);
-                    seg051.Close(file);
+                    StringRandomIOUtils.BlockRead(PoolRadPlayer.StructSize, data, file);
+                    StringRandomIOUtils.Close(file);
 
                     PoolRadPlayer poolRadPlayer = new PoolRadPlayer(data);
 
@@ -720,7 +720,7 @@ namespace engine
                     player.field_140 = 1;
                     player.field_DE = 1;
 
-                    player.mod_id = seg051.Random((byte)0xff);
+                    player.mod_id = StringRandomIOUtils.Random((byte)0xff);
                     player.icon_id = 0x0A;
 
                     player.attacksCount = 2;
@@ -807,7 +807,7 @@ namespace engine
                     ovr022.addPlayerGold(300);
                     gbl.SelectedPlayer = PreviousSelectedPlayer;
                     player.hit_point_max = hf_player.field_21;
-                    player.hit_point_rolled = (byte)(player.hit_point_max - ovr018.get_con_hp_adj(player));
+                    player.hit_point_rolled = (byte)(player.hit_point_max - StartGameScreen.get_con_hp_adj(player));
                     player.hit_point_current = hf_player.field_20;
                 }
             }
@@ -951,7 +951,7 @@ namespace engine
                 do
                 {
                     bool special_key;
-                    char input_key = ovr027.displayInput(out special_key, false, 0, gbl.defaultMenuColors, games_list, "Load Which Game: ");
+                    char input_key = KeyInputHandler.displayInput(out special_key, false, 0, gbl.defaultMenuColors, games_list, "Load Which Game: ");
 
                     stop_loop = input_key == 0x00; // Escape
                     save_letter = '\0';
@@ -979,56 +979,56 @@ namespace engine
             Classes.File file;
             seg042.find_and_open_file(out file, true, file_name);
 
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
             TextRenderer.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
             gbl.reload_ecl_and_pictures = true;
 
             byte[] data = new byte[0x2000];
 
-            seg051.BlockRead(1, data, file);
+            StringRandomIOUtils.BlockRead(1, data, file);
             gbl.game_area = data[0];
 
-            seg051.BlockRead(0x800, data, file);
+            StringRandomIOUtils.BlockRead(0x800, data, file);
             gbl.area_ptr = new Area1(data, 0);
 
-            seg051.BlockRead(0x800, data, file);
+            StringRandomIOUtils.BlockRead(0x800, data, file);
             gbl.area2_ptr = new Area2(data, 0);
 
-            seg051.BlockRead(0x400, data, file);
+            StringRandomIOUtils.BlockRead(0x400, data, file);
             gbl.stru_1B2CA = new Struct_1B2CA(data, 0);
 
-            seg051.BlockRead(0x1E00, data, file);
+            StringRandomIOUtils.BlockRead(0x1E00, data, file);
             gbl.ecl_ptr = new EclBlock(data, 0);
 
-            seg051.BlockRead(5, data, file);
+            StringRandomIOUtils.BlockRead(5, data, file);
             gbl.mapPosX = (sbyte)data[0];
             gbl.mapPosY = (sbyte)data[1];
             gbl.mapDirection = data[2];
             gbl.mapWallType = data[3];
             gbl.mapWallRoof = data[4];
 
-            seg051.BlockRead(1, data, file);
+            StringRandomIOUtils.BlockRead(1, data, file);
             gbl.last_game_state = (GameState)data[0];
 
-            seg051.BlockRead(1, data, file);
+            StringRandomIOUtils.BlockRead(1, data, file);
             gbl.game_state = (GameState)data[0];
 
             for (int i = 0; i < 3; i++)
             {
-                seg051.BlockRead(2, data, file);
+                StringRandomIOUtils.BlockRead(2, data, file);
                 gbl.setBlocks[i].blockId = Sys.ArrayToShort(data, 0);
 
-                seg051.BlockRead(2, data, file);
+                StringRandomIOUtils.BlockRead(2, data, file);
                 gbl.setBlocks[i].setId = Sys.ArrayToShort(data, 0);
             }
 
-            seg051.BlockRead(1, data, file);
+            StringRandomIOUtils.BlockRead(1, data, file);
             int number_of_players = data[0];
 
-            seg051.BlockRead(0x148, data, file);
+            StringRandomIOUtils.BlockRead(0x148, data, file);
             string[] var_148 = Sys.ArrayToStrings(data, 0, System.Math.Min(0x148, 0x29 * number_of_players), 0x29);
 
-            seg051.Close(file);
+            StringRandomIOUtils.Close(file);
 
             //gbl.PicsOn = ((gbl.area_ptr.pics_on >> 1) != 0);
             //gbl.AnimationsOn = ((gbl.area_ptr.pics_on & 1) != 0);
@@ -1096,7 +1096,7 @@ namespace engine
             }
 
             seg043.clear_keyboard();
-            ovr027.ClearPromptArea();
+            KeyInputHandler.ClearPromptArea();
 
             gbl.last_game_state = gbl.game_state;
 
@@ -1115,7 +1115,7 @@ namespace engine
 
             do
             {
-                inputKey = ovr027.displayInput((gbl.game_state == GameState.Camping), 0, gbl.defaultMenuColors, "A B C D E F G H I J", "Save Which Game: ");
+                inputKey = KeyInputHandler.displayInput((gbl.game_state == GameState.Camping), 0, gbl.defaultMenuColors, "A B C D E F G H I J", "Save Which Game: ");
 
             } while (unk_4AEA0.MemberOf(inputKey) == false);
 
@@ -1128,18 +1128,18 @@ namespace engine
                 do
                 {
                     save_file.Assign(Path.Combine(Config.GetSavePath(), "savgam" + inputKey + ".dat"));
-                    seg051.Rewrite(save_file);
+                    StringRandomIOUtils.Rewrite(save_file);
                     var_1FC = gbl.FIND_result;
 
                     if (unk_4AEEF.MemberOf(var_1FC) == false)
                     {
                         TextRenderer.DisplayAndPause("Unexpected error during save: " + var_1FC.ToString(), 14);
-                        seg051.Close(save_file);
+                        StringRandomIOUtils.Close(save_file);
                         return;
                     }
                 } while (unk_4AEEF.MemberOf(var_1FC) == false);
 
-                ovr027.ClearPromptArea();
+                KeyInputHandler.ClearPromptArea();
                 TextRenderer.displayString("Saving...Please Wait", 0, 10, 0x18, 0);
 
                 gbl.area_ptr.game_speed = (byte)gbl.game_speed_var;
@@ -1149,31 +1149,31 @@ namespace engine
                 byte[] data = new byte[0x1E00];
 
                 data[0] = gbl.game_area;
-                seg051.BlockWrite(1, data, save_file);
+                StringRandomIOUtils.BlockWrite(1, data, save_file);
 
-                seg051.BlockWrite(0x800, gbl.area_ptr.ToByteArray(), save_file);
-                seg051.BlockWrite(0x800, gbl.area2_ptr.ToByteArray(), save_file);
-                seg051.BlockWrite(0x400, gbl.stru_1B2CA.ToByteArray(), save_file);
-                seg051.BlockWrite(0x1E00, gbl.ecl_ptr.ToByteArray(), save_file);
+                StringRandomIOUtils.BlockWrite(0x800, gbl.area_ptr.ToByteArray(), save_file);
+                StringRandomIOUtils.BlockWrite(0x800, gbl.area2_ptr.ToByteArray(), save_file);
+                StringRandomIOUtils.BlockWrite(0x400, gbl.stru_1B2CA.ToByteArray(), save_file);
+                StringRandomIOUtils.BlockWrite(0x1E00, gbl.ecl_ptr.ToByteArray(), save_file);
 
                 data[0] = (byte)gbl.mapPosX;
                 data[1] = (byte)gbl.mapPosY;
                 data[2] = gbl.mapDirection;
                 data[3] = gbl.mapWallType;
                 data[4] = gbl.mapWallRoof;
-                seg051.BlockWrite(5, data, save_file);
+                StringRandomIOUtils.BlockWrite(5, data, save_file);
 
                 data[0] = (byte)gbl.last_game_state;
-                seg051.BlockWrite(1, data, save_file);
+                StringRandomIOUtils.BlockWrite(1, data, save_file);
                 data[0] = (byte)gbl.game_state;
-                seg051.BlockWrite(1, data, save_file);
+                StringRandomIOUtils.BlockWrite(1, data, save_file);
 
                 for (int i = 0; i < 3; i++)
                 {
                     Sys.ShortToArray((short)gbl.setBlocks[i].blockId, data, (i * 4) + 0);
                     Sys.ShortToArray((short)gbl.setBlocks[i].setId, data, (i * 4) + 2);
                 }
-                seg051.BlockWrite(12, data, save_file);
+                StringRandomIOUtils.BlockWrite(12, data, save_file);
 
                 int party_count = 0;
                 foreach (Player tmp_player in gbl.TeamList)
@@ -1183,14 +1183,14 @@ namespace engine
                 }
 
                 data[0] = (byte)party_count;
-                seg051.BlockWrite(1, data, save_file);
+                StringRandomIOUtils.BlockWrite(1, data, save_file);
 
                 for (int i = 0; i < party_count; i++)
                 {
                     Sys.StringToArray(data, 0x29 * i, 0x29, var_171[i]);
                 }
-                seg051.BlockWrite(0x148, data, save_file);
-                seg051.Close(save_file);
+                StringRandomIOUtils.BlockWrite(0x148, data, save_file);
+                StringRandomIOUtils.Close(save_file);
 
                 party_count = 0;
                 foreach (Player tmp_player in gbl.TeamList)
@@ -1201,7 +1201,7 @@ namespace engine
                 }
 
                 gbl.gameSaved = true;
-                ovr027.ClearPromptArea();
+                KeyInputHandler.ClearPromptArea();
             }
         }
     }

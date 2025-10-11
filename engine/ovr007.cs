@@ -25,7 +25,7 @@ namespace engine
             MenuItem mi;
             selectedItem = null;
 
-            char input_key = ovr027.sl_select_item(out mi, ref index, ref gbl.shopRedrawMenuItems, true, list,
+            char input_key = KeyInputHandler.sl_select_item(out mi, ref index, ref gbl.shopRedrawMenuItems, true, list,
                 0x16, 0x26, 1, 1, gbl.defaultMenuColors, "Buy", "Items: ");
 
             if (mi != null)
@@ -187,7 +187,7 @@ namespace engine
 
                 bool controlKey;
 
-                inputKey = ovr027.displayInput(out controlKey, false, 1, gbl.defaultMenuColors, text, string.Empty);
+                inputKey = KeyInputHandler.displayInput(out controlKey, false, 1, gbl.defaultMenuColors, text, string.Empty);
 
                 switch (inputKey)
                 {

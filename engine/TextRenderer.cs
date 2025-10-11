@@ -236,7 +236,7 @@ namespace engine
 
         internal static string getUserInputString(byte inputLen, byte bgColor, byte fgColor, string prompt)
         {
-            ovr027.ClearPromptAreaNoUpdate();
+            KeyInputHandler.ClearPromptAreaNoUpdate();
 
             displayString(prompt, bgColor, fgColor, 0x18, 0);
 
@@ -262,7 +262,7 @@ namespace engine
                 }
                 else if (ch == 8 && resultString.Length > 0)
                 {
-                    resultString = seg051.Copy(resultString.Length - 1, 0, resultString);
+                    resultString = StringRandomIOUtils.Copy(resultString.Length - 1, 0, resultString);
 
                     displaySpaceChar(24, --xPos);
                     //xPos -= 1;
@@ -270,7 +270,7 @@ namespace engine
 
             } while (ch != 0x0d && ch != 0x1B && gbl.inDemo == false);
 
-            ovr027.ClearPromptAreaNoUpdate();
+            KeyInputHandler.ClearPromptAreaNoUpdate();
 
             return resultString.ToUpper();
         }
@@ -299,7 +299,7 @@ namespace engine
 
         internal static void DisplayAndPause(string txt, byte fgColor) // displayAndDebug
         {
-            ovr027.ClearPromptAreaNoUpdate();
+            KeyInputHandler.ClearPromptAreaNoUpdate();
 
             displayString(txt, 0, fgColor, 0x18, 0);
             seg043.GetInputKey();
@@ -325,13 +325,13 @@ namespace engine
 
         internal static void DisplayStatusText(byte bgColor, byte fgColor, string text) /* sub_10ECF */
         {
-            ovr027.ClearPromptAreaNoUpdate();
+            KeyInputHandler.ClearPromptAreaNoUpdate();
 
             displayString(text, bgColor, fgColor, 0x18, 0);
 
             GameDelay();
 
-            ovr027.ClearPromptAreaNoUpdate();
+            KeyInputHandler.ClearPromptAreaNoUpdate();
         }
 
 

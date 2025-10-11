@@ -53,7 +53,7 @@ namespace engine
         {
             string file_text = fileText;
 
-            string sub = seg051.Copy(5, 0, file_text);
+            string sub = StringRandomIOUtils.Copy(5, 0, file_text);
             if (sub == "CHEAD" ||
                 sub == "CBODY")
             {
@@ -62,7 +62,7 @@ namespace engine
                     block_id += 0x40;
                 }
 
-                file_text = seg051.Copy(file_text.Length - 1, 0, file_text);
+                file_text = StringRandomIOUtils.Copy(file_text.Length - 1, 0, file_text);
 
                 gbl.combat_icons[combat_icon_index].LoadIcons(0, 1, file_text, block_id, block_id + 0x80);
             }

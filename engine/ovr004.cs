@@ -32,14 +32,14 @@ namespace engine
             do
             {
 
-                int var_6 = seg051.Random(26);
-                int var_7 = seg051.Random(22);
+                int var_6 = StringRandomIOUtils.Random(26);
+                int var_7 = StringRandomIOUtils.Random(22);
 
                 ovr034.DrawIsoTile(var_6, 3, 0x11);
                 ovr034.DrawIsoTile(var_7 + 0x1a, 7, 0x11);
 
                 seg040.DrawOverlay();
-                int code_path = seg051.Random(3);
+                int code_path = StringRandomIOUtils.Random(3);
 
                 switch (code_path)
                 {
@@ -60,7 +60,7 @@ namespace engine
                         break;
                 }
 
-                int code_row = seg051.Random(6);
+                int code_row = StringRandomIOUtils.Random(6);
 
                 string text = "Type the character in box number " + (6 - code_row);
 

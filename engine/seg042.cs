@@ -46,7 +46,7 @@ namespace engine
                 file_ptr = new File();
                 file_ptr.Assign(System.IO.Path.Combine(dir_path, file_name));
 
-                seg051.Reset(file_ptr);
+                StringRandomIOUtils.Reset(file_ptr);
             }
             else
             {
