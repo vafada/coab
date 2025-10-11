@@ -572,7 +572,7 @@ namespace engine
                         }
 
                         seg040.DrawOverlay();
-                        seg049.SysDelay(10);
+                        KeyInputQueue.SysDelay(10);
                     }
 
                     // Add downed corpse for team players.

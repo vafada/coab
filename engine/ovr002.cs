@@ -11,7 +11,7 @@ namespace engine
 
             var timeEnd = DateTime.Now.AddSeconds(seconds);
 
-            while (seg049.KEYPRESSED() == false &&
+            while (KeyInputQueue.KEYPRESSED() == false &&
                 DateTime.Now < timeEnd)
             {
                 System.Threading.Thread.Sleep(100);

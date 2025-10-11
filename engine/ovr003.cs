@@ -1696,7 +1696,7 @@ namespace engine
                 gbl.textYCol = 2;
 
                 seg041.press_any_key("The entire party is killed!", true, 10, 0x16, 0x26, 1, 1);
-                seg049.SysDelay(3000);
+                KeyInputQueue.SysDelay(3000);
             }
 
             gbl.SelectedPlayer = currentPlayerBackup;

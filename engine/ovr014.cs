@@ -938,7 +938,7 @@ namespace engine
 
             attacker.actions.target = target;
 
-            seg049.SysDelay(100);
+            KeyInputQueue.SysDelay(100);
 
             if (rangedWeapon != null)
             {

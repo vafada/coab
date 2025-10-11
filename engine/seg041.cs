@@ -98,7 +98,7 @@ namespace engine
                 {
                     if (!Cheats.instant_text) 
                     {
-                        seg049.SysDelay(gbl.game_speed_var * 3);
+                        KeyInputQueue.SysDelay(gbl.game_speed_var * 3);
                     }
                 }
 
@@ -337,8 +337,7 @@ namespace engine
 
         internal static void GameDelay()
         {
-            //Display.Update();
-            seg049.SysDelay(gbl.game_speed_var * 100);
+            KeyInputQueue.SysDelay(gbl.game_speed_var * 100);
         }
     }
 }

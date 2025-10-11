@@ -1032,7 +1032,7 @@ namespace engine
             {
                 if (edited_stat == 7)
                 {
-                    while (seg049.KEYPRESSED() == false)
+                    while (KeyInputQueue.KEYPRESSED() == false)
                     {
                         /* empty */
                     }

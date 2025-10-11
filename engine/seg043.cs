@@ -29,9 +29,9 @@ namespace engine
 
             if (gbl.inDemo == true)
             {
-                if (seg049.KEYPRESSED() == true)
+                if (KeyInputQueue.KEYPRESSED() == true)
                 {
-                    key = seg049.READKEY();
+                    key = KeyInputQueue.READKEY();
                 }
                 else
                 {
@@ -40,7 +40,7 @@ namespace engine
             }
             else
             {
-                key = seg049.READKEY();
+                key = KeyInputQueue.READKEY();
             }
 
             if (key == 0x13)
@@ -55,9 +55,9 @@ namespace engine
 
             if (key != 0)
             {
-                while (seg049.KEYPRESSED() == true)
+                while (KeyInputQueue.KEYPRESSED() == true)
                 {
-                    key = seg049.READKEY();
+                    key = KeyInputQueue.READKEY();
                 }
             }
 
@@ -87,7 +87,7 @@ namespace engine
 
         internal static void clear_keyboard()
         {
-            while (seg049.KEYPRESSED() == true)
+            while (KeyInputQueue.KEYPRESSED() == true)
             {
                 GetInputKey();
             }
@@ -96,7 +96,7 @@ namespace engine
 
         internal static void clear_one_keypress()
         {
-            if (seg049.KEYPRESSED() == true)
+            if (KeyInputQueue.KEYPRESSED() == true)
             {
                 GetInputKey();
             }

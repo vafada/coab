@@ -960,7 +960,7 @@ namespace engine
 						seg040.OverlayBounded(gbl.missile_dax, 5, frame, cur.y, cur.x);
 						seg040.DrawOverlay();
 
-						seg049.SysDelay(delay);
+						KeyInputQueue.SysDelay(delay);
 
 						Display.RestoreVidRam();
 						frame++;
@@ -1104,7 +1104,7 @@ namespace engine
 					{
 						seg040.DrawOverlay();
 
-						seg049.SysDelay(delay);
+						KeyInputQueue.SysDelay(delay);
 
 						Display.RestoreVidRam();
 					}
@@ -1152,7 +1152,7 @@ namespace engine
 						seg040.OverlayBounded(gbl.missile_dax, 5, frame, pos.y, pos.x);
 						seg040.DrawOverlay();
 
-						seg049.SysDelay(70);
+						KeyInputQueue.SysDelay(70);
 
 						Display.RestoreVidRam();
 					}

@@ -706,7 +706,7 @@ namespace engine
         {
             bool player_turn = false;
 
-            if (seg049.KEYPRESSED() == true)
+            if (KeyInputQueue.KEYPRESSED() == true)
             {
                 byte var_6 = seg043.GetInputKey();
 

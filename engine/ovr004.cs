@@ -105,7 +105,7 @@ namespace engine
                 seg044.PlaySound(Sound.sound_5);
                 gbl.game_speed_var = 9;
                 seg041.DisplayStatusText(0, 14, "An unseen force hurls you into the abyss!");
-                seg049.SysDelay(0x3E8);
+                KeyInputQueue.SysDelay(0x3E8);
                 seg043.print_and_exit();
             }
         }

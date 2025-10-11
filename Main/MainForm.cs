@@ -42,7 +42,7 @@ namespace Main
 				Classes.Display.ForceUpdate();
 			}
 
-			engine.seg049.AddKey(Keyboard.KeyToIBMKey(e.KeyCode));
+			engine.KeyInputQueue.AddKey(Keyboard.KeyToIBMKey(e.KeyCode));
 		}
 
 		private void commandDebugToolStripMenuItem_CheckedChanged(object sender, EventArgs e)

@@ -204,7 +204,7 @@ namespace engine
                     input_key = gbl.displayInputTimeoutValue;
                     stopLoop = true;
                 }
-                else if (seg049.KEYPRESSED() == true)
+                else if (KeyInputQueue.KEYPRESSED() == true)
                 {
                     input_key = (char)seg043.GetInputKey();
 

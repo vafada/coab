@@ -245,7 +245,7 @@
     <Compile Include="seg044.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="seg049.cs">
+    <Compile Include="KeyInputQueue.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="seg051.cs">

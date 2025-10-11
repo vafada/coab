@@ -318,7 +318,7 @@ namespace engine
         internal static void MovePartyForward() /* sub_43813 */
         {
             seg044.PlaySound(Sound.sound_a);
-            seg049.SysDelay(50);
+            KeyInputQueue.SysDelay(50);
 
             gbl.mapPosX += gbl.MapDirectionXDelta[gbl.mapDirection];
             gbl.mapPosY += gbl.MapDirectionYDelta[gbl.mapDirection];

@@ -178,7 +178,7 @@ namespace engine
                                     SetPlayerQuickFight(player);
                                     ovr027.ClearPromptArea();
                                     seg043.clear_keyboard();
-                                    seg049.SysDelay(0x0C8);
+                                    KeyInputQueue.SysDelay(0x0C8);
                                     var_2 = true;
                                     ovr010.PlayerQuickFight(player);
                                     break;
@@ -271,7 +271,7 @@ namespace engine
                                         SetPlayerQuickFight(p);
                                     }
                                     ovr027.ClearPromptArea();
-                                    seg049.SysDelay(0x0C8);
+                                    KeyInputQueue.SysDelay(0x0C8);
 
                                     var_2 = true;
                                     break;
