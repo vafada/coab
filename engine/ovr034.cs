@@ -31,11 +31,11 @@ namespace engine
         {
             if (tileIndex > 0x7f)
             {
-                seg040.OverlayUnbounded(gbl.dword_1C8FC, tileIndex, tileIndex & 0x7F, rowY, colX);
+                seg040.OverlayUnbounded(gbl.dword_1C8FC, tileIndex & 0x7F, rowY, colX);
             }
             else
             {
-                seg040.OverlayUnbounded(gbl.dax24x24Set, 0, tileIndex, rowY, colX);
+                seg040.OverlayUnbounded(gbl.dax24x24Set, tileIndex, rowY, colX);
             }
         }
 

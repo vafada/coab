@@ -20,7 +20,7 @@ namespace engine
 
 
 
-        internal static void OverlayUnbounded(DaxBlock source, int arg_8, int itemIdex, int rowY, int colX)
+        internal static void OverlayUnbounded(DaxBlock source, int itemIdex, int rowY, int colX)
         {
             draw_combat_picture(source, rowY + 1, colX + 1, itemIdex);
         }

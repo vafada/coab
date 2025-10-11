@@ -76,7 +76,7 @@ namespace engine
             {
                 if (reclac_menus == true)
                 {
-                    seg037.DrawFrame_Outer();
+                    FrameRenderer.DrawFrame_Outer();
                     if (gbl.SelectedPlayer != null)
                     {
                         ovr025.PartySummary(gbl.SelectedPlayer);
@@ -249,11 +249,11 @@ namespace engine
                                     {
                                         if (gbl.game_state == GameState.WildernessMap)
                                         {
-                                            seg037.DrawFrame_WildernessMap();
+                                            FrameRenderer.DrawFrame_WildernessMap();
                                         }
                                         else
                                         {
-                                            seg037.draw8x8_03();
+                                            FrameRenderer.draw8x8_03();
                                         }
                                         ovr025.PartySummary(gbl.SelectedPlayer);
                                     }
@@ -261,7 +261,7 @@ namespace engine
                                     {
                                         if (gbl.area_ptr.LastEclBlockId == 0)
                                         {
-                                            seg037.draw8x8_03();
+                                            FrameRenderer.draw8x8_03();
                                         }
                                     }
 
@@ -1430,7 +1430,7 @@ namespace engine
 
         internal static void AddPlayer()
         {
-            seg037.draw8x8_clear_area(0x16, 0x26, 1, 1);
+            FrameRenderer.draw8x8_clear_area(0x16, 0x26, 1, 1);
 
             char input_key = ovr027.displayInput(false, 0, gbl.defaultMenuColors, "Curse Pool Hillsfar Exit", "Add from where? ");
 
@@ -1650,7 +1650,7 @@ namespace engine
 									   " Keep Exit", 
 									   "Next Prev Keep Exit" };
 
-            seg037.DrawFrame_Outer();
+            FrameRenderer.DrawFrame_Outer();
             ovr033.Color_0_8_inverse();
 
             do
@@ -2335,7 +2335,7 @@ namespace engine
 
             if (skipBits == false)
             {
-                seg037.draw8x8_clear_area(0x16, 0x26, 1, 1);
+                FrameRenderer.draw8x8_clear_area(0x16, 0x26, 1, 1);
 
                 int y_offset = 4;
 

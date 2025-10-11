@@ -1901,7 +1901,7 @@ namespace engine
                 {
                     if (showRange)
                     {
-                        seg037.draw8x8_clear_area(0x17, 0x27, 0x17, 0);
+                        FrameRenderer.draw8x8_clear_area(0x17, 0x27, 0x17, 0);
                     }
                 }
 
@@ -1931,7 +1931,7 @@ namespace engine
                 }
                 else
                 {
-                    seg037.draw8x8_clear_area(TextRegion.CombatSummary);
+                    FrameRenderer.draw8x8_clear_area(TextRegion.CombatSummary);
                 }
 
                 if (range > maxRange ||
@@ -2228,7 +2228,7 @@ namespace engine
 
             if (showRange)
             {
-                seg037.draw8x8_clear_area(0x17, 0x27, 0x17, 0);
+                FrameRenderer.draw8x8_clear_area(0x17, 0x27, 0x17, 0);
             }
 
             return arg_4;

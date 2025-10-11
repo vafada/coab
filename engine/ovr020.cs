@@ -43,7 +43,7 @@ namespace engine
 
         internal static void playerDisplayFull(Player player)
         {
-            seg037.DrawFrame_Outer();
+            FrameRenderer.DrawFrame_Outer();
 
             ovr025.displayPlayerName(false, 1, 1, player);
 
@@ -133,7 +133,7 @@ namespace engine
 
         internal static void displayMoney()
         {
-            seg037.draw8x8_clear_area(14, 26, 7, 12);
+            FrameRenderer.draw8x8_clear_area(14, 26, 7, 12);
 
             int yCol = 7;
 
@@ -200,7 +200,7 @@ namespace engine
         {
             int color = highlighted ? 0x0D : 0x0A;
             int col_x = 5;
-            seg037.draw8x8_clear_area(stat_index + 7, 0x0b, stat_index + 7, col_x);
+            FrameRenderer.draw8x8_clear_area(stat_index + 7, 0x0b, stat_index + 7, col_x);
 
             if (gbl.SelectedPlayer.stats2[stat_index].full < 10)
             {
@@ -369,7 +369,7 @@ namespace engine
                 canSellDropTradeItem = true;
             }
 
-            seg037.draw8x8_clear_area(TextRegion.Normal2);
+            FrameRenderer.draw8x8_clear_area(TextRegion.Normal2);
 
             return canSellDropTradeItem;
         }
@@ -377,7 +377,7 @@ namespace engine
 
         internal static void ItemDisplayStats(Item arg_0) /*sub_550A6*/
         {
-            seg037.DrawFrame_Outer();
+            FrameRenderer.DrawFrame_Outer();
 
             TextRenderer.displayString("itemptr:      ", 0, 10, 1, 1);
             TextRenderer.displayString(arg_0.type.ToString(), 0, 10, 1, 0x14);
@@ -498,7 +498,7 @@ namespace engine
 
                     if (redraw_player == true || gbl.byte_1D2C8 == true)
                     {
-                        seg037.draw8x8_07();
+                        FrameRenderer.draw8x8_07();
 
                         ovr025.displayPlayerName(true, 1, 1, player);
 
@@ -579,7 +579,7 @@ namespace engine
                                         redraw_items = true;
                                     }
 
-                                    seg037.draw8x8_clear_area(TextRegion.Normal2);
+                                    FrameRenderer.draw8x8_clear_area(TextRegion.Normal2);
                                 }
                                 else
                                 {
@@ -1147,7 +1147,7 @@ namespace engine
                 }
             }
 
-            seg037.draw8x8_clear_area(TextRegion.Normal2);
+            FrameRenderer.draw8x8_clear_area(TextRegion.Normal2);
         }
 
 
@@ -1200,7 +1200,7 @@ namespace engine
                 TextRenderer.GameDelay();
             }
 
-            seg037.draw8x8_clear_area(TextRegion.Normal2);
+            FrameRenderer.draw8x8_clear_area(TextRegion.Normal2);
         }
 
 
@@ -1420,16 +1420,16 @@ namespace engine
                     {
                         if (arg_8 == SpellSource.Memorize)
                         {
-                            seg037.draw8x8_05();
+                            FrameRenderer.draw8x8_05();
                         }
                         else
                         {
-                            seg037.draw8x8_07();
+                            FrameRenderer.draw8x8_07();
                         }
                     }
                     else
                     {
-                        seg037.DrawFrame_Outer();
+                        FrameRenderer.DrawFrame_Outer();
                     }
                 }
 

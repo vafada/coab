@@ -221,13 +221,13 @@
     <Compile Include="ovr034.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr038.cs">
+    <Compile Include="Render8By8Symbol.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="seg001.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="seg037.cs">
+    <Compile Include="FrameRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="seg040.cs">

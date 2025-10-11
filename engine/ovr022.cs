@@ -353,7 +353,7 @@ namespace engine
 
 			List<MenuItem> money = new List<MenuItem>();
 
-			seg037.DrawFrame_Outer();
+			FrameRenderer.DrawFrame_Outer();
 
 			do
 			{
@@ -884,7 +884,7 @@ namespace engine
                         jewel_text += " pieces of Jewelry";
                     }
 
-                    seg037.draw8x8_clear_area(0x16, 0x26, 1, 1);
+                    FrameRenderer.draw8x8_clear_area(0x16, 0x26, 1, 1);
                     ovr025.displayPlayerName(false, 1, 1, gbl.SelectedPlayer);
 
                     TextRenderer.displayString("You have a fine collection of:", 0, 0xf, 7, 1);

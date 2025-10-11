@@ -807,7 +807,7 @@ namespace engine
 
 			if (gbl.game_state == GameState.Combat)
 			{
-				seg037.draw8x8_clear_area(0x17, 0x27, 0x17, 0);
+				FrameRenderer.draw8x8_clear_area(0x17, 0x27, 0x17, 0);
 			}
 		}
 
@@ -3116,13 +3116,13 @@ namespace engine
 			if (gbl.game_state == GameState.Combat)
 			{
 				ovr025.DisplayPlayerStatusString(true, 10, "Casts a Spell", player);
-				seg037.draw8x8_clear_area(0x17, 0x27, 0x17, 0);
+				FrameRenderer.draw8x8_clear_area(0x17, 0x27, 0x17, 0);
 
 				TextRenderer.displayString("Spell:" + SpellNames[spellId], 0, 10, 0x17, 0);
 			}
 			else
 			{
-				seg037.draw8x8_clear_area(0x16, 0x26, 0x12, 1);
+				FrameRenderer.draw8x8_clear_area(0x16, 0x26, 0x12, 1);
 
 				ovr025.displayPlayerName(false, 0x13, 1, player);
 

@@ -154,7 +154,7 @@ namespace engine
 
             if (clearArea == true)
             {
-                seg037.draw8x8_clear_area(yEnd, xEnd, yStart, xStart);
+                FrameRenderer.draw8x8_clear_area(yEnd, xEnd, yStart, xStart);
                 gbl.textXCol = xStart;
                 gbl.textYCol = yStart;
             }
@@ -213,7 +213,7 @@ namespace engine
                             DisplayAndPause("Press any key to continue", 13);
                             seg043.clear_keyboard();
 
-                            seg037.draw8x8_clear_area(yEnd, xEnd, yStart, xStart);
+                            FrameRenderer.draw8x8_clear_area(yEnd, xEnd, yStart, xStart);
 
                             text_start = displayStringSlow(text, text_start, text_end, fgColor);
                         }

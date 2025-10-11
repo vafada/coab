@@ -456,7 +456,7 @@ namespace engine
 
             if (gbl.bottomTextHasBeenCleared == false)
             {
-                seg037.draw8x8_clear_area(TextRegion.NormalBottom);
+                FrameRenderer.draw8x8_clear_area(TextRegion.NormalBottom);
 
                 gbl.bottomTextHasBeenCleared = true;
             }

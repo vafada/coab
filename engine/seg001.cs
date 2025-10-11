@@ -308,8 +308,8 @@ namespace engine
             ovr027.ClearPromptArea();
             TextRenderer.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
 
-            ovr038.Load8x8D(4, 0xca);
-            ovr038.Load8x8D(0, 0xcb);
+            Render8By8Symbol.Load8x8D(4, 0xca);
+            Render8By8Symbol.Load8x8D(0, 0xcb);
 
             for (gbl.byte_1AD44 = 0; gbl.byte_1AD44 <= 0x0b; gbl.byte_1AD44++)
             {

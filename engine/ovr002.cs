@@ -25,7 +25,7 @@ namespace engine
         {
             Display.UpdateStop();
 
-            seg037.draw8x8_02();
+            FrameRenderer.draw8x8_02();
 
             TextRenderer.displayString("based on the tsr novel 'azure bonds'", 0, 10, 1, 2);
             TextRenderer.displayString("by:", 0, 10, 2, 6);

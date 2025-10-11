@@ -313,7 +313,7 @@ namespace engine
 
             ovr027.ClearPromptAreaNoUpdate();
             bool redrawMenuItems = true;
-            seg037.DrawFrame_WildernessMap();
+            FrameRenderer.DrawFrame_WildernessMap();
 
             do
             {
@@ -470,7 +470,7 @@ namespace engine
                             }
                             else
                             {
-                                seg037.draw8x8_clear_area(0x16, 0x26, 17, 1);
+                                FrameRenderer.draw8x8_clear_area(0x16, 0x26, 17, 1);
                             }
                         }
                         else

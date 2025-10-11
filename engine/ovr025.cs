@@ -230,7 +230,7 @@ namespace engine
 
 			foreach (Player tmp_player in gbl.TeamList)
 			{
-				seg037.draw8x8_clear_area(y_pos, 0x26, y_pos, x_pos);
+				FrameRenderer.draw8x8_clear_area(y_pos, 0x26, y_pos, x_pos);
 
 				if (tmp_player == player)
 				{
@@ -294,7 +294,7 @@ namespace engine
 			if (gbl.display_hitpoints_ac == true)
 			{
 				gbl.display_hitpoints_ac = false;
-				seg037.draw8x8_clear_area(TextRegion.CombatSummary);
+				FrameRenderer.draw8x8_clear_area(TextRegion.CombatSummary);
 
 				int line = 1;
 
@@ -788,7 +788,7 @@ namespace engine
 		{
 			if (gbl.game_state == GameState.Combat)
 			{
-				seg037.draw8x8_clear_area(0x15, 0x26, lineY, 0x17);
+				FrameRenderer.draw8x8_clear_area(0x15, 0x26, lineY, 0x17);
 
 				displayPlayerName(false, lineY, 0x17, player);
 				TextRenderer.press_any_key(text, true, 10, 0x15, 0x26, lineY + 1, 0x17);
@@ -797,7 +797,7 @@ namespace engine
 			{
 				int line_y = gbl.displayPlayerStatusLine18 ? 18 : 17;
 
-				seg037.draw8x8_clear_area(0x16, 0x26, line_y, 1);
+				FrameRenderer.draw8x8_clear_area(0x16, 0x26, line_y, 1);
 
 				displayPlayerName(false, line_y + 1, 1, player);
 				TextRenderer.press_any_key(text, true, 10, 0x16, 0x26, line_y + 2, 1);
@@ -815,11 +815,11 @@ namespace engine
 		{
 			if (gbl.game_state == GameState.Combat)
 			{
-				seg037.draw8x8_clear_area(0x15, 0x26, 0x0a, 0x17);
+				FrameRenderer.draw8x8_clear_area(0x15, 0x26, 0x0a, 0x17);
 			}
 			else
 			{
-				seg037.draw8x8_clear_area(0x16, 0x26, 0x12, 1);
+				FrameRenderer.draw8x8_clear_area(0x16, 0x26, 0x12, 1);
 			}
 		}
 
@@ -1402,13 +1402,13 @@ namespace engine
 			switch (gbl.game_state)
 			{
 				case GameState.StartGameMenu:
-					seg037.DrawFrame_Outer();
+					FrameRenderer.DrawFrame_Outer();
 					break;
 
 				case GameState.Shop:
 					if (gbl.redrawBoarder == true)
 					{
-						seg037.draw8x8_03();
+						FrameRenderer.draw8x8_03();
 					}
 
 					if (gbl.lastDaxBlockId == 0x50)
@@ -1426,14 +1426,14 @@ namespace engine
 					break;
 
 				case GameState.Camping:
-					seg037.draw8x8_03();
+					FrameRenderer.draw8x8_03();
 					ovr030.load_pic_final(ref gbl.byte_1D556, 0, 0x1d, "PIC");
 					PartySummary(gbl.SelectedPlayer);
 					display_map_position_time();
 					break;
 
 				case GameState.DungeonMap:
-					seg037.draw8x8_03();
+					FrameRenderer.draw8x8_03();
 					ovr029.RedrawView();
 					PartySummary(gbl.SelectedPlayer);
 					display_map_position_time();
@@ -1448,7 +1448,7 @@ namespace engine
 					break;
 
 				case GameState.AfterCombat:
-					seg037.draw8x8_03();
+					FrameRenderer.draw8x8_03();
 					ovr030.load_pic_final(ref gbl.byte_1D556, 0, 1, "PIC");
 					PartySummary(gbl.SelectedPlayer);
 					break;
@@ -1504,7 +1504,7 @@ namespace engine
 					output += " search";
 				}
 
-				seg037.draw8x8_clear_area(15, 0x26, 15, 17);
+				FrameRenderer.draw8x8_clear_area(15, 0x26, 15, 17);
 
 				TextRenderer.displayString(output, 0, 10, 15, 17);
 			}
@@ -1514,7 +1514,7 @@ namespace engine
 		internal static void RedrawCombatScreen() // sub_68DC0
 		{
 			ovr033.Color_0_8_inverse();
-			seg037.DrawFrame_Combat();
+			FrameRenderer.DrawFrame_Combat();
 
 			ovr033.redrawCombatArea(8, 0xff, gbl.mapToBackGroundTile.mapScreenTopLeft + Point.ScreenCenter);
 		}

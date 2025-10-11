@@ -105,7 +105,7 @@ namespace engine
 
         internal static void shop_buy() /* sub_2F474 */
         {
-            seg037.DrawFrame_Outer();
+            FrameRenderer.DrawFrame_Outer();
             gbl.shopRedrawMenuItems = true;
 
             int index = 0;
@@ -236,7 +236,7 @@ namespace engine
                             }
                             else
                             {
-                                seg037.draw8x8_clear_area(0x16, 0x26, 17, 1);
+                                FrameRenderer.draw8x8_clear_area(0x16, 0x26, 17, 1);
                             }
                         }
                         else

@@ -1430,7 +1430,7 @@ namespace engine
                 TextRenderer.press_any_key(text, clear_text_area, 15, 0x16, 0x26, 17, 1);
 
                 ovr025.damage_player(damage, player);
-                seg037.draw8x8_clear_area(0x0f, 0x26, 1, 0x11);
+                FrameRenderer.draw8x8_clear_area(0x0f, 0x26, 1, 0x11);
 
                 ovr025.PartySummary(player);
             }

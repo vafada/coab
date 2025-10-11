@@ -595,7 +595,7 @@ namespace engine
                 if (gbl.game_state != GameState.WildernessMap &&
                     gbl.byte_1EE98 == true)
                 {
-                    seg037.draw8x8_03();
+                    FrameRenderer.draw8x8_03();
                     ovr025.PartySummary(gbl.SelectedPlayer);
                     ovr025.display_map_position_time();
                 }
@@ -691,7 +691,7 @@ namespace engine
             ovr008.vm_SetMemoryValue((ushort)index, mem_loc);
 
             menuList.Clear();
-            seg037.draw8x8_clear_area(TextRegion.NormalBottom);
+            FrameRenderer.draw8x8_clear_area(TextRegion.NormalBottom);
         }
 
 
@@ -1691,7 +1691,7 @@ namespace engine
 
             if (gbl.party_killed == true)
             {
-                seg037.DrawFrame_Outer();
+                FrameRenderer.DrawFrame_Outer();
                 gbl.textXCol = 2;
                 gbl.textYCol = 2;
 
@@ -1744,7 +1744,7 @@ namespace engine
 
             VmLog.WriteLine("CMD_ClearBox:");
 
-            seg037.draw8x8_03();
+            FrameRenderer.draw8x8_03();
             ovr025.PartySummary(gbl.SelectedPlayer);
             ovr025.display_map_position_time();
 
@@ -1761,7 +1761,7 @@ namespace engine
 
             VmLog.WriteLine("CMD_Who: Prompt: '{0}'", prompt);
 
-            seg037.draw8x8_clear_area(TextRegion.NormalBottom);
+            FrameRenderer.draw8x8_clear_area(TextRegion.NormalBottom);
             ovr025.selectAPlayer(ref gbl.SelectedPlayer, false, prompt);
         }
 

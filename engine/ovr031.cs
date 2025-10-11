@@ -67,13 +67,13 @@ namespace engine
                         if (mi.x3_dir_6 > 0) door_id += 8;
                     }
 
-                    ovr038.Put8x8Symbol(0, true, symbol_id, y + displayOffset, x + displayOffset);
+                    Render8By8Symbol.Put8x8Symbol(true, symbol_id, y + displayOffset, x + displayOffset);
 
                     if (Cheats.improved_area_map)
                     {
                         seg040.draw_clipped_nodraw(8);
                         seg040.draw_clipped_recolor(7, 1);
-                        ovr038.Put8x8Symbol(0, true, door_id, y + displayOffset, x + displayOffset);
+                        Render8By8Symbol.Put8x8Symbol(true, door_id, y + displayOffset, x + displayOffset);
                         seg040.draw_clipped_recolor(17, 17);
                         seg040.draw_clipped_nodraw(17);
                     }
@@ -84,7 +84,7 @@ namespace engine
             int partyScreenX = partyMapY - offsetY;
 
             seg040.draw_clipped_nodraw(8);
-            ovr038.Put8x8Symbol(0, true, (partyDir >> 1) + 0x100, partyScreenX + displayOffset, partyScreenY + displayOffset);
+            Render8By8Symbol.Put8x8Symbol(true, (partyDir >> 1) + 0x100, partyScreenX + displayOffset, partyScreenY + displayOffset);
             seg040.draw_clipped_nodraw(17);
             seg040.DrawOverlay();
         }
@@ -160,7 +160,7 @@ namespace engine
 
                     if (rowY >= 0 && rowY <= 10 && colX >= 0 && colX <= 10 && symbolId > 0)
                     {
-                        ovr038.Put8x8Symbol(1, true, symbolId, rowY + 2, colX + 2);
+                        Render8By8Symbol.Put8x8Symbol(true, symbolId, rowY + 2, colX + 2);
 
                         Display.Update();
                     }
@@ -672,11 +672,11 @@ namespace engine
 
                         if (blockCount > 1)
                         {
-                            ovr038.Load8x8D(idx, (block_id * 10) + block + 1);
+                            Render8By8Symbol.Load8x8D(idx, (block_id * 10) + block + 1);
                         }
                         else
                         {
-                            ovr038.Load8x8D(idx, block_id);
+                            Render8By8Symbol.Load8x8D(idx, block_id);
                         }
                     }
                 }

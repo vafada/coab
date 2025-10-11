@@ -178,7 +178,7 @@ namespace engine
                     if (spell_id != 0)
                     {
                         redraw = true;
-                        seg037.draw8x8_clear_area(TextRegion.NormalBottom);
+                        FrameRenderer.draw8x8_clear_area(TextRegion.NormalBottom);
 
                         ovr023.sub_5D2E1(true, QuickFight.False, spell_id);
                     }
@@ -584,7 +584,7 @@ namespace engine
                 var_C.Add(new MenuItem(" "));
             }
 
-            seg037.DrawFrame_Outer();
+            FrameRenderer.DrawFrame_Outer();
 
             bool dummyRedraw = true;
             int dummyIndex = 0;
@@ -757,7 +757,7 @@ namespace engine
                     }
 
                     gbl.SelectedPlayer = ovr018.FreeCurrentPlayer(gbl.SelectedPlayer, true, false);
-                    seg037.draw8x8_clear_area(0x0b, 0x26, 1, 0x11);
+                    FrameRenderer.draw8x8_clear_area(0x0b, 0x26, 1, 0x11);
 
                     ovr025.PartySummary(gbl.SelectedPlayer);
                 }
@@ -1089,7 +1089,7 @@ namespace engine
             gbl.byte_1D5B5 = gbl.lastDaxBlockId;
 
             ovr025.LoadPic();
-            seg037.draw8x8_clear_area(TextRegion.NormalBottom);
+            FrameRenderer.draw8x8_clear_area(TextRegion.NormalBottom);
 
             TextRenderer.displayString("The party makes camp...", 0, 10, 18, 1);
             cancel_spells();

@@ -242,7 +242,7 @@ namespace engine
 
         internal static void draw_bigpic() /* sub_7087A */
         {
-            seg037.DrawFrame_WildernessMap();
+            FrameRenderer.DrawFrame_WildernessMap();
             seg040.draw_picture(gbl.bigpic_dax, 1, 1, 0);
         }
     }

@@ -426,7 +426,7 @@ namespace engine
                 arg_4 != 0 &&
                 arg_4 != 13)
             {
-                seg037.draw8x8_clear_area(0x18, 0x27, 0x18, 0x18);
+                FrameRenderer.draw8x8_clear_area(0x18, 0x27, 0x18, 0x18);
 
                 if (arg_4 == ' ')
                 {

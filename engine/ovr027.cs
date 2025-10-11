@@ -357,7 +357,7 @@ namespace engine
             int yEnd, int xEnd, int yStart, int xStart, List<MenuItem> list,
             int normalColor, int headingColor, int displayFillWidth) // sub_6C897
         {
-            seg037.draw8x8_clear_area(yEnd, xEnd, yStart, xStart);
+            FrameRenderer.draw8x8_clear_area(yEnd, xEnd, yStart, xStart);
 
             MenuItem var_4 = getStringListEntry(list, index);
 
