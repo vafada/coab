@@ -208,7 +208,7 @@ namespace engine
 
 			if (display_new_name)
 			{
-				seg041.displayString(item.name, 0, 10, yCol, xCol);
+				TextRenderer.displayString(item.name, 0, 10, yCol, xCol);
 			}
 		}
 
@@ -223,8 +223,8 @@ namespace engine
 			int x_pos = (gbl.game_state == GameState.StartGameMenu) ? 1 : 17;
 			int y_pos = 2;
 
-			seg041.displayString("Name", 0, 15, y_pos, x_pos);
-			seg041.displayString("AC  HP", 0, 15, y_pos, 0x21);
+			TextRenderer.displayString("Name", 0, 15, y_pos, x_pos);
+			TextRenderer.displayString("AC  HP", 0, 15, y_pos, 0x21);
 
 			y_pos += 2;
 
@@ -234,14 +234,14 @@ namespace engine
 
 				if (tmp_player == player)
 				{
-					seg041.displayString(tmp_player.name, 0, 15, y_pos, x_pos);
+					TextRenderer.displayString(tmp_player.name, 0, 15, y_pos, x_pos);
 				}
 				else
 				{
 					displayPlayerName(false, y_pos, x_pos, tmp_player);
 				}
 
-                seg041.displayString(string.Format("{0,-3}", tmp_player.DisplayAc), 0, 10, y_pos, 0x1F);
+                TextRenderer.displayString(string.Format("{0,-3}", tmp_player.DisplayAc), 0, 10, y_pos, 0x1F);
 
 				int hpXPos = 0;
 				if (tmp_player.hit_point_current >= 0 && tmp_player.hit_point_current <= 9)
@@ -263,7 +263,7 @@ namespace engine
 
 		internal static void display_AC(int y_offset, int x_offset, Player player)
 		{
-			seg041.displayString(player.DisplayAc.ToString(), 0, 10, y_offset, x_offset);
+			TextRenderer.displayString(player.DisplayAc.ToString(), 0, 10, y_offset, x_offset);
 		}
 
 
@@ -285,7 +285,7 @@ namespace engine
 				colour = 0x0D;
 			}
 
-			seg041.displayString(player.hit_point_current.ToString(), 0, colour, y_pos, x_pos);
+			TextRenderer.displayString(player.hit_point_current.ToString(), 0, colour, y_pos, x_pos);
 		}
 
 
@@ -302,12 +302,12 @@ namespace engine
 
 				line++;
 
-				seg041.displayString("Hitpoints", 0, 10, line + 1, 0x17);
+				TextRenderer.displayString("Hitpoints", 0, 10, line + 1, 0x17);
 
 				display_hp(false, line + 1, 0x21, player);
 				line += 2;
 
-				seg041.displayString("AC", 0, 10, line + 1, 0x17);
+				TextRenderer.displayString("AC", 0, 10, line + 1, 0x17);
 				display_AC(line + 1, 0x1A, player);
 
 				gbl.textYCol = line + 1;
@@ -318,18 +318,18 @@ namespace engine
 					/*var_1 = 0x17;*/
                     ItemDisplayNameBuild(false, false, 0, 0, player.activeItems.primaryWeapon);
 
-                    seg041.press_any_key(player.activeItems.primaryWeapon.name, true, 10, line + 3, 0x26, line + 1, 0x17);
+                    TextRenderer.press_any_key(player.activeItems.primaryWeapon.name, true, 10, line + 3, 0x26, line + 1, 0x17);
 				}
 
 				line = gbl.textYCol + 1;
 
 				if (player.in_combat == false)
 				{
-					seg041.displayString(ovr020.statusString[(int)player.health_status], 0, 15, line + 1, 0x17);
+					TextRenderer.displayString(ovr020.statusString[(int)player.health_status], 0, 15, line + 1, 0x17);
 				}
 				else if (player.IsHeld() == true)
 				{
-					seg041.displayString("(Helpless)", 0, 15, line + 1, 0x17);
+					TextRenderer.displayString("(Helpless)", 0, 15, line + 1, 0x17);
 				}
 			}
 		}
@@ -767,7 +767,7 @@ namespace engine
 		{
 			if (!player.items.Remove(item))
 			{
-				seg041.DisplayAndPause("Tried to Lose item & couldn't find it!", 14);
+				TextRenderer.DisplayAndPause("Tried to Lose item & couldn't find it!", 14);
 			}
 		}
 
@@ -776,9 +776,9 @@ namespace engine
 		{
 			ovr027.ClearPromptAreaNoUpdate();
 
-			seg041.displayString(text, 0, 10, 0x18, 0);
+			TextRenderer.displayString(text, 0, 10, 0x18, 0);
 
-			seg041.GameDelay();
+			TextRenderer.GameDelay();
 
 			ovr027.ClearPromptAreaNoUpdate();
 		}
@@ -791,7 +791,7 @@ namespace engine
 				seg037.draw8x8_clear_area(0x15, 0x26, lineY, 0x17);
 
 				displayPlayerName(false, lineY, 0x17, player);
-				seg041.press_any_key(text, true, 10, 0x15, 0x26, lineY + 1, 0x17);
+				TextRenderer.press_any_key(text, true, 10, 0x15, 0x26, lineY + 1, 0x17);
 			}
 			else
 			{
@@ -800,12 +800,12 @@ namespace engine
 				seg037.draw8x8_clear_area(0x16, 0x26, line_y, 1);
 
 				displayPlayerName(false, line_y + 1, 1, player);
-				seg041.press_any_key(text, true, 10, 0x16, 0x26, line_y + 2, 1);
+				TextRenderer.press_any_key(text, true, 10, 0x16, 0x26, line_y + 2, 1);
 			}
 
 			if (clearDisplay == true)
 			{
-				seg041.GameDelay();
+				TextRenderer.GameDelay();
 				ovr025.ClearPlayerTextArea();
 			}
 		}
@@ -843,7 +843,7 @@ namespace engine
 
 			string name = player.name + ((pural) ? "'s" : "");
 
-			seg041.displayString(name, 0, color, y_offset, x_offset);
+			TextRenderer.displayString(name, 0, color, y_offset, x_offset);
 		}
 
 
@@ -1162,7 +1162,7 @@ namespace engine
 
 				if (loops == 0)
 				{
-					seg041.GameDelay();
+					TextRenderer.GameDelay();
 				}
 			}
 			else
@@ -1506,7 +1506,7 @@ namespace engine
 
 				seg037.draw8x8_clear_area(15, 0x26, 15, 17);
 
-				seg041.displayString(output, 0, 10, 15, 17);
+				TextRenderer.displayString(output, 0, 10, 15, 17);
 			}
 		}
 

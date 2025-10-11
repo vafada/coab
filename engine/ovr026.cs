@@ -616,7 +616,7 @@ namespace engine
 
             if (list.Count == 1)
             {
-                seg041.DisplayStatusText(15, 4, player.name + " doesn't qualify.");
+                TextRenderer.DisplayStatusText(15, 4, player.name + " doesn't qualify.");
                 list.Clear();
                 return;
             }
@@ -679,7 +679,7 @@ namespace engine
 
             player._class = (ClassId)newClass;
 
-            seg041.DisplayStatusText(0, 10, player.name + " is now a 1st level " + ovr020.classString[newClass] + ".");
+            TextRenderer.DisplayStatusText(0, 10, player.name + " is now a 1st level " + ovr020.classString[newClass] + ".");
 
             player.spellList.Clear();
 

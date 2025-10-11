@@ -228,22 +228,22 @@ namespace engine
 
             colors[highlight_time] = 15;
 
-            seg041.displayString("Rest Time:", 0, 10, 17, 1);
+            TextRenderer.displayString("Rest Time:", 0, 10, 17, 1);
             int col_x = 11;
 
             string text = format_time(gbl.timeToRest.field_8);
-            seg041.displayString(text, 0, colors[4], 0x11, col_x + 1);
-            seg041.displayString(":", 0, 10, 17, col_x + 3);
+            TextRenderer.displayString(text, 0, colors[4], 0x11, col_x + 1);
+            TextRenderer.displayString(":", 0, 10, 17, col_x + 3);
             col_x += 3;
 
             text = format_time(gbl.timeToRest.field_6);
-            seg041.displayString(text, 0, colors[3], 0x11, col_x + 1);
-            seg041.displayString(":", 0, 10, 17, col_x + 3);
+            TextRenderer.displayString(text, 0, colors[3], 0x11, col_x + 1);
+            TextRenderer.displayString(":", 0, 10, 17, col_x + 3);
             col_x += 3;
 
             text = format_time((gbl.timeToRest.field_4 * 10) + gbl.timeToRest.field_2);
 
-            seg041.displayString(text, 0, colors[2], 0x11, col_x + 1);
+            TextRenderer.displayString(text, 0, colors[2], 0x11, col_x + 1);
         }
 
 
@@ -376,14 +376,14 @@ namespace engine
                     display_resting_time(0);
                 }
 
-                seg041.displayString("The Whole Party Is Healed", 0, 10, 19, 1);
+                TextRenderer.displayString("The Whole Party Is Healed", 0, 10, 19, 1);
 
                 if (update_ui)
                 {
                     ovr025.PartySummary(gbl.SelectedPlayer);
                 }
 
-                seg041.GameDelay();
+                TextRenderer.GameDelay();
                 ovr025.ClearPlayerTextArea();
                 gbl.rest_10_seconds = 0;
             }
@@ -595,10 +595,10 @@ namespace engine
                             {
                                 ovr025.ClearPlayerTextArea();
                                 display_resting_time(0);
-                                seg041.displayString("Your repose is suddenly interrupted!", 0, 15, 0x13, 1);
+                                TextRenderer.displayString("Your repose is suddenly interrupted!", 0, 15, 0x13, 1);
                                 stop_resting = true;
                                 resting_intetrupted = true;
-                                seg041.GameDelay();
+                                TextRenderer.GameDelay();
                             }
                         }
                     }

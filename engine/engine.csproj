@@ -233,7 +233,7 @@
     <Compile Include="seg040.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="seg041.cs">
+    <Compile Include="TextRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="seg042.cs">

@@ -688,8 +688,8 @@ namespace engine
 			{
 				if (gbl.spell_from_item == false)
 				{
-					seg041.displayString(SpellNames[spell_id], 0, 10, 0x13, 1);
-					seg041.displayString("can't be cast here...", 0, 10, 0x14, 1);
+					TextRenderer.displayString(SpellNames[spell_id], 0, 10, 0x13, 1);
+					TextRenderer.displayString("can't be cast here...", 0, 10, 0x14, 1);
 
 					if (ovr027.yes_no(gbl.defaultMenuColors, "Lose it? ") == 'Y')
 					{
@@ -698,8 +698,8 @@ namespace engine
 				}
 				else
 				{
-					seg041.displayString("That Item", 0, 10, 0x13, 1);
-					seg041.displayString("is a combat-only item...", 0, 10, 0x14, 1);
+					TextRenderer.displayString("That Item", 0, 10, 0x13, 1);
+					TextRenderer.displayString("is a combat-only item...", 0, 10, 0x14, 1);
 
 					if (ovr027.yes_no(gbl.defaultMenuColors, "Use it? ") == 'Y')
 					{
@@ -1440,7 +1440,7 @@ namespace engine
 			ovr025.DisplayPlayerStatusString(false, 10, "Creates a noxious cloud", gbl.SelectedPlayer);
 
 			ovr033.redrawCombatArea(8, 0xff, gbl.targetPos);
-			seg041.GameDelay();
+			TextRenderer.GameDelay();
 			ovr025.ClearPlayerTextArea();
 			for (int var_11 = 0; var_11 < 4; var_11++)
 			{
@@ -2716,7 +2716,7 @@ namespace engine
 			ovr025.DisplayPlayerStatusString(false, 10, "Creates a poisonous cloud", gbl.SelectedPlayer);
 
 			ovr033.redrawCombatArea(8, 0xFF, gbl.targetPos);
-			seg041.GameDelay();
+			TextRenderer.GameDelay();
 			ovr025.ClearPlayerTextArea();
 
 			for (int idx = 0; idx < max_targets; idx++)
@@ -3118,7 +3118,7 @@ namespace engine
 				ovr025.DisplayPlayerStatusString(true, 10, "Casts a Spell", player);
 				seg037.draw8x8_clear_area(0x17, 0x27, 0x17, 0);
 
-				seg041.displayString("Spell:" + SpellNames[spellId], 0, 10, 0x17, 0);
+				TextRenderer.displayString("Spell:" + SpellNames[spellId], 0, 10, 0x17, 0);
 			}
 			else
 			{
@@ -3126,9 +3126,9 @@ namespace engine
 
 				ovr025.displayPlayerName(false, 0x13, 1, player);
 
-				seg041.displayString(arg_2, 0, 10, 0x13, player.name.Length + 2);
-				seg041.displayString(SpellNames[spellId], 0, 10, 0x14, 1);
-				seg041.GameDelay();
+				TextRenderer.displayString(arg_2, 0, 10, 0x13, player.name.Length + 2);
+				TextRenderer.displayString(SpellNames[spellId], 0, 10, 0x14, 1);
+				TextRenderer.GameDelay();
 				ovr025.ClearPlayerTextArea();
 			}
 		}

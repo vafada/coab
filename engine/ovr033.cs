@@ -536,7 +536,7 @@ namespace engine
             if (gbl.game_state != GameState.Combat)
             {
                 seg044.PlaySound(Sound.sound_5);
-                seg041.GameDelay();
+                TextRenderer.GameDelay();
             }
             else
             {
@@ -593,7 +593,7 @@ namespace engine
 
 
                     // clean-up combat stuff
-                    seg041.GameDelay();
+                    TextRenderer.GameDelay();
                     RedrawPlayerBackground(player_index);
 
                     gbl.CombatMap[GetPlayerIndex(player)].size = 0;

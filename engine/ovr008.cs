@@ -143,7 +143,7 @@ namespace engine
             do
             {
                 ovr027.ClearPromptArea();
-                seg041.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
+                TextRenderer.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
 
                 seg042.load_decode_dax(out block_mem, out block_size, block_id, string.Format("ECL{0}.dax", gbl.game_area));
             } while (block_size < 2);
@@ -1418,7 +1418,7 @@ namespace engine
                 {
                     gbl.textYCol = 0x11;
                     clear_text_area = true;
-                    seg041.DisplayAndPause("press <enter>/<return> to continue", 15);
+                    TextRenderer.DisplayAndPause("press <enter>/<return> to continue", 15);
                 }
                 else
                 {
@@ -1427,7 +1427,7 @@ namespace engine
 
                 gbl.textXCol = 0x26;
 
-                seg041.press_any_key(text, clear_text_area, 15, 0x16, 0x26, 17, 1);
+                TextRenderer.press_any_key(text, clear_text_area, 15, 0x16, 0x26, 17, 1);
 
                 ovr025.damage_player(damage, player);
                 seg037.draw8x8_clear_area(0x0f, 0x26, 1, 0x11);

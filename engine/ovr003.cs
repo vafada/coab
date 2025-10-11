@@ -363,7 +363,7 @@ namespace engine
 
             ushort loc = gbl.cmd_opps[2].Word;
 
-            ushort var_4 = seg041.getUserInputShort(0, 0x0a, string.Empty);
+            ushort var_4 = TextRenderer.getUserInputShort(0, 0x0a, string.Empty);
 
             ovr008.vm_SetMemoryValue(var_4, loc);
         }
@@ -375,7 +375,7 @@ namespace engine
 
             ushort loc = gbl.cmd_opps[2].Word;
 
-            string str = seg041.getUserInputString(0x28, 0, 10, string.Empty);
+            string str = TextRenderer.getUserInputString(0x28, 0, 10, string.Empty);
 
             if (str.Length == 0)
             {
@@ -403,14 +403,14 @@ namespace engine
 
             if (gbl.command == 0x11)
             {
-                seg041.press_any_key(gbl.unk_1D972[1], false, 10, TextRegion.NormalBottom);
+                TextRenderer.press_any_key(gbl.unk_1D972[1], false, 10, TextRegion.NormalBottom);
             }
             else
             {
                 gbl.textYCol = 0x11;
                 gbl.textXCol = 1;
 
-                seg041.press_any_key(gbl.unk_1D972[1], true, 10, TextRegion.NormalBottom);
+                TextRenderer.press_any_key(gbl.unk_1D972[1], true, 10, TextRegion.NormalBottom);
             }
 
             gbl.DelayBetweenCharacters = false;
@@ -679,7 +679,7 @@ namespace engine
             gbl.textXCol = 1;
             gbl.textYCol = 0x11;
 
-            seg041.press_any_key(delay_text, true, 10, 22, 38, 17, 1);
+            TextRenderer.press_any_key(delay_text, true, 10, 22, 38, 17, 1);
 
             for (int i = 0; i < menuCount; i++)
             {
@@ -1347,7 +1347,7 @@ namespace engine
                     clearTextArea = false;
                 }
 
-                seg041.press_any_key(text, clearTextArea, 10, TextRegion.NormalBottom);
+                TextRenderer.press_any_key(text, clearTextArea, 10, TextRegion.NormalBottom);
 
                 if (gbl.area2_ptr.encounter_distance == 0 ||
                     gbl.area_ptr.inDungeon == 0)
@@ -1400,7 +1400,7 @@ namespace engine
                         else if (menu_selected == 1)
                         {
                             init_max = 1;
-                            seg041.press_any_key("Both sides wait.", true, 10, TextRegion.NormalBottom);
+                            TextRenderer.press_any_key("Both sides wait.", true, 10, TextRegion.NormalBottom);
                         }
                         else if (menu_selected == 2)
                         {
@@ -1416,7 +1416,7 @@ namespace engine
                             }
                             else
                             {
-                                seg041.press_any_key("Both sides wait.", true, 10, TextRegion.NormalBottom);
+                                TextRenderer.press_any_key("Both sides wait.", true, 10, TextRegion.NormalBottom);
                             }
 
                             init_max = 1;
@@ -1445,7 +1445,7 @@ namespace engine
 
                                 gbl.textXCol = 1;
                                 gbl.textYCol = 0x11;
-                                seg041.press_any_key("The monsters flee.", true, 10, TextRegion.NormalBottom);
+                                TextRenderer.press_any_key("The monsters flee.", true, 10, TextRegion.NormalBottom);
                             }
                             else
                             {
@@ -1458,7 +1458,7 @@ namespace engine
 
                             gbl.textXCol = 1;
                             gbl.textYCol = 0x11;
-                            seg041.press_any_key("The monsters flee.", true, 10, TextRegion.NormalBottom);
+                            TextRenderer.press_any_key("The monsters flee.", true, 10, TextRegion.NormalBottom);
                         }
                         break;
 
@@ -1477,7 +1477,7 @@ namespace engine
                             }
                             else
                             {
-                                seg041.press_any_key("Both sides wait.", true, 10, TextRegion.NormalBottom);
+                                TextRenderer.press_any_key("Both sides wait.", true, 10, TextRegion.NormalBottom);
                             }
 
                             init_max = 1;
@@ -1588,7 +1588,7 @@ namespace engine
         internal static void CMD_Delay()
         {
             gbl.ecl_offset++;
-            seg041.GameDelay();
+            TextRenderer.GameDelay();
         }
 
 
@@ -1695,12 +1695,12 @@ namespace engine
                 gbl.textXCol = 2;
                 gbl.textYCol = 2;
 
-                seg041.press_any_key("The entire party is killed!", true, 10, 0x16, 0x26, 1, 1);
+                TextRenderer.press_any_key("The entire party is killed!", true, 10, 0x16, 0x26, 1, 1);
                 KeyInputQueue.SysDelay(3000);
             }
 
             gbl.SelectedPlayer = currentPlayerBackup;
-            seg041.DisplayAndPause("press <enter>/<return> to continue", 15);
+            TextRenderer.DisplayAndPause("press <enter>/<return> to continue", 15);
         }
 
 
@@ -1904,7 +1904,7 @@ namespace engine
 
                     gbl.byte_1D556.NextFrame();
 
-                    seg041.GameDelay();
+                    TextRenderer.GameDelay();
                     break;
             }
         }

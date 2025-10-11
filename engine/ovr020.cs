@@ -49,39 +49,39 @@ namespace engine
 
             if (player.control_morale >= Control.NPC_Base)
             {
-                seg041.displayString("(NPC)", 0, 10, 1, player.name.Length + 3);
+                TextRenderer.displayString("(NPC)", 0, 10, 1, player.name.Length + 3);
             }
 
             int xCol = 1;
 
             string text2 = sexString[player.sex];
 
-            seg041.displayString(sexString[player.sex], 0, 15, 3, xCol);
+            TextRenderer.displayString(sexString[player.sex], 0, 15, 3, xCol);
 
             xCol += (byte)(text2.Length + 1);
             text2 = raceString[(int)player.race];
-            seg041.displayString(text2, 0, 15, 3, xCol);
+            TextRenderer.displayString(text2, 0, 15, 3, xCol);
 
             xCol += (byte)(text2.Length + 1);
             string text = "Age " + player.age.ToString();
 
-            seg041.displayString(text, 0, 15, 3, xCol);
+            TextRenderer.displayString(text, 0, 15, 3, xCol);
 
             text2 = alignmentString[player.alignment];
-            seg041.displayString(text2, 0, 15, 4, 1);
+            TextRenderer.displayString(text2, 0, 15, 4, 1);
 
             text2 = classString[(int)player._class];
-            seg041.displayString(text2, 0, 15, 5, 1);
+            TextRenderer.displayString(text2, 0, 15, 5, 1);
 
             for (int stat = 0; stat < 6; stat++)
             {
                 text2 = statShortString[stat];
-                seg041.displayString(text2, 0, 10, stat + 7, 1);
+                TextRenderer.displayString(text2, 0, 10, stat + 7, 1);
                 display_stat(false, stat);
             }
 
             displayMoney();
-            seg041.displayString("Level", 0, 15, 15, 1);
+            TextRenderer.displayString("Level", 0, 15, 15, 1);
 
             bool displaySlash = false;
             text2 = string.Empty;
@@ -104,31 +104,31 @@ namespace engine
                 }
             }
 
-            seg041.displayString(text2, 0, 15, 15, 7);
+            TextRenderer.displayString(text2, 0, 15, 15, 7);
 
             text = "Exp " + player.exp.ToString();
-            seg041.displayString(text, 0, 15, 15, 17);
+            TextRenderer.displayString(text, 0, 15, 15, 17);
 
             ovr020.display_player_stats01();
             int yCol = 20;
 
             if (player.activeItems.primaryWeapon != null)
             {
-                seg041.displayString("Weapon", 0, 15, yCol, 1);
+                TextRenderer.displayString("Weapon", 0, 15, yCol, 1);
                 ovr025.ItemDisplayNameBuild(true, false, yCol, 8, player.activeItems.primaryWeapon);
             }
 
             yCol++;
             if (player.activeItems.armor != null)
             {
-                seg041.displayString("Armor", 0, 15, yCol, 2);
+                TextRenderer.displayString("Armor", 0, 15, yCol, 2);
                 ovr025.ItemDisplayNameBuild(true, false, yCol, 8, player.activeItems.armor);
             }
 
             yCol++;
 
-            seg041.displayString("Status", 0, 15, yCol, 1);
-            seg041.displayString(statusString[(int)player.health_status], 0, 10, yCol, 8);
+            TextRenderer.displayString("Status", 0, 15, yCol, 1);
+            TextRenderer.displayString(statusString[(int)player.health_status], 0, 10, yCol, 8);
         }
 
         internal static void displayMoney()
@@ -142,7 +142,7 @@ namespace engine
                 if (gbl.SelectedPlayer.Money.GetCoins(coinType) > 0)
                 {
                     string text = string.Format("{0,8} {1}", Money.names[coinType], gbl.SelectedPlayer.Money.GetCoins(coinType));
-                    seg041.displayString(text, 0, 10, yCol, 12);
+                    TextRenderer.displayString(text, 0, 10, yCol, 12);
 
                     yCol++;
                 }
@@ -157,27 +157,27 @@ namespace engine
             ovr025.reclac_player_values(player);
             int yCol = 0x11;
 
-            seg041.displayString("AC    ", 0, 15, yCol, 1);
-            seg041.displayString(player.DisplayAc.ToString(), 0, 10, yCol, 4);
+            TextRenderer.displayString("AC    ", 0, 15, yCol, 1);
+            TextRenderer.displayString(player.DisplayAc.ToString(), 0, 10, yCol, 4);
 
-            seg041.displayString("HP    ", 0, 15, yCol + 1, 1);
+            TextRenderer.displayString("HP    ", 0, 15, yCol + 1, 1);
             ovr025.display_hp(false, yCol + 1, 4, player);
 
             int xCol = 8;
 
-            seg041.displayString("THAC0   ", 0, 15, yCol, xCol + 1);
-            seg041.displayString((0x3c - player.hitBonus).ToString(), 0, 10, yCol, xCol + 7);
+            TextRenderer.displayString("THAC0   ", 0, 15, yCol, xCol + 1);
+            TextRenderer.displayString((0x3c - player.hitBonus).ToString(), 0, 10, yCol, xCol + 7);
 
 
             string damage = string.Format("{0}d{1}{2}{3}", player.attack1_DiceCount, player.attack1_DiceSize,
                 player.attack1_DamageBonus > 0 ? "+" : "", player.attack1_DamageBonus != 0 ? player.attack1_DamageBonus.ToString() : "");
 
-            seg041.displayString("Damage  ", 0, 15, yCol + 1, xCol);
-            seg041.displayString(damage, 0, 10, yCol + 1, xCol + 7);
+            TextRenderer.displayString("Damage  ", 0, 15, yCol + 1, xCol);
+            TextRenderer.displayString(damage, 0, 10, yCol + 1, xCol + 7);
 
             xCol = 0x16;
-            seg041.displayString("Encumbrance  ", 0, 15, yCol, xCol);
-            seg041.displayString(player.weight.ToString(), 0, 10, yCol, xCol + 12);
+            TextRenderer.displayString("Encumbrance  ", 0, 15, yCol, xCol);
+            TextRenderer.displayString(player.weight.ToString(), 0, 10, yCol, xCol + 12);
 
             int movement = player.movement;
 
@@ -191,8 +191,8 @@ namespace engine
                 movement /= 2;
             }
 
-            seg041.displayString("Movement ", 0, 15, yCol + 1, xCol + 3);
-            seg041.displayString(movement.ToString(), 0, 10, yCol + 1, xCol + 12);
+            TextRenderer.displayString("Movement ", 0, 15, yCol + 1, xCol + 3);
+            TextRenderer.displayString(movement.ToString(), 0, 10, yCol + 1, xCol + 12);
         }
 
 
@@ -208,7 +208,7 @@ namespace engine
             }
 
             string s = gbl.SelectedPlayer.stats2[stat_index].full.ToString();
-            seg041.displayString(s, 0, color, stat_index + 7, col_x);
+            TextRenderer.displayString(s, 0, color, stat_index + 7, col_x);
 
             if (stat_index == 0 &&
                 gbl.SelectedPlayer.stats2.Str.full == 18 &&
@@ -226,7 +226,7 @@ namespace engine
                     text = "00";
                 }
 
-                seg041.displayString("(" + text + ")", 0, color, 7, 7);
+                TextRenderer.displayString("(" + text + ")", 0, color, 7, 7);
             }
         }
 
@@ -358,7 +358,7 @@ namespace engine
                 gbl.textXCol = gbl.SelectedPlayer.name.Length + 2;
                 gbl.textYCol = 0x15;
 
-                seg041.press_any_key(" was going to scribe from that scroll", false, 14, TextRegion.Normal2);
+                TextRenderer.press_any_key(" was going to scribe from that scroll", false, 14, TextRegion.Normal2);
                 if (ovr027.yes_no(gbl.defaultMenuColors, "is it Okay to lose it? ") == 'Y')
                 {
                     canSellDropTradeItem = true;
@@ -379,52 +379,52 @@ namespace engine
         {
             seg037.DrawFrame_Outer();
 
-            seg041.displayString("itemptr:      ", 0, 10, 1, 1);
-            seg041.displayString(arg_0.type.ToString(), 0, 10, 1, 0x14);
+            TextRenderer.displayString("itemptr:      ", 0, 10, 1, 1);
+            TextRenderer.displayString(arg_0.type.ToString(), 0, 10, 1, 0x14);
 
-            seg041.displayString("namenum(1):   ", 0, 10, 2, 1);
-            seg041.displayString(arg_0.namenum1.ToString(), 0, 10, 2, 0x14);
+            TextRenderer.displayString("namenum(1):   ", 0, 10, 2, 1);
+            TextRenderer.displayString(arg_0.namenum1.ToString(), 0, 10, 2, 0x14);
 
-            seg041.displayString("namenum(2):   ", 0, 10, 3, 1);
-            seg041.displayString(arg_0.namenum2.ToString(), 0, 10, 3, 0x14);
+            TextRenderer.displayString("namenum(2):   ", 0, 10, 3, 1);
+            TextRenderer.displayString(arg_0.namenum2.ToString(), 0, 10, 3, 0x14);
 
-            seg041.displayString("namenum(3):   ", 0, 10, 4, 1);
-            seg041.displayString(arg_0.namenum3.ToString(), 0, 10, 4, 0x14);
+            TextRenderer.displayString("namenum(3):   ", 0, 10, 4, 1);
+            TextRenderer.displayString(arg_0.namenum3.ToString(), 0, 10, 4, 0x14);
 
-            seg041.displayString("plus:         ", 0, 10, 5, 1);
-            seg041.displayString(arg_0.plus.ToString(), 0, 10, 5, 0x14);
+            TextRenderer.displayString("plus:         ", 0, 10, 5, 1);
+            TextRenderer.displayString(arg_0.plus.ToString(), 0, 10, 5, 0x14);
 
-            seg041.displayString("plussave:     ", 0, 10, 6, 1);
-            seg041.displayString(arg_0.plus_save.ToString(), 0, 10, 6, 0x14);
+            TextRenderer.displayString("plussave:     ", 0, 10, 6, 1);
+            TextRenderer.displayString(arg_0.plus_save.ToString(), 0, 10, 6, 0x14);
 
-            seg041.displayString("ready:        ", 0, 10, 7, 1);
-            seg041.displayString(arg_0.readied.ToString(), 0, 10, 7, 0x14);
+            TextRenderer.displayString("ready:        ", 0, 10, 7, 1);
+            TextRenderer.displayString(arg_0.readied.ToString(), 0, 10, 7, 0x14);
 
-            seg041.displayString("identified:   ", 0, 10, 8, 1);
-            seg041.displayString(arg_0.hidden_names_flag.ToString(), 0, 10, 8, 0x14);
+            TextRenderer.displayString("identified:   ", 0, 10, 8, 1);
+            TextRenderer.displayString(arg_0.hidden_names_flag.ToString(), 0, 10, 8, 0x14);
 
-            seg041.displayString("cursed:       ", 0, 10, 9, 1);
-            seg041.displayString(arg_0.cursed.ToString(), 0, 10, 9, 0x14);
+            TextRenderer.displayString("cursed:       ", 0, 10, 9, 1);
+            TextRenderer.displayString(arg_0.cursed.ToString(), 0, 10, 9, 0x14);
 
-            seg041.displayString("value:        ", 0, 10, 10, 1);
-            seg041.displayString(arg_0._value.ToString(), 0, 10, 10, 0x14);
+            TextRenderer.displayString("value:        ", 0, 10, 10, 1);
+            TextRenderer.displayString(arg_0._value.ToString(), 0, 10, 10, 0x14);
 
-            seg041.displayString("special(1):   ", 0, 10, 11, 1);
-            seg041.displayString(arg_0.affect_1.ToString(), 0, 10, 11, 0x14);
+            TextRenderer.displayString("special(1):   ", 0, 10, 11, 1);
+            TextRenderer.displayString(arg_0.affect_1.ToString(), 0, 10, 11, 0x14);
 
-            seg041.displayString("special(2):   ", 0, 10, 12, 1);
-            seg041.displayString(arg_0.affect_2.ToString(), 0, 10, 12, 0x14);
+            TextRenderer.displayString("special(2):   ", 0, 10, 12, 1);
+            TextRenderer.displayString(arg_0.affect_2.ToString(), 0, 10, 12, 0x14);
 
-            seg041.displayString("special(3):   ", 0, 10, 13, 1);
-            seg041.displayString(arg_0.affect_3.ToString(), 0, 10, 13, 0x14);
+            TextRenderer.displayString("special(3):   ", 0, 10, 13, 1);
+            TextRenderer.displayString(arg_0.affect_3.ToString(), 0, 10, 13, 0x14);
 
-            seg041.displayString("dice large:   ", 0, 10, 14, 1);
-            seg041.displayString(gbl.ItemDataTable[arg_0.type].diceCountLarge.ToString(), 0, 10, 14, 0x14);
+            TextRenderer.displayString("dice large:   ", 0, 10, 14, 1);
+            TextRenderer.displayString(gbl.ItemDataTable[arg_0.type].diceCountLarge.ToString(), 0, 10, 14, 0x14);
 
-            seg041.displayString("sides large:  ", 0, 10, 15, 1);
-            seg041.displayString(gbl.ItemDataTable[arg_0.type].diceSizeLarge.ToString(), 0, 10, 15, 0x14);
+            TextRenderer.displayString("sides large:  ", 0, 10, 15, 1);
+            TextRenderer.displayString(gbl.ItemDataTable[arg_0.type].diceSizeLarge.ToString(), 0, 10, 15, 0x14);
 
-            seg041.DisplayAndPause("press a key", 10);
+            TextRenderer.DisplayAndPause("press a key", 10);
         }
 
         static Set unk_554EE = new Set(0, 69);
@@ -502,8 +502,8 @@ namespace engine
 
                         ovr025.displayPlayerName(true, 1, 1, player);
 
-                        seg041.displayString("Items", 0, 10, 1, player.name.Length + 4);
-                        seg041.displayString("Ready Item", 0, 15, 3, 1);
+                        TextRenderer.displayString("Items", 0, 10, 1, player.name.Length + 4);
+                        TextRenderer.displayString("Ready Item", 0, 15, 3, 1);
 
                         redraw_items = true;
                         redraw_player = false;
@@ -571,7 +571,7 @@ namespace engine
                                 {
                                     ovr025.ItemDisplayNameBuild(false, false, 0, 0, curr_item);
 
-                                    seg041.press_any_key("Your " + curr_item.name + " will be gone forever", true, 14, 22, 0x26, 21, 1);
+                                    TextRenderer.press_any_key("Your " + curr_item.name + " will be gone forever", true, 14, 22, 0x26, 21, 1);
 
                                     if (ovr027.yes_no(gbl.defaultMenuColors, "Drop It? ") == 'Y')
                                     {
@@ -1014,7 +1014,7 @@ namespace engine
 
                     if (gbl.game_state == GameState.Combat)
                     {
-                        seg041.displayString("Item:", 0, 10, 0x17, 0);
+                        TextRenderer.displayString("Item:", 0, 10, 0x17, 0);
 
                         ovr025.ItemDisplayNameBuild(true, false, 0x17, 5, item);
                     }
@@ -1023,7 +1023,7 @@ namespace engine
                         ovr025.ItemDisplayNameBuild(true, false, 0x16, 1, item);
                     }
 
-                    seg041.GameDelay();
+                    TextRenderer.GameDelay();
                     ovr025.ClearPlayerTextArea();
                 }
 
@@ -1112,7 +1112,7 @@ namespace engine
 
             string offer = "I'll give you " + item_value.ToString() + " gold pieces for your " + item.name;
 
-            seg041.press_any_key(offer, true, 14, TextRegion.Normal2);
+            TextRenderer.press_any_key(offer, true, 14, TextRegion.Normal2);
 
             if (ovr027.yes_no(gbl.defaultMenuColors, "Is It a Deal? ") == 'Y')
             {
@@ -1156,7 +1156,7 @@ namespace engine
             bool id_item = false;
             ovr025.ItemDisplayNameBuild(false, false, 0, 0, item);
 
-            seg041.press_any_key("For 200 gold pieces I'll identify your " + item.name, true, 14, TextRegion.Normal2);
+            TextRenderer.press_any_key("For 200 gold pieces I'll identify your " + item.name, true, 14, TextRegion.Normal2);
 
             if (ovr027.yes_no(gbl.defaultMenuColors, "Is It a Deal? ") == 'Y')
             {
@@ -1185,19 +1185,19 @@ namespace engine
             {
                 if (item.hidden_names_flag == 0)
                 {
-                    seg041.press_any_key("I can't tell anything new about your " + item.name, true, 14, TextRegion.Normal2);
+                    TextRenderer.press_any_key("I can't tell anything new about your " + item.name, true, 14, TextRegion.Normal2);
                 }
                 else
                 {
                     item.hidden_names_flag = 0;
                     ovr025.ItemDisplayNameBuild(false, false, 0, 0, item);
 
-                    seg041.press_any_key("It looks like some sort of " + item.name, true, 14, TextRegion.Normal2);
+                    TextRenderer.press_any_key("It looks like some sort of " + item.name, true, 14, TextRegion.Normal2);
 
                     arg_0 = true;
                 }
 
-                seg041.GameDelay();
+                TextRenderer.GameDelay();
             }
 
             seg037.draw8x8_clear_area(TextRegion.Normal2);
@@ -1435,7 +1435,7 @@ namespace engine
 
                 ovr025.displayPlayerName(true, 1, 1, gbl.SelectedPlayer);
 
-                seg041.displayString("Spells " + text, 0, 10, 1, gbl.SelectedPlayer.name.Length + 4);
+                TextRenderer.displayString("Spells " + text, 0, 10, 1, gbl.SelectedPlayer.name.Length + 4);
 
                 result = ovr023.spell_menu(ref index, arg_8);
             }

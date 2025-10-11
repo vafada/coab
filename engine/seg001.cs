@@ -304,9 +304,9 @@ namespace engine
             gbl.sky_dax_251 = null;
             gbl.sky_dax_252 = null;
             gbl.gameWon = false;
-            seg041.Load8x8Tiles();
+            TextRenderer.Load8x8Tiles();
             ovr027.ClearPromptArea();
-            seg041.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
+            TextRenderer.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
 
             ovr038.Load8x8D(4, 0xca);
             ovr038.Load8x8D(0, 0xcb);

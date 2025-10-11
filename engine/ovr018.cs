@@ -118,10 +118,10 @@ namespace engine
                     {
                         if (menuFlags[i] == true)
                         {
-                            seg041.displayString(menuStrings[i][0].ToString(), 0, 15, yCol + 12, 2);
+                            TextRenderer.displayString(menuStrings[i][0].ToString(), 0, 15, yCol + 12, 2);
 
                             string var_111 = seg051.Copy(menuStrings[i].Length, 1, menuStrings[i]);
-                            seg041.displayString(var_111, 0, 10, yCol + 12, 3);
+                            TextRenderer.displayString(var_111, 0, 10, yCol + 12, 3);
                             yCol++;
                         }
                     }
@@ -856,7 +856,7 @@ namespace engine
                     }
                 }
 
-                seg041.displayString(text, 0, 15, 15, 7);
+                TextRenderer.displayString(text, 0, 15, 15, 7);
                 ovr020.display_player_stats01();
                 ovr020.displayMoney();
 
@@ -868,7 +868,7 @@ namespace engine
 
             do
             {
-                player.name = seg041.getUserInputString(15, 0, 13, "Character name: ");
+                player.name = TextRenderer.getUserInputString(15, 0, 13, "Character name: ");
             } while (player.name.Length == 0);
 
             icon_builder();
@@ -976,21 +976,21 @@ namespace engine
             {
                 if (highlighted == true)
                 {
-                    seg041.displaySpaceChar(1, gbl.SelectedPlayer.name.Length + 1);
-                    seg041.displayString(gbl.SelectedPlayer.name, 0, 13, 1, 1);
+                    TextRenderer.displaySpaceChar(1, gbl.SelectedPlayer.name.Length + 1);
+                    TextRenderer.displayString(gbl.SelectedPlayer.name, 0, 13, 1, 1);
 
                     if (name_cursor_pos > gbl.SelectedPlayer.name.Length || gbl.SelectedPlayer.name[name_cursor_pos - 1] == ' ')
                     {
-                        seg041.displayString("%", 0, 15, 1, name_cursor_pos);
+                        TextRenderer.displayString("%", 0, 15, 1, name_cursor_pos);
                     }
                     else
                     {
-                        seg041.displayString(gbl.SelectedPlayer.name[name_cursor_pos - 1].ToString(), 0, 15, 1, name_cursor_pos);
+                        TextRenderer.displayString(gbl.SelectedPlayer.name[name_cursor_pos - 1].ToString(), 0, 15, 1, name_cursor_pos);
                     }
                 }
                 else
                 {
-                    seg041.displayString(gbl.SelectedPlayer.name, 0, 10, 1, 1);
+                    TextRenderer.displayString(gbl.SelectedPlayer.name, 0, 10, 1, 1);
                 }
             }
         }
@@ -1008,7 +1008,7 @@ namespace engine
                 gbl.SelectedPlayer.exp != 25000) ||
                 gbl.SelectedPlayer.multiclassLevel != 0)
             {
-                seg041.DisplayStatusText(0, 14, gbl.SelectedPlayer.name + " can't be modified.");
+                TextRenderer.DisplayStatusText(0, 14, gbl.SelectedPlayer.name + " can't be modified.");
                 return;
             }
 
@@ -1553,7 +1553,7 @@ namespace engine
                                 if (new_player.paladin_lvl > 0 && evil_present == true)
                                 {
                                     ovr025.string_print01("paladins do not join with evil scum");
-                                    seg041.GameDelay();
+                                    TextRenderer.GameDelay();
                                 }
                                 else if (new_player.ranger_lvl > 0 && ranger_count > 2)
                                 {
@@ -1674,10 +1674,10 @@ namespace engine
                 duplicateCombatIcon(true, 12, player.icon_id);
                 drawIconEditorIcons(2, 1);
 
-                seg041.displayString("old", 0, 15, 6, 8);
-                seg041.displayString("ready   action", 0, 15, 10, 3);
-                seg041.displayString("new", 0, 15, 12, 8);
-                seg041.displayString("ready   action", 0, 15, 16, 3);
+                TextRenderer.displayString("old", 0, 15, 6, 8);
+                TextRenderer.displayString("ready   action", 0, 15, 10, 3);
+                TextRenderer.displayString("new", 0, 15, 12, 8);
+                TextRenderer.displayString("ready   action", 0, 15, 16, 3);
 
                 do
                 {
@@ -2191,7 +2191,7 @@ namespace engine
             if (gbl.SelectedPlayer.health_status != Status.okey &&
                 Cheats.free_training == false)
             {
-                seg041.DisplayStatusText(0, 14, "we only train conscious people");
+                TextRenderer.DisplayStatusText(0, 14, "we only train conscious people");
                 return;
             }
 
@@ -2200,7 +2200,7 @@ namespace engine
                 gbl.silent_training == false &&
                 gbl.gameWon == false)
             {
-                seg041.DisplayStatusText(0, 14, "Training costs 1000 gp.");
+                TextRenderer.DisplayStatusText(0, 14, "Training costs 1000 gp.");
                 return;
             }
 
@@ -2297,7 +2297,7 @@ namespace engine
                     gbl.silent_training == false &&
                     Cheats.free_training == false)
             {
-                seg041.DisplayStatusText(0, 14, "We don't train that class here");
+                TextRenderer.DisplayStatusText(0, 14, "We don't train that class here");
                 return;
             }
 
@@ -2311,7 +2311,7 @@ namespace engine
                 if (gbl.silent_training == false &&
                      Cheats.free_training == false)
                 {
-                    seg041.DisplayStatusText(0, 14, "Not Enough Experience");
+                    TextRenderer.DisplayStatusText(0, 14, "Not Enough Experience");
                     return;
                 }
             }
@@ -2341,7 +2341,7 @@ namespace engine
 
                 ovr025.displayPlayerName(false, y_offset, 4, gbl.SelectedPlayer);
 
-                seg041.displayString(" will become:", 0, 10, y_offset, player.name.Length + 4);
+                TextRenderer.displayString(" will become:", 0, 10, y_offset, player.name.Length + 4);
 
                 for (int _class = 0; _class <= 7; _class++)
                 {
@@ -2355,14 +2355,14 @@ namespace engine
                             string text = System.String.Format("    a level {0} {1}",
                                 player.ClassLevel[_class] + 1, ovr020.classString[_class]);
 
-                            seg041.displayString(text, 0, 10, y_offset, 6);
+                            TextRenderer.displayString(text, 0, 10, y_offset, 6);
                         }
                         else
                         {
                             string text = System.String.Format("and a level {0} {1}",
                                 player.ClassLevel[_class] + 1, ovr020.classString[_class]);
 
-                            seg041.displayString(text, 0, 10, y_offset, 6);
+                            TextRenderer.displayString(text, 0, 10, y_offset, 6);
                         }
                     }
                 }

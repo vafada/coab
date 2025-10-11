@@ -58,7 +58,7 @@ namespace engine
         internal static short AskNumberValue(byte fgColor, string prompt, int maxValue) // sub_592AD
         {
             ovr027.ClearPromptAreaNoUpdate();
-            seg041.displayString(prompt, 0, fgColor, 0x18, 0);
+            TextRenderer.displayString(prompt, 0, fgColor, 0x18, 0);
 
             int prompt_width = prompt.Length;
             int xCol = prompt_width;
@@ -89,14 +89,14 @@ namespace engine
                         xCol = maxValueStr.Length + prompt_width;
                     }
 
-                    seg041.displayString(currentValueStr, 0, 15, 0x18, prompt_width);
+                    TextRenderer.displayString(currentValueStr, 0, 15, 0x18, prompt_width);
                 }
                 else if (inputKey == 8 && currentValueStr.Length > 0)
                 {
                     int i = currentValueStr.Length - 1;
                     currentValueStr = seg051.Copy(i, 0, currentValueStr);
 
-					seg041.displaySpaceChar(0x18, xCol-1);
+					TextRenderer.displaySpaceChar(0x18, xCol-1);
                     xCol--;
                 }
             } while (inputKey != 0x0D && inputKey != 0x1B);
@@ -887,9 +887,9 @@ namespace engine
                     seg037.draw8x8_clear_area(0x16, 0x26, 1, 1);
                     ovr025.displayPlayerName(false, 1, 1, gbl.SelectedPlayer);
 
-                    seg041.displayString("You have a fine collection of:", 0, 0xf, 7, 1);
-                    seg041.displayString(gem_text, 0, 0x0f, 9, 1);
-                    seg041.displayString(jewel_text, 0, 0x0f, 0x0a, 1);
+                    TextRenderer.displayString("You have a fine collection of:", 0, 0xf, 7, 1);
+                    TextRenderer.displayString(gem_text, 0, 0x0f, 9, 1);
+                    TextRenderer.displayString(jewel_text, 0, 0x0f, 0x0a, 1);
                     string prompt = string.Empty;
 
                     if (gbl.SelectedPlayer.Money.Gems != 0)
@@ -945,7 +945,7 @@ namespace engine
 
                             string value_text = "The Gem is Valued at " + value.ToString() + " gp.";
 
-                            seg041.displayString(value_text, 0, 15, 12, 1);
+                            TextRenderer.displayString(value_text, 0, 15, 12, 1);
 
                             bool must_sell;
 
@@ -1018,7 +1018,7 @@ namespace engine
                             }
 
                             string value_text = string.Format("The Jewel is Valued at {0} gp.", value);
-                            seg041.displayString(value_text, 0, 15, 12, 1);
+                            TextRenderer.displayString(value_text, 0, 15, 12, 1);
 
                             bool must_sell;
                             if (willOverload(1, gbl.SelectedPlayer) == true ||

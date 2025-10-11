@@ -852,7 +852,7 @@ namespace engine
 			if (ovr024.RollSavingThrow(save_bonus, SaveVerseType.Poison, gbl.spell_target) == false)
 			{
 				ovr025.DisplayPlayerStatusString(false, 10, "is Poisoned", gbl.spell_target);
-				seg041.GameDelay();
+				TextRenderer.GameDelay();
 				ovr024.add_affect(false, 0xff, 0, Affects.poisoned, gbl.spell_target);
 
 				ovr024.KillPlayer("is killed", Status.dead, gbl.spell_target);

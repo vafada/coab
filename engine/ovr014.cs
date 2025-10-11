@@ -174,12 +174,12 @@ namespace engine
 
             if (target.health_status != Status.gone)
             {
-                seg041.press_any_key(text, true, 10, line + 3, 0x26, line, 0x17);
+                TextRenderer.press_any_key(text, true, 10, line + 3, 0x26, line, 0x17);
             }
 
             line = gbl.textYCol + 1;
 
-            seg041.GameDelay();
+            TextRenderer.GameDelay();
 
             if (actualDamage > 0)
             {
@@ -193,7 +193,7 @@ namespace engine
 
                 if (target.health_status == Status.dying)
                 {
-                    seg041.displayString("and is Dying", 0, 10, line, 0x17);
+                    TextRenderer.displayString("and is Dying", 0, 10, line, 0x17);
                 }
 
                 if (target.health_status == Status.dead ||
@@ -215,7 +215,7 @@ namespace engine
                 }
                 else
                 {
-                    seg041.GameDelay();
+                    TextRenderer.GameDelay();
                 }
             }
 
@@ -608,7 +608,7 @@ namespace engine
         {
             ovr025.DisplayPlayerStatusString(false, 10, "turns undead...", player);
             ovr027.ClearPromptArea();
-            seg041.GameDelay();
+            TextRenderer.GameDelay();
 
             bool any_turned = false;
             byte var_6 = 0;
@@ -1758,7 +1758,7 @@ namespace engine
             if (showRange == true)
             {
                 string range_txt = "Range = " + range.ToString() + "  ";
-                seg041.displayString(range_txt, 0, 10, 0x17, 0);
+                TextRenderer.displayString(range_txt, 0, 10, 0x17, 0);
             }
 
             if (range <= maxRange)
@@ -1894,7 +1894,7 @@ namespace engine
                     {
                         string range_text = "Range = " + (range / 2).ToString() + "  ";
 
-                        seg041.displayString(range_text, 0, 10, 0x17, 0);
+                        TextRenderer.displayString(range_text, 0, 10, 0x17, 0);
                     }
                 }
                 else

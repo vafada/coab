@@ -375,7 +375,7 @@ namespace engine
                                 }
                                 else
                                 {
-                                    seg041.DisplayStatusText(0, 14, "Not Here");
+                                    TextRenderer.DisplayStatusText(0, 14, "Not Here");
                                 }
                                 break;
 

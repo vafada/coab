@@ -387,7 +387,7 @@ namespace engine
             {
                 if (gbl.party_fled == true)
                 {
-                    seg041.displayString("The party has fled.", 0, 10, 3, 1);
+                    TextRenderer.displayString("The party has fled.", 0, 10, 3, 1);
 
                     exp = 0;
 
@@ -401,7 +401,7 @@ namespace engine
                         (gbl.battleWon == false && gbl.area2_ptr.isDuel == true))
                     {
                         gbl.area2_ptr.field_58E = 0x80;
-                        seg041.displayString("You have lost the fight.", 0, 10, 3, 1);
+                        TextRenderer.displayString("You have lost the fight.", 0, 10, 3, 1);
 
                         exp = 0;
                     }
@@ -409,18 +409,18 @@ namespace engine
                     {
                         if (gbl.combat_type == CombatType.duel)
                         {
-                            seg041.displayString("You have won the duel.", 0, 10, 3, 1);
+                            TextRenderer.displayString("You have won the duel.", 0, 10, 3, 1);
                         }
                         else
                         {
-                            seg041.displayString("The party has won.", 0, 10, 3, 1);
+                            TextRenderer.displayString("The party has won.", 0, 10, 3, 1);
                         }
                     }
                 }
             }
             else
             {
-                seg041.displayString("The party has found Treasure!", 0, 10, 3, 1);
+                TextRenderer.displayString("The party has found Treasure!", 0, 10, 3, 1);
             }
 
             string text;
@@ -433,8 +433,8 @@ namespace engine
                 text = "Each character receives " + exp.ToString();
             }
 
-            seg041.displayString(text, 0, 10, 5, 1);
-            seg041.displayString("experience points.", 0, 10, 7, 1);
+            TextRenderer.displayString(text, 0, 10, 5, 1);
+            TextRenderer.displayString("experience points.", 0, 10, 7, 1);
 
             ovr027.displayInput(false, 1, new MenuColorSet(15, 15, 15), "press <enter>/<return> to continue", string.Empty);
         }
@@ -640,8 +640,8 @@ namespace engine
 
                         if (money_present == true || items_present == true)
                         {
-                            seg041.press_any_key("There is still treasure left.  ", true, 10, TextRegion.NormalBottom);
-                            seg041.press_any_key("Do you want to go back and claim your treasure?", false, 15, TextRegion.NormalBottom);
+                            TextRenderer.press_any_key("There is still treasure left.  ", true, 10, TextRegion.NormalBottom);
+                            TextRenderer.press_any_key("Do you want to go back and claim your treasure?", false, 15, TextRegion.NormalBottom);
                             int menu_selected = ovr008.sub_317AA(false, false, gbl.defaultMenuColors, "~Yes ~No", "");
 
                             if (menu_selected == 1)
@@ -749,7 +749,7 @@ namespace engine
                     {
                         string output = player.name + " takes and hides " + ((player.sex == 0) ? "his" : "her") + " share.";
 
-                        seg041.press_any_key(output, true, 10, 0x16, 0x22, yCol + 5, 5);
+                        TextRenderer.press_any_key(output, true, 10, 0x16, 0x22, yCol + 5, 5);
 
                         yCol += 2;
                     }
@@ -804,8 +804,8 @@ namespace engine
                     seg037.DrawFrame_Outer();
                     gbl.textXCol = 2;
                     gbl.textYCol = 6;
-                    seg041.press_any_key("The monsters rejoice for the party has been destroyed", true, 10, 0x16, 0x25, 5, 2);
-                    seg041.DisplayAndPause("Press any key to continue", 13);
+                    TextRenderer.press_any_key("The monsters rejoice for the party has been destroyed", true, 10, 0x16, 0x25, 5, 2);
+                    TextRenderer.DisplayAndPause("Press any key to continue", 13);
                 }
 
                 gbl.DelayBetweenCharacters = true;

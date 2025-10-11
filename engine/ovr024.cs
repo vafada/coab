@@ -53,7 +53,7 @@ namespace engine
                     ovr033.CombatantKilled(player);
                 }
 
-                seg041.GameDelay();
+                TextRenderer.GameDelay();
                 ovr025.ClearPlayerTextArea();
 
                 if (gbl.game_state != GameState.Combat)
@@ -455,7 +455,7 @@ namespace engine
                     if (player.HitDice >= 0 && player.HitDice <= 4)
                     {
                         ovr025.DisplayPlayerStatusString(false, 10, "is Poisoned", player);
-                        seg041.GameDelay();
+                        TextRenderer.GameDelay();
                         add_affect(false, 0xff, 0, Affects.minor_globe_of_invulnerability, player);
                         KillPlayer("is killed", Status.dead, player);
                     }
@@ -464,7 +464,7 @@ namespace engine
                         if (RollSavingThrow(-4, 0, player) == false)
                         {
                             ovr025.DisplayPlayerStatusString(false, 10, "is Poisoned", player);
-                            seg041.GameDelay();
+                            TextRenderer.GameDelay();
                             add_affect(false, 0xff, 0, Affects.poisoned, player);
                             KillPlayer("is killed", Status.dead, player);
                         }
@@ -474,7 +474,7 @@ namespace engine
                         if (RollSavingThrow(0, 0, player) == false)
                         {
                             ovr025.DisplayPlayerStatusString(false, 10, "is Poisoned", player);
-                            seg041.GameDelay();
+                            TextRenderer.GameDelay();
                             add_affect(false, 0xff, 0, Affects.poisoned, player);
                             KillPlayer("is killed", Status.dead, player);
                         }
@@ -1263,7 +1263,7 @@ namespace engine
 
                     if (gbl.game_state != GameState.Combat)
                     {
-                        seg041.GameDelay();
+                        TextRenderer.GameDelay();
                     }
                     else
                     {
@@ -1277,7 +1277,7 @@ namespace engine
                         }
                         else
                         {
-                            seg041.GameDelay();
+                            TextRenderer.GameDelay();
                         }
                     }
                 }

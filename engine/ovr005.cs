@@ -28,7 +28,7 @@ namespace engine
         internal static bool buy_cure(int cost, string cure_name) /* buy_cure */
         {
             string text = string.Format("{0} will only cost {1} gold pieces.", cure_name, cost);
-            seg041.press_any_key(text, true, 10, TextRegion.NormalBottom);
+            TextRenderer.press_any_key(text, true, 10, TextRegion.NormalBottom);
 
             bool buy = false;
 
@@ -318,7 +318,7 @@ namespace engine
             do
             {
                 string text = gbl.SelectedPlayer.name + ", how can we help you?";
-                seg041.displayString(text, 0, 15, 1, 1);
+                TextRenderer.displayString(text, 0, 15, 1, 1);
                 MenuItem dummySelected;
 
                 char sl_output = ovr027.sl_select_item(out dummySelected, ref sl_index, ref redrawMenuItems, false,
@@ -460,8 +460,8 @@ namespace engine
                         {
                             string prompt = "~Yes ~No";
 
-                            seg041.press_any_key("As you leave a priest says, \"Excuse me but you have left some money here\" ", true, 10, TextRegion.NormalBottom);
-                            seg041.press_any_key("Do you want to go back and retrieve your money?", true, 10, TextRegion.NormalBottom);
+                            TextRenderer.press_any_key("As you leave a priest says, \"Excuse me but you have left some money here\" ", true, 10, TextRegion.NormalBottom);
+                            TextRenderer.press_any_key("Do you want to go back and retrieve your money?", true, 10, TextRegion.NormalBottom);
                             int menu_selected = ovr008.sub_317AA(false, false, gbl.defaultMenuColors, prompt, "");
 
                             if (menu_selected == 1)
