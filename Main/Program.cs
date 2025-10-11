@@ -71,10 +71,18 @@ namespace Main
 
         static void EngineThread()
         {
-            engine.seg001.__SystemInit(EngineStopped);
-            engine.seg001.PROGRAM();
+            try
+            {
+                engine.seg001.__SystemInit(EngineStopped);
+                engine.seg001.PROGRAM();
 
-            EngineStopped();
+                EngineStopped();
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine($"Exception caught in thread: {ex}");
+                throw ex;
+            }
         }
     }
 }

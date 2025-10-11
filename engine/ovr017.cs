@@ -950,8 +950,8 @@ namespace engine
                 char save_letter = '\0';
                 do
                 {
-                    bool speical_key;
-                    char input_key = ovr027.displayInput(out speical_key, false, 0, gbl.defaultMenuColors, games_list, "Load Which Game: ");
+                    bool special_key;
+                    char input_key = ovr027.displayInput(out special_key, false, 0, gbl.defaultMenuColors, games_list, "Load Which Game: ");
 
                     stop_loop = input_key == 0x00; // Escape
                     save_letter = '\0';
@@ -960,6 +960,7 @@ namespace engine
                     {
                         save_letter = input_key;
                         string file_name = Path.Combine(Config.GetSavePath(), "savgam" + save_letter.ToString() + ".dat");
+                        Console.WriteLine("Loading file = " + file_name);
                         stop_loop = seg042.file_find(file_name);
                     }
                 } while (stop_loop == false);

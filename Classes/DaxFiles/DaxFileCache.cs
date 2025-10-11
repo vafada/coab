@@ -21,6 +21,7 @@ namespace Classes.DaxFiles
 
             if (System.IO.File.Exists(filename) == false)
             {
+                Console.WriteLine("File does not exists = " +  filename);
                 return;
             }
 

@@ -1,5 +1,6 @@
 using Classes;
 using Classes.Combat;
+using System;
 
 namespace engine
 {
@@ -27,6 +28,7 @@ namespace engine
         internal static void ConfigGame()
         {
             gbl.exe_path = System.IO.Directory.GetCurrentDirectory();
+            Console.WriteLine("EXE path = " + gbl.exe_path);
 
             seg044.SoundInit();
         }
