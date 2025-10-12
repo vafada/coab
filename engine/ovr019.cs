@@ -417,7 +417,6 @@ namespace engine
 
             ovr030.load_pic_final(ref animation, 2, block_id, "PIC");
             DrawPicture.OverlayBounded(animation.frames[0].picture, 0, 0, row_y - 1, col_x - 1);
-            DrawPicture.DrawOverlay();
 
             do
             {

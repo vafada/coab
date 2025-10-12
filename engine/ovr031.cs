@@ -86,7 +86,6 @@ namespace engine
             DrawPicture.draw_clipped_nodraw(8);
             Render8By8Symbol.Put8x8Symbol(true, (partyDir >> 1) + 0x100, partyScreenX + displayOffset, partyScreenY + displayOffset);
             DrawPicture.draw_clipped_nodraw(17);
-            DrawPicture.DrawOverlay();
         }
 
 
@@ -366,7 +365,6 @@ namespace engine
             }
 
             Display.UpdateStart();
-            DrawPicture.DrawOverlay();
         }
 
 

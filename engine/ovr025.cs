@@ -958,7 +958,6 @@ namespace engine
 					{
 						Display.SaveVidRam();
 						DrawPicture.OverlayBounded(gbl.missile_dax, 5, frame, cur.y, cur.x);
-						DrawPicture.DrawOverlay();
 
 						KeyInputQueue.SysDelay(delay);
 
@@ -1102,16 +1101,12 @@ namespace engine
 
 					if (delay > 0)
 					{
-						DrawPicture.DrawOverlay();
-
 						KeyInputQueue.SysDelay(delay);
 
 						Display.RestoreVidRam();
 					}
 				}
 			} while (var_B3 == false);
-
-			DrawPicture.DrawOverlay();
 		}
 
 
@@ -1150,15 +1145,11 @@ namespace engine
 						Display.SaveVidRam();
 
 						DrawPicture.OverlayBounded(gbl.missile_dax, 5, frame, pos.y, pos.x);
-						DrawPicture.DrawOverlay();
-
 						KeyInputQueue.SysDelay(70);
 
 						Display.RestoreVidRam();
 					}
 				}
-
-				DrawPicture.DrawOverlay();
 
 				if (loops == 0)
 				{

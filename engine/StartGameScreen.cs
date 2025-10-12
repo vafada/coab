@@ -1610,8 +1610,6 @@ namespace engine
 
             ovr034.draw_combat_icon(12, Icon.Normal, 0, titleY, titleX);
             ovr034.draw_combat_icon(12, Icon.Attack, 0, titleY, titleX + 3);
-
-            DrawPicture.DrawOverlay();
         }
 
 

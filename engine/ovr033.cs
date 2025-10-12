@@ -369,7 +369,6 @@ namespace engine
             }
 
             sub_7416E(newPos);
-            DrawPicture.DrawOverlay();
         }
 
 
@@ -401,7 +400,6 @@ namespace engine
             {
                 var pos = gbl.CombatMap[player_index].screenPos;
                 ovr034.draw_combat_icon(player.icon_id, iconState, direction, pos.y, pos.x);
-                DrawPicture.DrawOverlay();
             }
         }
 
@@ -571,7 +569,6 @@ namespace engine
                             }
                         }
 
-                        DrawPicture.DrawOverlay();
                         KeyInputQueue.SysDelay(10);
                     }
 

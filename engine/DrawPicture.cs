@@ -122,20 +122,9 @@ namespace engine
             draw_clipped_picture(dax_block, rowY, colX, index, 0, 320, 0, 200);
         }
 
-        internal static void DrawOverlay()
-        {
-            //TODO this might be useful when we move to OpenGL.
-        }
-
         internal static void SetPaletteColor(int color, int index)
         {
             int newColor = color;
-
-            //if (color >= 8)
-            //{
-            //  newColor += 8;
-            //}
-
             Display.SetEgaPalette(index, newColor);
         }
 

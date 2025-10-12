@@ -22,7 +22,6 @@ namespace engine
                     }
 
                     DrawPicture.OverlayBounded(dax_block, 0, 0, rowY - 1, colX - 1);
-                    DrawPicture.DrawOverlay();
                 }
                 else
                 {
@@ -223,7 +222,6 @@ namespace engine
             {
                 DaxBlock block = arg_0.frames[sprite_index - 1].picture;
                 DrawPicture.OverlayBounded(arg_0.frames[sprite_index - 1].picture, 1, 0, block.y_pos + 3 - 1, block.x_pos + 3 - 1);
-                DrawPicture.DrawOverlay();
             }
         }
 
