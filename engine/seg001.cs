@@ -43,7 +43,7 @@ namespace engine
             }
             /* Memory Init - End */
 
-            ovr003.SetupCommandTable();
+            DungeonGameLoop.SetupCommandTable();
 
             InitFirst();
 
@@ -148,8 +148,8 @@ namespace engine
                 {
                     StartGameScreen.startGameMenu();
                 }
-
-                ovr003.sub_29758();
+                
+                DungeonGameLoop.beginAdventure();
 
                 InitAgain();
 
