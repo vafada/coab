@@ -616,10 +616,14 @@ namespace engine
                 {
                     switch (input_key)
                     {
+                        // Up arrow                        
+                        case 'H':
                         // Home
                         case 'G':
                             index_ptr = menu_scroll_in_page(false, index_ptr, stringList, listDisplayHeight);
-                            break;
+                            break;                        
+                        // Up arrow
+                        case 'P':
                         // End
                         case 'O':
                             index_ptr = menu_scroll_in_page(true, index_ptr, stringList, listDisplayHeight);

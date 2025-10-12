@@ -122,8 +122,7 @@ namespace engine
                             TextRenderer.displayString(menuStrings[i][0].ToString(), 0, 15, yCol + 12, 2);
 
                             // String w/o the first character
-                            string restOfTheString = StringRandomIOUtils.Copy(menuStrings[i].Length, 1, menuStrings[i]);
-                            TextRenderer.displayString(restOfTheString, 0, 10, yCol + 12, 3);
+                            TextRenderer.displayString(menuStrings[i].Substring(1), 0, 10, yCol + 12, 3);
                             yCol++;
                         }
                     }
