@@ -176,7 +176,7 @@
     <Compile Include="SpellList.cs" />
     <Compile Include="Spells.cs" />
     <Compile Include="SteppingPath.cs" />
-    <Compile Include="Struct_189B4.cs">
+    <Compile Include="BackGroundTile.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Struct_1A35E.cs" />

@@ -137,7 +137,7 @@
     <Compile Include="ovr005.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr006.cs">
+    <Compile Include="PostCombat.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr007.cs">
@@ -146,13 +146,13 @@
     <Compile Include="ovr008.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr009.cs">
+    <Compile Include="CombatLoop.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr010.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr011.cs">
+    <Compile Include="BattleSetupUI.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr013.cs">

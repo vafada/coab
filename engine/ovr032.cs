@@ -119,7 +119,7 @@ namespace engine
             do
             {
                 int gt = groundTilesMap[var_19.current];
-                Struct_189B4 s189 = gbl.BackGroundTiles[gt];
+                BackGroundTile s189 = gbl.BackGroundTiles[gt];
 
                 if (groundTilesMap.ignoreWalls == false && s189.field_2 > var_31.current.y)
                 {

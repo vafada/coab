@@ -990,7 +990,7 @@ namespace engine
                 }
                 else
                 {
-                    ovr006.AfterCombatExpAndTreasure();
+                    PostCombat.AfterCombatExpAndTreasure();
                 }
             }
             else
@@ -1002,9 +1002,9 @@ namespace engine
                     gbl.area2_ptr.encounter_distance = var_2;
                 }
 
-                ovr009.MainCombatLoop();
+                CombatLoop.MainCombatLoop();
 
-                ovr006.AfterCombatExpAndTreasure();
+                PostCombat.AfterCombatExpAndTreasure();
 
                 if (gbl.area_ptr.inDungeon == 0)
                 {
