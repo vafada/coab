@@ -585,7 +585,7 @@ namespace engine
                 }
             }
 
-            ovr030.DaxArrayFreeDaxBlocks(gbl.byte_1D556);
+            ovr030.DaxArrayFreeDaxBlocks(gbl.pictureAnimation);
 
             gbl.headX_dax = null;
             gbl.bodyX_dax = null;

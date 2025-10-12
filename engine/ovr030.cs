@@ -21,12 +21,12 @@ namespace engine
                         dax_block.Recolor(true, fadeNewColors, fadeOldColors);
                     }
 
-                    seg040.OverlayBounded(dax_block, 0, 0, rowY - 1, colX - 1);
-                    seg040.DrawOverlay();
+                    DrawPicture.OverlayBounded(dax_block, 0, 0, rowY - 1, colX - 1);
+                    DrawPicture.DrawOverlay();
                 }
                 else
                 {
-                    seg040.draw_picture(dax_block, rowY, colX, 0);
+                    DrawPicture.draw_picture(dax_block, rowY, colX, 0);
                 }
             }
         }
@@ -172,7 +172,7 @@ namespace engine
             if (head_id != 0xff &&
                 (gbl.current_head_id == 0xff || gbl.current_head_id != head_id))
             {
-                gbl.headX_dax = seg040.LoadDax(0, 0, head_id, "HEAD" + text);
+                gbl.headX_dax = DrawPicture.LoadDax(0, 0, head_id, "HEAD" + text);
 
                 if (gbl.headX_dax == null)
                 {
@@ -185,7 +185,7 @@ namespace engine
             if (body_id != 0xff &&
                 (gbl.current_body_id == 0xff || gbl.current_body_id != body_id))
             {
-                gbl.bodyX_dax = seg040.LoadDax(0, 0, body_id, "BODY" + text);
+                gbl.bodyX_dax = DrawPicture.LoadDax(0, 0, body_id, "BODY" + text);
                 if (gbl.bodyX_dax == null)
                 {
                     TextRenderer.DisplayAndPause("body not found", 14);
@@ -222,19 +222,19 @@ namespace engine
             if (arg_0.frames[sprite_index - 1].picture != null)
             {
                 DaxBlock block = arg_0.frames[sprite_index - 1].picture;
-                seg040.OverlayBounded(arg_0.frames[sprite_index - 1].picture, 1, 0, block.y_pos + 3 - 1, block.x_pos + 3 - 1);
-                seg040.DrawOverlay();
+                DrawPicture.OverlayBounded(arg_0.frames[sprite_index - 1].picture, 1, 0, block.y_pos + 3 - 1, block.x_pos + 3 - 1);
+                DrawPicture.DrawOverlay();
             }
         }
 
 
         internal static void load_bigpic(byte block_id) /* bigpic */
         {
-            DaxArrayFreeDaxBlocks(gbl.byte_1D556);
+            DaxArrayFreeDaxBlocks(gbl.pictureAnimation);
 
             if (gbl.bigpic_block_id != block_id)
             {
-                gbl.bigpic_dax = seg040.LoadDax(0, 0, block_id, "bigpic" + gbl.game_area.ToString());
+                gbl.bigpic_dax = DrawPicture.LoadDax(0, 0, block_id, "bigpic" + gbl.game_area.ToString());
                 gbl.bigpic_block_id = block_id;
             }
         }
@@ -243,7 +243,7 @@ namespace engine
         internal static void draw_bigpic() /* sub_7087A */
         {
             FrameRenderer.DrawFrame_WildernessMap();
-            seg040.draw_picture(gbl.bigpic_dax, 1, 1, 0);
+            DrawPicture.draw_picture(gbl.bigpic_dax, 1, 1, 0);
         }
     }
 }

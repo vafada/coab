@@ -332,8 +332,8 @@ namespace engine
                     }
                     else
                     {
-                        ovr030.load_pic_final(ref gbl.byte_1D556, 0, blockId, "PIC");
-                        ovr030.DrawMaybeOverlayed(gbl.byte_1D556.frames[0].picture, true, 3, 3);
+                        ovr030.load_pic_final(ref gbl.pictureAnimation, 0, blockId, "PIC");
+                        ovr030.DrawMaybeOverlayed(gbl.pictureAnimation.frames[0].picture, true, 3, 3);
                     }
                 }
                 else
@@ -1749,7 +1749,7 @@ namespace engine
             ovr025.PartySummary(gbl.SelectedPlayer);
             ovr025.display_map_position_time();
 
-            ovr030.DrawMaybeOverlayed(gbl.byte_1D556.frames[0].picture, true, 3, 3);
+            ovr030.DrawMaybeOverlayed(gbl.pictureAnimation.frames[0].picture, true, 3, 3);
             ovr025.display_map_position_time();
             gbl.byte_1EE98 = false;
         }
@@ -1901,9 +1901,9 @@ namespace engine
                     break;
 
                 case 0xE804:
-                    ovr030.DrawMaybeOverlayed(gbl.byte_1D556.CurrentPicture(), true, 3, 3);
+                    ovr030.DrawMaybeOverlayed(gbl.pictureAnimation.CurrentPicture(), true, 3, 3);
 
-                    gbl.byte_1D556.NextFrame();
+                    gbl.pictureAnimation.NextFrame();
 
                     TextRenderer.GameDelay();
                     break;
@@ -2182,7 +2182,7 @@ namespace engine
         {
             do
             {
-                ovr030.DaxArrayFreeDaxBlocks(gbl.byte_1D556);
+                ovr030.DaxArrayFreeDaxBlocks(gbl.pictureAnimation);
                 gbl.byte_1D5AB = string.Empty;
                 gbl.byte_1D5B5 = 0x0FF;
                 gbl.vmFlag01 = false;
@@ -2247,7 +2247,7 @@ namespace engine
 
                 if (gbl.inDemo == true)
                 {
-                    gbl.EclBlockId = 0x52;
+                    gbl.EclBlockId = 82;
                 }
                 else
                 {

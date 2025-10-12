@@ -28,14 +28,14 @@ namespace engine
 
         internal static void Draw() /* sub_6E02E */
         {
-            seg040.ega_backup(gbl.cursor_bkup, loc_Y, loc_X);
-            seg040.draw_picture(gbl.cursor, loc_Y, loc_X, 0);
+            DrawPicture.ega_backup(gbl.cursor_bkup, loc_Y, loc_X);
+            DrawPicture.draw_picture(gbl.cursor, loc_Y, loc_X, 0);
         }
 
 
         internal static void Restore() /* sub_6E05D */
         {
-            seg040.draw_picture(gbl.cursor_bkup, loc_Y, loc_X, 0);
+            DrawPicture.draw_picture(gbl.cursor_bkup, loc_Y, loc_X, 0);
         }
     }
 }

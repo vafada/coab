@@ -1603,7 +1603,7 @@ namespace engine
 
         internal static void drawIconEditorIcons(sbyte titleY, sbyte titleX) /* sub_4FB7C */
         {
-            seg040.DrawColorBlock(0, 24, 12, titleY * 24, titleX * 3);
+            DrawPicture.DrawColorBlock(0, 24, 12, titleY * 24, titleX * 3);
 
             ovr034.draw_combat_icon(25, Icon.Normal, 0, titleY, titleX);
             ovr034.draw_combat_icon(25, Icon.Attack, 0, titleY, titleX + 3);
@@ -1611,7 +1611,7 @@ namespace engine
             ovr034.draw_combat_icon(12, Icon.Normal, 0, titleY, titleX);
             ovr034.draw_combat_icon(12, Icon.Attack, 0, titleY, titleX + 3);
 
-            seg040.DrawOverlay();
+            DrawPicture.DrawOverlay();
         }
 
 

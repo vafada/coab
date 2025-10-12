@@ -1148,7 +1148,7 @@ namespace engine
 
             if (StringRandomIOUtils.Copy(3, 1, gbl.byte_1D5AB) == "PIC")
             {
-                ovr030.load_pic_final(ref gbl.byte_1D556, 0, gbl.byte_1D5B5, gbl.byte_1D5AB);
+                ovr030.load_pic_final(ref gbl.pictureAnimation, 0, gbl.byte_1D5B5, gbl.byte_1D5AB);
             }
 
             cancel_spells();

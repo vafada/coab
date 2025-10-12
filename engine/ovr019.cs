@@ -24,9 +24,9 @@ namespace engine
 
         internal static void sub_52068()
         {
-            seg040.SetPaletteColor(15, 9);
+            DrawPicture.SetPaletteColor(15, 9);
             KeyInputQueue.SysDelay(1);
-            seg040.SetPaletteColor(9, 9);
+            DrawPicture.SetPaletteColor(9, 9);
         }
 
         class Struct_1ADFB
@@ -416,8 +416,8 @@ namespace engine
             DaxArray animation = new DaxArray();
 
             ovr030.load_pic_final(ref animation, 2, block_id, "PIC");
-            seg040.OverlayBounded(animation.frames[0].picture, 0, 0, row_y - 1, col_x - 1);
-            seg040.DrawOverlay();
+            DrawPicture.OverlayBounded(animation.frames[0].picture, 0, 0, row_y - 1, col_x - 1);
+            DrawPicture.DrawOverlay();
 
             do
             {

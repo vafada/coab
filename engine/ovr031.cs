@@ -71,11 +71,11 @@ namespace engine
 
                     if (Cheats.improved_area_map)
                     {
-                        seg040.draw_clipped_nodraw(8);
-                        seg040.draw_clipped_recolor(7, 1);
+                        DrawPicture.draw_clipped_nodraw(8);
+                        DrawPicture.draw_clipped_recolor(7, 1);
                         Render8By8Symbol.Put8x8Symbol(true, door_id, y + displayOffset, x + displayOffset);
-                        seg040.draw_clipped_recolor(17, 17);
-                        seg040.draw_clipped_nodraw(17);
+                        DrawPicture.draw_clipped_recolor(17, 17);
+                        DrawPicture.draw_clipped_nodraw(17);
                     }
                 }
             }
@@ -83,18 +83,18 @@ namespace engine
             int partyScreenY = partyMapX - offsetX;
             int partyScreenX = partyMapY - offsetY;
 
-            seg040.draw_clipped_nodraw(8);
+            DrawPicture.draw_clipped_nodraw(8);
             Render8By8Symbol.Put8x8Symbol(true, (partyDir >> 1) + 0x100, partyScreenX + displayOffset, partyScreenY + displayOffset);
-            seg040.draw_clipped_nodraw(17);
-            seg040.DrawOverlay();
+            DrawPicture.draw_clipped_nodraw(17);
+            DrawPicture.DrawOverlay();
         }
 
 
         internal static void Draw3dWorldBackground()
         {
-            seg040.DrawColorBlock(gbl.sky_colour, 0x2c, 11, 16, 2);
-            seg040.DrawColorBlock(0, 2, 11, 0x3c, 2);
-            seg040.DrawColorBlock(8, 0x2a, 11, 0x3e, 2);
+            DrawPicture.DrawColorBlock(gbl.sky_colour, 0x2c, 11, 16, 2);
+            DrawPicture.DrawColorBlock(0, 2, 11, 0x3c, 2);
+            DrawPicture.DrawColorBlock(8, 0x2a, 11, 0x3e, 2);
 
             if (get_wall_x2(gbl.mapPosY, gbl.mapPosY) < 0x80 &&
                 gbl.sky_colour == 11)
@@ -108,32 +108,32 @@ namespace engine
                 {
                     if (gbl.mapDirection == 2)
                     {
-                        seg040.OverlayBounded(gbl.sky_dax_251, 1, 0, (row_y + 5) - hour, 12 - 3);
+                        DrawPicture.OverlayBounded(gbl.sky_dax_251, 1, 0, (row_y + 5) - hour, 12 - 3);
                     }
                     else if (gbl.mapDirection == 4 && hour > 2)
                     {
-                        seg040.OverlayBounded(gbl.sky_dax_251, 1, 0, (row_y + 5) - hour, (col_x + hour) - 3);
+                        DrawPicture.OverlayBounded(gbl.sky_dax_251, 1, 0, (row_y + 5) - hour, (col_x + hour) - 3);
                     }
                 }
                 else if (hour >= 13 && hour <= 18)
                 {
                     if (gbl.mapDirection == 6)
                     {
-                        seg040.OverlayBounded(gbl.sky_dax_251, 1, 0, (row_y + hour) - 13, col_x);
+                        DrawPicture.OverlayBounded(gbl.sky_dax_251, 1, 0, (row_y + hour) - 13, col_x);
                     }
                     else if (gbl.mapDirection == 4 && hour >= 16)
                     {
-                        seg040.OverlayBounded(gbl.sky_dax_251, 1, 0, (row_y + hour) - 13, (col_x + hour) - 8);
+                        DrawPicture.OverlayBounded(gbl.sky_dax_251, 1, 0, (row_y + hour) - 13, (col_x + hour) - 8);
                     }
                 }
 
                 if (gbl.mapDirection == 0)
                 {
-                    seg040.OverlayBounded(gbl.sky_dax_250, 1, 0, row_y, col_x);
+                    DrawPicture.OverlayBounded(gbl.sky_dax_250, 1, 0, row_y, col_x);
                 }
             }
 
-            seg040.OverlayBounded(gbl.sky_dax_252, 1, 0, 7, 2);
+            DrawPicture.OverlayBounded(gbl.sky_dax_252, 1, 0, 7, 2);
         }
 
 
@@ -366,7 +366,7 @@ namespace engine
             }
 
             Display.UpdateStart();
-            seg040.DrawOverlay();
+            DrawPicture.DrawOverlay();
         }
 
 

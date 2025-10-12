@@ -1170,7 +1170,7 @@ namespace engine
         {
             gbl.DelayBetweenCharacters = false;
 
-            ovr030.DaxArrayFreeDaxBlocks(gbl.byte_1D556);
+            ovr030.DaxArrayFreeDaxBlocks(gbl.pictureAnimation);
 
             gbl.headX_dax = null;
             gbl.bodyX_dax = null;

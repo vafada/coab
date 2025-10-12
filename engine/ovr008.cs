@@ -232,7 +232,7 @@ namespace engine
 
                     if (gbl.area_ptr.inDungeon != 0)
                     {
-                        ovr030.load_pic_final(ref gbl.byte_1D556, 1, sprite_block_id, "SPRIT");
+                        ovr030.load_pic_final(ref gbl.pictureAnimation, 1, sprite_block_id, "SPRIT");
                         flags[0] = true;
                         gbl.displayPlayerSprite = true;
                     }
@@ -245,7 +245,7 @@ namespace engine
 
                 if (gbl.game_state == GameState.DungeonMap)
                 {
-                    ovr030.Show3DSprite(gbl.byte_1D556, encounter_distance + 1);
+                    ovr030.Show3DSprite(gbl.pictureAnimation, encounter_distance + 1);
                 }
             }
 
@@ -260,10 +260,10 @@ namespace engine
                     gbl.spriteChanged = true;
                     if (gbl.area2_ptr.HeadBlockId == 0xff)
                     {
-                        ovr030.load_pic_final(ref gbl.byte_1D556, 0, pic_block_id, "PIC");
+                        ovr030.load_pic_final(ref gbl.pictureAnimation, 0, pic_block_id, "PIC");
                         flags[1] = true;
 
-                        ovr030.DrawMaybeOverlayed(gbl.byte_1D556.frames[0].picture, true, 3, 3);
+                        ovr030.DrawMaybeOverlayed(gbl.pictureAnimation.frames[0].picture, true, 3, 3);
                     }
                     else
                     {

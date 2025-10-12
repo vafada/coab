@@ -13,7 +13,7 @@ namespace engine
                 Logger.LogAndExit("Start range error in Load24x24Set. {0}", destCellOffset);
             }
 
-            DaxBlock tmp_block = seg040.LoadDax(0, 0, block_id, fileName);
+            DaxBlock tmp_block = DrawPicture.LoadDax(0, 0, block_id, fileName);
 
             int dateLength = cellCount * tmp_block.bpp;
             int destByteOffset = destCellOffset * tmp_block.bpp;
@@ -31,11 +31,11 @@ namespace engine
         {
             if (tileIndex > 0x7f)
             {
-                seg040.OverlayUnbounded(gbl.dword_1C8FC, tileIndex & 0x7F, rowY, colX);
+                DrawPicture.OverlayUnbounded(gbl.dword_1C8FC, tileIndex & 0x7F, rowY, colX);
             }
             else
             {
-                seg040.OverlayUnbounded(gbl.dax24x24Set, tileIndex, rowY, colX);
+                DrawPicture.OverlayUnbounded(gbl.dax24x24Set, tileIndex, rowY, colX);
             }
         }
 
@@ -93,7 +93,7 @@ namespace engine
 
             if (icon != null)
             {
-                seg040.draw_combat_picture(icon, (tileY * 3) + 1, (tileX * 3) + 1, 0);
+                DrawPicture.draw_combat_picture(icon, (tileY * 3) + 1, (tileX * 3) + 1, 0);
             }
         }
     }

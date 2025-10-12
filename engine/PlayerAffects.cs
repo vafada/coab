@@ -634,7 +634,7 @@ namespace engine
                 }
 
                 ovr033.RedrawPlayerBackground(player_index);
-                seg040.DrawOverlay();
+                DrawPicture.DrawOverlay();
 
                 gbl.CombatMap[player_index].size = 0;
 

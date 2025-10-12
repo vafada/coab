@@ -957,8 +957,8 @@ namespace engine
 						(cur.y % 3) == 0)
 					{
 						Display.SaveVidRam();
-						seg040.OverlayBounded(gbl.missile_dax, 5, frame, cur.y, cur.x);
-						seg040.DrawOverlay();
+						DrawPicture.OverlayBounded(gbl.missile_dax, 5, frame, cur.y, cur.x);
+						DrawPicture.DrawOverlay();
 
 						KeyInputQueue.SysDelay(delay);
 
@@ -1098,11 +1098,11 @@ namespace engine
 					cur = (target - gbl.mapToBackGroundTile.mapScreenTopLeft) * 3;
 
 					Display.SaveVidRam();
-					seg040.OverlayBounded(gbl.missile_dax, 5, frame, cur.y, cur.x);
+					DrawPicture.OverlayBounded(gbl.missile_dax, 5, frame, cur.y, cur.x);
 
 					if (delay > 0)
 					{
-						seg040.DrawOverlay();
+						DrawPicture.DrawOverlay();
 
 						KeyInputQueue.SysDelay(delay);
 
@@ -1111,7 +1111,7 @@ namespace engine
 				}
 			} while (var_B3 == false);
 
-			seg040.DrawOverlay();
+			DrawPicture.DrawOverlay();
 		}
 
 
@@ -1149,8 +1149,8 @@ namespace engine
 					{
 						Display.SaveVidRam();
 
-						seg040.OverlayBounded(gbl.missile_dax, 5, frame, pos.y, pos.x);
-						seg040.DrawOverlay();
+						DrawPicture.OverlayBounded(gbl.missile_dax, 5, frame, pos.y, pos.x);
+						DrawPicture.DrawOverlay();
 
 						KeyInputQueue.SysDelay(70);
 
@@ -1158,7 +1158,7 @@ namespace engine
 					}
 				}
 
-				seg040.DrawOverlay();
+				DrawPicture.DrawOverlay();
 
 				if (loops == 0)
 				{
@@ -1413,7 +1413,7 @@ namespace engine
 
 					if (gbl.lastDaxBlockId == 0x50)
 					{
-						ovr030.DrawMaybeOverlayed(gbl.byte_1D556.frames[0].picture, true, 3, 3);
+						ovr030.DrawMaybeOverlayed(gbl.pictureAnimation.frames[0].picture, true, 3, 3);
 					}
 					else
 					{
@@ -1427,7 +1427,7 @@ namespace engine
 
 				case GameState.Camping:
 					FrameRenderer.draw8x8_03();
-					ovr030.load_pic_final(ref gbl.byte_1D556, 0, 0x1d, "PIC");
+					ovr030.load_pic_final(ref gbl.pictureAnimation, 0, 0x1d, "PIC");
 					PartySummary(gbl.SelectedPlayer);
 					display_map_position_time();
 					break;
@@ -1449,7 +1449,7 @@ namespace engine
 
 				case GameState.AfterCombat:
 					FrameRenderer.draw8x8_03();
-					ovr030.load_pic_final(ref gbl.byte_1D556, 0, 1, "PIC");
+					ovr030.load_pic_final(ref gbl.pictureAnimation, 0, 1, "PIC");
 					PartySummary(gbl.SelectedPlayer);
 					break;
 			}

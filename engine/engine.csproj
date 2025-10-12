@@ -230,7 +230,7 @@
     <Compile Include="FrameRenderer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="seg040.cs">
+    <Compile Include="DrawPicture.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TextRenderer.cs">

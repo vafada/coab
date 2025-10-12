@@ -10,7 +10,7 @@ namespace engine
             if (symbolSet >= 0 && symbolSet < 5)
             {
                 string text = "8x8d" + gbl.game_area.ToString();
-                gbl.symbol_8x8_set[symbolSet] = seg040.LoadDax(13, 1, block_id, text);
+                gbl.symbol_8x8_set[symbolSet] = DrawPicture.LoadDax(13, 1, block_id, text);
 
                 if (gbl.symbol_8x8_set[symbolSet] == null)
                 {
@@ -57,7 +57,7 @@ namespace engine
 
                 if (use_overlay)
                 {
-                    seg040.OverlayUnbounded(gbl.symbol_8x8_set[symbol_set], symbol_id, rowY, colX);
+                    DrawPicture.OverlayUnbounded(gbl.symbol_8x8_set[symbol_set], symbol_id, rowY, colX);
                 }
                 else
                 {
@@ -66,7 +66,7 @@ namespace engine
                     int offset = symbol_id * var_6.bpp;
                     System.Array.Copy(var_6.data, offset, gbl.cursor_bkup.data, 0, var_6.bpp);
 
-                    seg040.draw_picture(gbl.cursor_bkup, rowY, colX, 0);
+                    DrawPicture.draw_picture(gbl.cursor_bkup, rowY, colX, 0);
                 }
             }
         }

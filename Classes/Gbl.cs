@@ -366,7 +366,7 @@ namespace Classes
 
         public static SetBlock[] setBlocks = new SetBlock[3];
 
-        public static DaxArray byte_1D556;
+        public static DaxArray pictureAnimation;
         public static string lastDaxFile;
         public static string byte_1D5AB;
         public static byte lastDaxBlockId; // byte_1D5B4

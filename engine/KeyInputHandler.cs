@@ -183,16 +183,16 @@ namespace engine
                 }
 
                 if ((gbl.area_ptr.picture_fade != 0 || useOverlay == true) &&
-                    gbl.byte_1D556.curFrame > 0)
+                    gbl.pictureAnimation.curFrame > 0)
                 {
-                    ovr030.DrawMaybeOverlayed(gbl.byte_1D556.CurrentPicture(), useOverlay, 3, 3);
+                    ovr030.DrawMaybeOverlayed(gbl.pictureAnimation.CurrentPicture(), useOverlay, 3, 3);
 
-                    int delay = gbl.byte_1D556.CurrentDelay() * 100;
+                    int delay = gbl.pictureAnimation.CurrentDelay() * 100;
 
                     if ((DateTime.Now.Subtract(timeStart).TotalMilliseconds) >= delay ||
                         gbl.area_ptr.picture_fade != 0)
                     {
-                        gbl.byte_1D556.NextFrame();
+                        gbl.pictureAnimation.NextFrame();
 
                         timeStart = DateTime.Now;
                     }

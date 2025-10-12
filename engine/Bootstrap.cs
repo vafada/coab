@@ -238,7 +238,7 @@ namespace engine
             gbl.headX_dax = null;
             gbl.bodyX_dax = null;
 
-            gbl.byte_1D556 = new DaxArray();
+            gbl.pictureAnimation = new DaxArray();
 
             gbl.bigpic_dax = null;
             gbl.items_pointer = new System.Collections.Generic.List<Item>();
@@ -318,9 +318,9 @@ namespace engine
 
             ovr034.chead_cbody_comspr_icon(0x19, 0x19, "COMSPR");
 
-            gbl.sky_dax_250 = seg040.LoadDax(13, 1, 250, "SKY");
-            gbl.sky_dax_251 = seg040.LoadDax(13, 1, 251, "SKY");
-            gbl.sky_dax_252 = seg040.LoadDax(13, 1, 252, "SKY");
+            gbl.sky_dax_250 = DrawPicture.LoadDax(13, 1, 250, "SKY");
+            gbl.sky_dax_251 = DrawPicture.LoadDax(13, 1, 251, "SKY");
+            gbl.sky_dax_252 = DrawPicture.LoadDax(13, 1, 252, "SKY");
 
             gbl.ItemDataTable = new ItemDataTable("ITEMS");
 

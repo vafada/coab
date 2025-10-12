@@ -43,15 +43,15 @@ namespace engine
 
         internal static void Color_0_8_inverse()
         {
-            seg040.SetPaletteColor(8, 0);
-            seg040.SetPaletteColor(0, 8);
+            DrawPicture.SetPaletteColor(8, 0);
+            DrawPicture.SetPaletteColor(0, 8);
         }
 
 
         internal static void Color_0_8_normal()
         {
-            seg040.SetPaletteColor(0, 0);
-            seg040.SetPaletteColor(8, 8);
+            DrawPicture.SetPaletteColor(0, 0);
+            DrawPicture.SetPaletteColor(8, 8);
         }
 
 
@@ -369,7 +369,7 @@ namespace engine
             }
 
             sub_7416E(newPos);
-            seg040.DrawOverlay();
+            DrawPicture.DrawOverlay();
         }
 
 
@@ -401,7 +401,7 @@ namespace engine
             {
                 var pos = gbl.CombatMap[player_index].screenPos;
                 ovr034.draw_combat_icon(player.icon_id, iconState, direction, pos.y, pos.x);
-                seg040.DrawOverlay();
+                DrawPicture.DrawOverlay();
             }
         }
 
@@ -567,11 +567,11 @@ namespace engine
                             {
                                 DaxBlock tmp = ((var_3 & 1) == 0) ? attackIcon : normalIcon;
 
-                                seg040.OverlayBounded(tmp, 5, 0, (pos.y) * 3, (pos.x) * 3);
+                                DrawPicture.OverlayBounded(tmp, 5, 0, (pos.y) * 3, (pos.x) * 3);
                             }
                         }
 
-                        seg040.DrawOverlay();
+                        DrawPicture.DrawOverlay();
                         KeyInputQueue.SysDelay(10);
                     }
 

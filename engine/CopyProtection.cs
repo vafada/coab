@@ -38,7 +38,7 @@ namespace engine
                 ovr034.DrawIsoTile(var_6, 3, 0x11);
                 ovr034.DrawIsoTile(var_7 + 0x1a, 7, 0x11);
 
-                seg040.DrawOverlay();
+                DrawPicture.DrawOverlay();
                 int code_path = StringRandomIOUtils.Random(3);
 
                 switch (code_path)
