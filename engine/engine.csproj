@@ -125,13 +125,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="VmOpp.cs" />
-    <Compile Include="ovr002.cs">
+    <Compile Include="SplashScreens.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DungeonGameLoop.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr004.cs">
+    <Compile Include="CopyProtection.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr005.cs">
@@ -185,7 +185,7 @@
     <Compile Include="ovr022.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr023.cs">
+    <Compile Include="Spells.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlayerAffects.cs">
@@ -224,7 +224,7 @@
     <Compile Include="Render8By8Symbol.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="seg001.cs">
+    <Compile Include="Bootstrap.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FrameRenderer.cs">

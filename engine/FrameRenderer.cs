@@ -1,4 +1,5 @@
 using Classes;
+using System;
 
 namespace engine
 {
@@ -62,7 +63,7 @@ namespace engine
 
             DrawFrame_Outer();
 
-            for (int col_x = 0; col_x <= 0x27; col_x++)
+            for (int col_x = 0; col_x <= 39; col_x++)
             {
                 Render8By8Symbol.Put8x8Symbol(false, x8x8_07[col_x] + 0x11E, 3, col_x);
                 Render8By8Symbol.Put8x8Symbol(false, x8x8_07[col_x] + 0x11E, 8, col_x);

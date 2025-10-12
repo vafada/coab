@@ -15,7 +15,7 @@ namespace engine
 
             gbl.missile_dax = null;
             ovr033.Color_0_8_normal();
-            gbl.SpellCastFunction = ovr023.NonCombatSpellCast;
+            gbl.SpellCastFunction = Spells.NonCombatSpellCast;
         }
 
 
@@ -159,7 +159,7 @@ namespace engine
                     spell_id = player.actions.spell_id;
                     player.actions.spell_id = 0;
 
-                    ovr023.sub_5D2E1(true, QuickFight.False, spell_id);
+                    Spells.sub_5D2E1(true, QuickFight.False, spell_id);
                     ovr025.clear_actions(player);
                 }
                 else

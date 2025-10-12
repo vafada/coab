@@ -780,7 +780,7 @@ namespace engine
                         {
                             ovr026.calc_cleric_spells(false, player);
 
-                            foreach (Spells spell in System.Enum.GetValues(typeof(Spells)))
+                            foreach (Classes.Spells spell in System.Enum.GetValues(typeof(Classes.Spells)))
                             {
                                 SpellEntry stru = gbl.spellCastingTable[(int)spell];
 
@@ -792,10 +792,10 @@ namespace engine
                         }
                         else if (class_idx == 5)
                         {
-                            player.LearnSpell(Spells.detect_magic_MU);
-                            player.LearnSpell(Spells.read_magic);
-                            player.LearnSpell(Spells.enlarge);
-                            player.LearnSpell(Spells.sleep);
+                            player.LearnSpell(Classes.Spells.detect_magic_MU);
+                            player.LearnSpell(Classes.Spells.read_magic);
+                            player.LearnSpell(Classes.Spells.enlarge);
+                            player.LearnSpell(Classes.Spells.sleep);
                         }
 
                         var_20++;
@@ -2415,7 +2415,7 @@ namespace engine
 
                         if (newSpellId > 0)
                         {
-                            player.LearnSpell((Spells)newSpellId);
+                            player.LearnSpell((Classes.Spells)newSpellId);
                         }
                     }
                 }
@@ -2425,20 +2425,20 @@ namespace engine
                     switch (player.magic_user_lvl)
                     {
                         case 2:
-                            player.LearnSpell(Spells.magic_missile);
+                            player.LearnSpell(Classes.Spells.magic_missile);
                             break;
 
                         case 3:
-                            player.LearnSpell(Spells.stinking_cloud);
-                            player.LearnSpell(Spells.protect_from_evil_MU);
+                            player.LearnSpell(Classes.Spells.stinking_cloud);
+                            player.LearnSpell(Classes.Spells.protect_from_evil_MU);
                             break;
 
                         case 4:
-                            player.LearnSpell(Spells.knock);
+                            player.LearnSpell(Classes.Spells.knock);
                             break;
 
                         case 5:
-                            player.LearnSpell(Spells.fireball);
+                            player.LearnSpell(Classes.Spells.fireball);
                             break;
                     }
                 }

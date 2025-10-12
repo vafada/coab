@@ -1034,12 +1034,12 @@ namespace engine
                     if (gbl.SelectedPlayer.SkillLevel(SkillType.MagicUser) > 0 ||
                         gbl.SelectedPlayer.SkillLevel(SkillType.Cleric) > 0)
                     {
-                        ovr023.sub_5D2E1(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
+                        Spells.sub_5D2E1(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
                     }
                     else if (gbl.SelectedPlayer.thief_lvl > 9 &&
                             PlayerAffects.roll_dice(100, 1) <= 75)
                     {
-                        ovr023.sub_5D2E1(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
+                        Spells.sub_5D2E1(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
                     }
                     else
                     {
@@ -1048,7 +1048,7 @@ namespace engine
                 }
                 else
                 {
-                    ovr023.sub_5D2E1(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
+                    Spells.sub_5D2E1(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
                 }
 
                 gbl.spell_from_item = false;
@@ -1065,7 +1065,7 @@ namespace engine
             {
                 if (item.IsScroll() == true)
                 {
-                    ovr023.remove_spell_from_scroll(spellId, item, gbl.SelectedPlayer);
+                    Spells.remove_spell_from_scroll(spellId, item, gbl.SelectedPlayer);
                 }
                 else if (item.affect_1 > 0)
                 {
@@ -1409,7 +1409,7 @@ namespace engine
                     break;
             }
 
-            arg_0 = ovr023.BuildSpellList(spl_location);
+            arg_0 = Spells.BuildSpellList(spl_location);
 
             if (arg_0 == true)
             {
@@ -1437,7 +1437,7 @@ namespace engine
 
                 TextRenderer.displayString("Spells " + text, 0, 10, 1, gbl.SelectedPlayer.name.Length + 4);
 
-                result = ovr023.spell_menu(ref index, arg_8);
+                result = Spells.spell_menu(ref index, arg_8);
             }
             else
             {

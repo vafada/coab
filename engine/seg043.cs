@@ -18,7 +18,7 @@ namespace engine
 
                 ItemLibrary.Write();
 
-                seg001.EngineStop();
+                Bootstrap.EngineStop();
             }
         }
 
@@ -143,7 +143,7 @@ namespace engine
 
             foreach (int sp in p.spellList.IdList())
             {
-                Logger.Debug("   Spell: {0}", ovr023.SpellNames[sp]);
+                Logger.Debug("   Spell: {0}", Spells.SpellNames[sp]);
             }
 
             foreach (var af in p.affects)
@@ -194,7 +194,7 @@ namespace engine
                 {
                     if (last != 0)
                     {
-                        sb.Append(ovr023.SpellNames[last]);
+                        sb.Append(Spells.SpellNames[last]);
                         if (count > 1)
                         {
                             sb.Append(string.Format(" ({0})", count));
@@ -212,7 +212,7 @@ namespace engine
 
             if (last != 0)
             {
-                sb.Append(ovr023.SpellNames[last]);
+                sb.Append(Spells.SpellNames[last]);
                 if (count > 1)
                 {
                     sb.Append(string.Format(" ({0})", count));

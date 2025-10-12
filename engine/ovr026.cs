@@ -82,7 +82,7 @@ namespace engine
 
                             calc_cleric_spells(false, player);
 
-                            foreach (Spells spell in System.Enum.GetValues(typeof(Spells)))
+                            foreach (Classes.Spells spell in System.Enum.GetValues(typeof(Classes.Spells)))
                             {
                                 SpellEntry se = gbl.spellCastingTable[(int)spell];
 
@@ -91,7 +91,7 @@ namespace engine
 
                                 if (se.spellClass == 0 &&
                                     player.spellCastCount[sp_class, sp_lvl] > 0 &&
-                                    spell != Spells.animate_dead)
+                                    spell != Classes.Spells.animate_dead)
                                 {
                                     player.LearnSpell(spell);
                                 }
@@ -109,7 +109,7 @@ namespace engine
                                     }
                                 }
 
-                                foreach (Spells spell in System.Enum.GetValues(typeof(Spells)))
+                                foreach (Classes.Spells spell in System.Enum.GetValues(typeof(Classes.Spells)))
                                 {
                                     SpellEntry se = gbl.spellCastingTable[(int)spell];
                                     int sp_class = (se.spellLevel - 1) / 5;
@@ -140,7 +140,7 @@ namespace engine
                                     }
                                 }
 
-                                foreach (Spells spell in System.Enum.GetValues(typeof(Spells)))
+                                foreach (Classes.Spells spell in System.Enum.GetValues(typeof(Classes.Spells)))
                                 {
                                     if (gbl.spellCastingTable[(int)spell].spellClass == SpellClass.Druid)
                                     {
@@ -672,9 +672,9 @@ namespace engine
             else if (newClass == 5)
             {
                 player.spellCastCount[2, 0] = 1;
-                player.LearnSpell(Spells.detect_magic_MU);
-                player.LearnSpell(Spells.read_magic);
-                player.LearnSpell(Spells.sleep);
+                player.LearnSpell(Classes.Spells.detect_magic_MU);
+                player.LearnSpell(Classes.Spells.read_magic);
+                player.LearnSpell(Classes.Spells.sleep);
             }
 
             player._class = (ClassId)newClass;

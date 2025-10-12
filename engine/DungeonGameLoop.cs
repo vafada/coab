@@ -1999,7 +1999,7 @@ namespace engine
 
             if (Cheats.skip_copy_protection == false)
             {
-                ovr004.copy_protection();
+                CopyProtection.copy_protection();
             }
             ovr025.LoadPic();
         }

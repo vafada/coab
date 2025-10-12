@@ -73,8 +73,8 @@ namespace Main
         {
             try
             {
-                engine.seg001.__SystemInit(EngineStopped);
-                engine.seg001.PROGRAM();
+                engine.Bootstrap.__SystemInit(EngineStopped);
+                engine.Bootstrap.PROGRAM();
 
                 EngineStopped();
             }

@@ -180,7 +180,7 @@ namespace engine
                         redraw = true;
                         FrameRenderer.draw8x8_clear_area(TextRegion.NormalBottom);
 
-                        ovr023.sub_5D2E1(true, QuickFight.False, spell_id);
+                        Spells.sub_5D2E1(true, QuickFight.False, spell_id);
                     }
                     else if (var_3 == true)
                     {
@@ -426,7 +426,7 @@ namespace engine
                     else
                     {
                         redraw = true;
-                        if (gbl.SelectedPlayer.KnowsSpell((Spells)var_4))
+                        if (gbl.SelectedPlayer.KnowsSpell((Classes.Spells)var_4))
                         {
                             ovr025.string_print01("You already know that spell");
                         }
@@ -519,7 +519,7 @@ namespace engine
                 {
                     if (gbl.spellCastingTable[spId].affect_id == aff)
                     {
-                        EffectNameMap.Add(aff, ovr023.SpellNames[spId]);
+                        EffectNameMap.Add(aff, Spells.SpellNames[spId]);
                         found = true;
                     }
                 }

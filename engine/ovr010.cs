@@ -59,7 +59,7 @@ namespace engine
 
             if (player.actions.spell_id > 0)
             {
-                ovr023.sub_5D2E1(true, QuickFight.True, player.actions.spell_id);
+                Spells.sub_5D2E1(true, QuickFight.True, player.actions.spell_id);
 
                 ovr025.clear_actions(player);
                 return;
@@ -153,7 +153,7 @@ namespace engine
                 }
                 else
                 {
-                    var nearTargets = ovr025.BuildNearTargets(ovr023.SpellRange(spellId), attacker);
+                    var nearTargets = ovr025.BuildNearTargets(Spells.SpellRange(spellId), attacker);
 
                     if (nearTargets.Count > 0)
                     {

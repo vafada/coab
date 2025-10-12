@@ -1099,7 +1099,7 @@ namespace engine
             {
                 bool allowTarget = spellId != 0x53;
 
-                var_2 = aim_menu(arg_0, allowTarget, canTargetEmptyGround, false, ovr023.SpellRange(spellId), gbl.SelectedPlayer);
+                var_2 = aim_menu(arg_0, allowTarget, canTargetEmptyGround, false, Spells.SpellRange(spellId), gbl.SelectedPlayer);
                 gbl.SelectedPlayer.actions.target = arg_0.target;
             }
             else if (gbl.spellCastingTable[spellId].field_E == 0)
@@ -1121,7 +1121,7 @@ namespace engine
                 {
                     bool var_3 = true;
 
-                    if (find_target(true, 0, ovr023.SpellRange(spellId), gbl.SelectedPlayer) == true)
+                    if (find_target(true, 0, Spells.SpellRange(spellId), gbl.SelectedPlayer) == true)
                     {
                         Player target = gbl.SelectedPlayer.actions.target;
 
@@ -1405,7 +1405,7 @@ namespace engine
 
                 if (delay == 0)
                 {
-                    ovr023.sub_5D2E1(true, quick_fight, spell_id);
+                    Spells.sub_5D2E1(true, quick_fight, spell_id);
 
                     casting_spell = true;
                     ovr025.clear_actions(player);
@@ -2420,17 +2420,17 @@ namespace engine
                     }
                     else if ((attacksTired & 0x10) == 0)
                     {
-                        ovr023.sub_5D2E1(true, QuickFight.True, 0x54);
+                        Spells.sub_5D2E1(true, QuickFight.True, 0x54);
                         attacksTired |= 0x10;
                     }
                     else if ((attacksTired & 0x20) == 0)
                     {
-                        ovr023.sub_5D2E1(true, QuickFight.True, 0x37);
+                        Spells.sub_5D2E1(true, QuickFight.True, 0x37);
                         attacksTired |= 0x20;
                     }
                     else if ((attacksTired & 0x40) == 0)
                     {
-                        ovr023.sub_5D2E1(true, QuickFight.True, 0x15);
+                        Spells.sub_5D2E1(true, QuickFight.True, 0x15);
                         attacksTired |= 0x40;
                     }
                 }

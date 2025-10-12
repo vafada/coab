@@ -277,7 +277,7 @@ namespace engine
             {
                 gbl.spellTargets.Clear();
                 gbl.spellTargets.Add(gbl.SelectedPlayer);
-                ovr023.SpellRemoveCurse();
+                Spells.SpellRemoveCurse();
             }
         }
 
