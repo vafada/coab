@@ -245,7 +245,7 @@ namespace engine
             {
                 int mod_id = ovr008.vm_GetCmdValue(1) & 0xFF;
 
-                Player mobMasterCopy = ovr017.load_mob(mod_id);
+                Player mobMasterCopy = ovr017.load_mob(mod_id, true);
 
                 Player newMob = mobMasterCopy.ShallowClone();
 
@@ -1084,7 +1084,7 @@ namespace engine
             if (block_id < 0x80)
             {
                 string filename = string.Format("ITEM{0}.dax", gbl.game_area);
-                seg042.load_decode_dax(out data, out dataSize, block_id, filename);
+                FileUtils.load_decode_dax(out data, out dataSize, block_id, filename);
 
                 if (dataSize == 0)
                 {

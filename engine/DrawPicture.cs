@@ -8,7 +8,7 @@ namespace engine
         {
             short pic_size;
             byte[] pic_data;
-            seg042.load_decode_dax(out pic_data, out pic_size, block_id, fileName + ".dax");
+            FileUtils.load_decode_dax(out pic_data, out pic_size, block_id, fileName + ".dax");
 
             if (pic_size != 0)
             {

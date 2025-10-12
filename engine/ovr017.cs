@@ -80,12 +80,10 @@ namespace engine
             }
         }
 
-        static Set unk_47635 = new Set(0, 5);
-
-
         internal static void LoadPlayerCombatIcon(bool recolour) /* sub_47A90 */
         {
-            seg042.set_game_area(1);
+            gbl.game_area_backup = gbl.game_area;
+            gbl.game_area = 1;
 
             Player player = gbl.SelectedPlayer;
 
@@ -117,18 +115,18 @@ namespace engine
             }
 
             ovr034.ReleaseCombatIcon(11);
-            seg042.restore_game_area();
+            gbl.game_area = gbl.game_area_backup;
             seg043.clear_keyboard();
         }
 
 
         internal static void remove_player_file(Player player)
         {
-            string full_path = Path.Combine(Config.GetSavePath(), seg042.clean_string(player.name));
+            string full_path = Path.Combine(Config.GetSavePath(), FileUtils.clean_string(player.name));
 
-            seg042.delete_file(full_path + ".guy");
-            seg042.delete_file(full_path + ".swg");
-            seg042.delete_file(full_path + ".fx");
+            FileUtils.delete_file(full_path + ".guy");
+            FileUtils.delete_file(full_path + ".swg");
+            FileUtils.delete_file(full_path + ".fx");
         }
 
         internal static void SavePlayer(string arg_0, Player player) // sub_47DFC
@@ -144,7 +142,7 @@ namespace engine
             if (arg_0 == "")
             {
                 ext_text = ".guy";
-                file_text = seg042.clean_string(player.name);
+                file_text = FileUtils.clean_string(player.name);
             }
             else
             {
@@ -156,7 +154,7 @@ namespace engine
 
             while (input_key == 'N' &&
                 arg_0.Length == 0 &&
-                seg042.file_find(Path.Combine(Config.GetSavePath(), file_text) + ext_text) == true)
+                FileUtils.file_find(Path.Combine(Config.GetSavePath(), file_text) + ext_text) == true)
             {
                 input_key = KeyInputHandler.yes_no(gbl.alertMenuColors, "Overwrite " + file_text + "? ");
 
@@ -180,7 +178,7 @@ namespace engine
             StringRandomIOUtils.BlockWrite(Player.StructSize, player.ToByteArray(), file);
             StringRandomIOUtils.Close(file);
 
-            seg042.delete_file(filePath + ".swg");
+            FileUtils.delete_file(filePath + ".swg");
 
             if (player.items.Count > 0)
             {
@@ -192,7 +190,7 @@ namespace engine
                 StringRandomIOUtils.Close(file);
             }
 
-            seg042.delete_file(filePath + ".fx");
+            FileUtils.delete_file(filePath + ".fx");
 
             if (player.affects.Count > 0)
             {
@@ -487,7 +485,7 @@ namespace engine
         {
             Classes.File file;
 
-            seg042.find_and_open_file(out file, false, Path.Combine(Config.GetSavePath(), arg_8));
+            FileUtils.find_and_open_file(out file, false, Path.Combine(Config.GetSavePath(), arg_8));
 
             TextRenderer.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
 
@@ -530,15 +528,15 @@ namespace engine
             }
             else
             {
-                arg_8 = seg042.clean_string(player.name);
+                arg_8 = FileUtils.clean_string(player.name);
             }
 
             string filename = Path.Combine(Config.GetSavePath(), arg_8 + ".swg");
-            if (seg042.file_find(filename) == true)
+            if (FileUtils.file_find(filename) == true)
             {
                 byte[] data = new byte[Item.StructSize];
 
-                seg042.find_and_open_file(out file, false, filename);
+                FileUtils.find_and_open_file(out file, false, filename);
 
                 while (true)
                 {
@@ -556,10 +554,10 @@ namespace engine
             }
 
             filename = Path.Combine(Config.GetSavePath(), arg_8 + ".fx");
-            if (seg042.file_find(filename) == true)
+            if (FileUtils.file_find(filename) == true)
             {
                 byte[] data = new byte[Affect.StructSize];
-                seg042.find_and_open_file(out file, false, filename);
+                FileUtils.find_and_open_file(out file, false, filename);
 
                 while (true)
                 {
@@ -581,10 +579,10 @@ namespace engine
             filename = Path.Combine(Config.GetSavePath(), arg_8 + ".spc");
             if (gbl.import_from == ImportSource.Pool)
             {
-                if (seg042.file_find(filename) == true)
+                if (FileUtils.file_find(filename) == true)
                 {
                     byte[] data = new byte[Affect.StructSize];
-                    seg042.find_and_open_file(out file, false, filename);
+                    FileUtils.find_and_open_file(out file, false, filename);
 
                     while (true)
                     {
@@ -628,7 +626,7 @@ namespace engine
             {
                 string savename = Path.Combine(Config.GetSavePath(), Path.ChangeExtension(arg_8, fileExt));
 
-                seg042.find_and_open_file(out file, false, savename);
+                FileUtils.find_and_open_file(out file, false, savename);
 
                 byte[] data = new byte[Player.StructSize];
 
@@ -688,7 +686,7 @@ namespace engine
 
                     string savename = System.IO.Path.Combine(Config.GetSavePath(), Path.ChangeExtension(arg_8, fileExt));
 
-                    seg042.find_and_open_file(out file, false, savename);
+                    FileUtils.find_and_open_file(out file, false, savename);
 
                     StringRandomIOUtils.BlockRead(PoolRadPlayer.StructSize, data, file);
                     StringRandomIOUtils.Close(file);
@@ -815,19 +813,13 @@ namespace engine
             return player;
         }
 
-
-        internal static Player load_mob(int monster_id)
-        {
-            return load_mob(monster_id, true);
-        }
-
         internal static Player load_mob(int monster_id, bool exit)
         {
             string area_text = gbl.game_area.ToString();
 
             byte[] data;
             short decode_size;
-            seg042.load_decode_dax(out data, out decode_size, monster_id, "MON" + area_text + "CHA.dax");
+            FileUtils.load_decode_dax(out data, out decode_size, monster_id, "MON" + area_text + "CHA.dax");
 
             if (decode_size == 0)
             {
@@ -844,7 +836,7 @@ namespace engine
 
             Player player = new Player(data, 0);
 
-            seg042.load_decode_dax(out data, out decode_size, monster_id, "MON" + area_text + "SPC.dax");
+            FileUtils.load_decode_dax(out data, out decode_size, monster_id, "MON" + area_text + "SPC.dax");
 
             if (decode_size != 0)
             {
@@ -859,7 +851,7 @@ namespace engine
                 } while (offset < decode_size);
             }
 
-            seg042.load_decode_dax(out data, out decode_size, monster_id, "MON" + area_text + "ITM.dax");
+            FileUtils.load_decode_dax(out data, out decode_size, monster_id, "MON" + area_text + "ITM.dax");
 
             if (decode_size != 0)
             {
@@ -879,7 +871,7 @@ namespace engine
         {
             if (gbl.area2_ptr.party_size <= 7)
             {
-                Player player = load_mob(monster_id);
+                Player player = load_mob(monster_id, true);
 
                 player.mod_id = (byte)monster_id;
 
@@ -936,7 +928,7 @@ namespace engine
             {
                 string file_name = Path.Combine(Config.GetSavePath(), "savgam" + save_letter.ToString() + ".dat");
 
-                if (seg042.file_find(file_name) == true)
+                if (FileUtils.file_find(file_name) == true)
                 {
                     games_list += save_letter.ToString() + " ";
                 }
@@ -961,7 +953,7 @@ namespace engine
                         save_letter = input_key;
                         string file_name = Path.Combine(Config.GetSavePath(), "savgam" + save_letter.ToString() + ".dat");
                         Console.WriteLine("Loading file = " + file_name);
-                        stop_loop = seg042.file_find(file_name);
+                        stop_loop = FileUtils.file_find(file_name);
                     }
                 } while (stop_loop == false);
 
@@ -977,7 +969,7 @@ namespace engine
         internal static void loadSaveGame(string file_name)
         {
             Classes.File file;
-            seg042.find_and_open_file(out file, true, file_name);
+            FileUtils.find_and_open_file(out file, true, file_name);
 
             KeyInputHandler.ClearPromptArea();
             TextRenderer.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
@@ -1037,9 +1029,9 @@ namespace engine
 
             for (int index = 0; index < number_of_players; index++)
             {
-                string var_1F6 = seg042.clean_string(var_148[index]);
+                string var_1F6 = FileUtils.clean_string(var_148[index]);
 
-                if (seg042.file_find(Path.Combine(Config.GetSavePath(), var_1F6 + ".sav")) == true)
+                if (FileUtils.file_find(Path.Combine(Config.GetSavePath(), var_1F6 + ".sav")) == true)
                 {
                     Player player = new Player();
 

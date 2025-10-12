@@ -645,7 +645,7 @@ namespace engine
                 byte[] data;
 
                 short decode_size;
-                seg042.load_decode_dax(out data, out decode_size, block_id, "WALLDEF" + area_text + ".dax");
+                FileUtils.load_decode_dax(out data, out decode_size, block_id, "WALLDEF" + area_text + ".dax");
 
                 if (decode_size == 0 ||
                     ((decode_size / 0x30C) + symbolSet) > 4)
@@ -690,7 +690,7 @@ namespace engine
             byte[] data;
             short bytesRead;
 
-            seg042.load_decode_dax(out data, out bytesRead, blockId, "GEO" + gbl.game_area.ToString() + ".dax");
+            FileUtils.load_decode_dax(out data, out bytesRead, blockId, "GEO" + gbl.game_area.ToString() + ".dax");
 
             if (bytesRead == 0 || bytesRead != 0x402)
             {

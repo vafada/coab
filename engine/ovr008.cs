@@ -145,7 +145,7 @@ namespace engine
                 KeyInputHandler.ClearPromptArea();
                 TextRenderer.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
 
-                seg042.load_decode_dax(out block_mem, out block_size, block_id, string.Format("ECL{0}.dax", gbl.game_area));
+                FileUtils.load_decode_dax(out block_mem, out block_size, block_id, string.Format("ECL{0}.dax", gbl.game_area));
             } while (block_size < 2);
 
             gbl.ecl_ptr.SetData(block_mem, 2, block_size - 2);
@@ -653,7 +653,8 @@ namespace engine
             }
             else if (switch_var == 0x312)
             {
-                seg042.set_game_area((byte)(set_value));
+                gbl.game_area_backup = gbl.game_area;
+                gbl.game_area = (byte)(set_value);
             }
             else if (switch_var == 0x322)
             {

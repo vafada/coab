@@ -26,7 +26,7 @@ namespace engine
             byte[] block_ptr;
             short block_size;
 
-            seg042.load_decode_dax(out block_ptr, out block_size, 201, "8X8d1.dax");
+            FileUtils.load_decode_dax(out block_ptr, out block_size, 201, "8X8d1.dax");
 
             if (block_size != 0)
             {

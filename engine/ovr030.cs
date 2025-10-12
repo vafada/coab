@@ -54,7 +54,7 @@ namespace engine
                     short uncompressed_size;
                     byte[] uncompressed_data;
 
-                    seg042.load_decode_dax(out uncompressed_data, out uncompressed_size, block_id, file_name + gbl.game_area.ToString() + ".dax");
+                    FileUtils.load_decode_dax(out uncompressed_data, out uncompressed_size, block_id, file_name + gbl.game_area.ToString() + ".dax");
 
                     if (uncompressed_size == 0)
                     {
