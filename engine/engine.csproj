@@ -134,7 +134,7 @@
     <Compile Include="CopyProtection.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr005.cs">
+    <Compile Include="Temple.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PostCombat.cs">
@@ -191,7 +191,7 @@
     <Compile Include="PlayerAffects.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr025.cs">
+    <Compile Include="PartyPlayerFunctions.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr026.cs">

@@ -9,12 +9,12 @@ namespace engine
         {
             bool var_2 = process_input_in_monsters_turn(player);
             KeyInputHandler.ClearPromptArea();
-            ovr025.ClearPlayerTextArea();
+            PartyPlayerFunctions.ClearPlayerTextArea();
 
             if (player.in_combat == false)
             {
                 var_2 = true;
-                ovr025.clear_actions(player);
+                PartyPlayerFunctions.clear_actions(player);
             }
 
             int var_1 = player.actions.field_15;
@@ -43,7 +43,7 @@ namespace engine
             if (player.actions.moral_failure == true &&
                 player.actions.fleeing == false)
             {
-                ovr025.DisplayPlayerStatusString(true, 10, "flees in panic", player);
+                PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "flees in panic", player);
             }
 
             if (var_2 == true)
@@ -53,7 +53,7 @@ namespace engine
 
             if (sub_354AA(player))
             {
-                ovr025.clear_actions(player);
+                PartyPlayerFunctions.clear_actions(player);
                 return;
             }
 
@@ -61,13 +61,13 @@ namespace engine
             {
                 Spells.sub_5D2E1(true, QuickFight.True, player.actions.spell_id);
 
-                ovr025.clear_actions(player);
+                PartyPlayerFunctions.clear_actions(player);
                 return;
             }
 
             if (turn_undead(player))
             {
-                ovr025.clear_actions(player);
+                PartyPlayerFunctions.clear_actions(player);
                 return;
             }
 
@@ -153,7 +153,7 @@ namespace engine
                 }
                 else
                 {
-                    var nearTargets = ovr025.BuildNearTargets(Spells.SpellRange(spellId), attacker);
+                    var nearTargets = PartyPlayerFunctions.BuildNearTargets(Spells.SpellRange(spellId), attacker);
 
                     if (nearTargets.Count > 0)
                     {
@@ -431,7 +431,7 @@ namespace engine
                         {
                             player.actions.move = 0;
                             player.actions.moral_failure = false;
-                            ovr025.clear_actions(player);
+                            PartyPlayerFunctions.clear_actions(player);
                         }
                         else
                         {
@@ -479,7 +479,7 @@ namespace engine
                             if (player.in_combat == false)
                             {
                                 var_5 = true;
-                                ovr025.clear_actions(player);
+                                PartyPlayerFunctions.clear_actions(player);
                             }
                             else
                             {
@@ -491,7 +491,7 @@ namespace engine
                                 if (player.in_combat == false)
                                 {
                                     var_5 = true;
-                                    ovr025.clear_actions(player);
+                                    PartyPlayerFunctions.clear_actions(player);
                                 }
 
                                 PlayerAffects.in_poison_cloud(1, player);
@@ -516,7 +516,7 @@ namespace engine
             PlayerAffects.CheckAffectsEffect(player, CheckType.Type_14);
 
             if (player.combat_team == CombatTeam.Ours &&
-                ovr025.bandage(true) == true)
+                PartyPlayerFunctions.bandage(true) == true)
             {
                 player.actions.delay = 0;
             }
@@ -599,7 +599,7 @@ namespace engine
 
                     if (gbl.byte_1D90E == false)
                     {
-                        var nearTargets = ovr025.BuildNearTargets(range, player);
+                        var nearTargets = PartyPlayerFunctions.BuildNearTargets(range, player);
 
                         if (nearTargets.Count == 0)
                         {
@@ -619,14 +619,14 @@ namespace engine
 
                             target = nearTargets[roll - 1].player;
 
-                            if (ovr025.is_weapon_ranged(player) == true &&
-                                ovr025.is_weapon_ranged_melee(player) == false &&
-                                ovr025.BuildNearTargets(1, player).Count > 0)
+                            if (PartyPlayerFunctions.is_weapon_ranged(player) == true &&
+                                PartyPlayerFunctions.is_weapon_ranged_melee(player) == false &&
+                                PartyPlayerFunctions.BuildNearTargets(1, player).Count > 0)
                             {
                                 AI_items_selection(player);
                                 stop = true;
                             }
-                            else if (ovr025.getTargetRange(target, player) == 1 ||
+                            else if (PartyPlayerFunctions.getTargetRange(target, player) == 1 ||
                                 ovr014.CanSeeTargetA(target, player) == true)
                             {
                                 gbl.byte_1D90E = true;
@@ -644,7 +644,7 @@ namespace engine
                         if (ovr014.TrySweepAttack(target, player) == true)
                         {
                             stop = true;
-                            ovr025.clear_actions(player);
+                            PartyPlayerFunctions.clear_actions(player);
                         }
                         else
                         {
@@ -652,12 +652,12 @@ namespace engine
 
                             Item item = null;
 
-                            if (ovr025.is_weapon_ranged(player) == true)
+                            if (PartyPlayerFunctions.is_weapon_ranged(player) == true)
                             {
-                                gbl.byte_1D90E = ovr025.GetCurrentAttackItem(out item, player);
+                                gbl.byte_1D90E = PartyPlayerFunctions.GetCurrentAttackItem(out item, player);
 
-                                if (ovr025.is_weapon_ranged_melee(player) == true &&
-                                    ovr025.getTargetRange(target, player) == 1)
+                                if (PartyPlayerFunctions.is_weapon_ranged_melee(player) == true &&
+                                    PartyPlayerFunctions.getTargetRange(target, player) == 1)
                                 {
                                     item = null;
                                 }
@@ -684,17 +684,17 @@ namespace engine
 
         static void TryGuarding(Player player) // sub_361F7
         {
-            ovr025.ClearPlayerTextArea();
+            PartyPlayerFunctions.ClearPlayerTextArea();
 
             if (player.IsHeld() == true ||
-                ovr025.is_weapon_ranged(player) == true ||
+                PartyPlayerFunctions.is_weapon_ranged(player) == true ||
                 player.actions.delay == 0)
             {
                 player.actions.Clear();
             }
             else
             {
-                ovr025.guarding(player);
+                PartyPlayerFunctions.guarding(player);
             }
         }
 
@@ -721,11 +721,11 @@ namespace engine
 
                     if (gbl.AutoPCsCastMagic == true)
                     {
-                        ovr025.string_print01("Magic On");
+                        PartyPlayerFunctions.string_print01("Magic On");
                     }
                     else
                     {
-                        ovr025.string_print01("Magic Off");
+                        PartyPlayerFunctions.string_print01("Magic Off");
                     }
                 }
                 else if (var_6 == 0x20)
@@ -767,7 +767,7 @@ namespace engine
             if (player.actions.fleeing == true)
             {
                 player.actions.moral_failure = true;
-                ovr025.DisplayPlayerStatusString(true, 10, "is forced to flee", player);
+                PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is forced to flee", player);
             }
             else if (player.control_morale >= Control.NPC_Base)
             {
@@ -804,7 +804,7 @@ namespace engine
                             PlayerAffects.RemoveFromCombat("Surrenders", Status.unconscious, player);
 
                             var_1 = true;
-                            ovr025.clear_actions(player);
+                            PartyPlayerFunctions.clear_actions(player);
                         }
                     }
                 }
@@ -935,7 +935,7 @@ namespace engine
                 }
             }
 
-            bool ranged_melee = ovr025.item_is_ranged_melee(var_4);
+            bool ranged_melee = PartyPlayerFunctions.item_is_ranged_melee(var_4);
             bool var_1F = false;
             Item tmpItem = null;
             var itemFlags = ItemDataFlags.None;
@@ -974,7 +974,7 @@ namespace engine
             if (var_4 != null &&
                 var_15 > (var_16 >> 1) &&
                 var_1F == true &&
-                (ranged_melee == true || ovr025.BuildNearTargets(1, player).Count == 0))
+                (ranged_melee == true || PartyPlayerFunctions.BuildNearTargets(1, player).Count == 0))
             {
                 weapon = var_4;
             }
@@ -1000,7 +1000,7 @@ namespace engine
                     PlayerCharacteristics.ready_Item(player.activeItems.primaryWeapon);
                 }
 
-                ovr025.reclac_player_values(player);
+                PartyPlayerFunctions.reclac_player_values(player);
 
                 if (player.activeItems.secondaryWeapon != null &&
                     player.activeItems.secondaryWeapon.cursed == false)
@@ -1016,7 +1016,7 @@ namespace engine
                 itemsChanged = true;
             }
 
-            ovr025.reclac_player_values(player);
+            PartyPlayerFunctions.reclac_player_values(player);
             ovr014.reclac_attacks(player);
             replace_weapon = true;
 
@@ -1046,7 +1046,7 @@ namespace engine
                 {
                     PlayerCharacteristics.ready_Item(player.activeItems.secondaryWeapon);
                 }
-                ovr025.reclac_player_values(player);
+                PartyPlayerFunctions.reclac_player_values(player);
 
                 if (best_weapon != null)
                 {
@@ -1057,11 +1057,11 @@ namespace engine
             }
 
 
-            ovr025.reclac_player_values(player);
+            PartyPlayerFunctions.reclac_player_values(player);
 
             if (itemsChanged == true)
             {
-                ovr025.CombatDisplayPlayerSummary(player);
+                PartyPlayerFunctions.CombatDisplayPlayerSummary(player);
             }
         }
     }

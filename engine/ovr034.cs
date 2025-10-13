@@ -77,7 +77,7 @@ namespace engine
             }
             else
             {
-                file_text += gbl.game_area.ToString();
+                file_text += gbl.EclDaxFileNumber.ToString();
 
                 gbl.combat_icons[combat_icon_index].LoadIcons(0, 1, file_text, block_id, block_id + 0x80);
                 gbl.combat_icons[combat_icon_index].Recolor(false, unk_16E40, unk_16E30);

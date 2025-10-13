@@ -35,7 +35,7 @@ namespace engine
 
             foreach (var item in gbl.items_pointer)
             {
-                ovr025.ItemDisplayNameBuild(false, false, 0, 0, item);
+                PartyPlayerFunctions.ItemDisplayNameBuild(false, false, 0, 0, item);
             }
 
             return input_key;
@@ -87,7 +87,7 @@ namespace engine
             bool wouldOverload;
             if (PlayerCharacteristics.canCarry(item, gbl.SelectedPlayer) == true)
             {
-                ovr025.string_print01("Overloaded");
+                PartyPlayerFunctions.string_print01("Overloaded");
                 wouldOverload = true;
             }
             else
@@ -96,7 +96,7 @@ namespace engine
 
                 gbl.SelectedPlayer.items.Add(item.ShallowClone());
 
-                ovr025.reclac_player_values(gbl.SelectedPlayer);
+                PartyPlayerFunctions.reclac_player_values(gbl.SelectedPlayer);
             }
 
             return wouldOverload;
@@ -144,7 +144,7 @@ namespace engine
                     }
                     else
                     {
-                        ovr025.string_print01("Not enough Money.");
+                        PartyPlayerFunctions.string_print01("Not enough Money.");
                     }
                 }
             }
@@ -161,15 +161,15 @@ namespace engine
             gbl.game_state = GameState.Shop;
             gbl.redrawBoarder = (gbl.area_ptr.inDungeon == 0);
 
-            ovr025.LoadPic();
+            PartyPlayerFunctions.LoadPic();
             gbl.redrawBoarder = true;
-            ovr025.PartySummary(gbl.SelectedPlayer);
+            PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
 
             gbl.pooled_money.ClearAll();
 
             bool exitShop = false;
 
-            gbl.items_pointer.ForEach(item => ovr025.ItemDisplayNameBuild(false, false, 0, 0, item));
+            gbl.items_pointer.ForEach(item => PartyPlayerFunctions.ItemDisplayNameBuild(false, false, 0, 0, item));
 
             do
             {
@@ -257,15 +257,15 @@ namespace engine
                 if (inputKey == 'B' ||
                     inputKey == 'T')
                 {
-                    ovr025.LoadPic();
+                    PartyPlayerFunctions.LoadPic();
                 }
                 else if (reloadPics == true)
                 {
-                    ovr025.LoadPic();
+                    PartyPlayerFunctions.LoadPic();
                     reloadPics = false;
                 }
 
-                ovr025.PartySummary(gbl.SelectedPlayer);
+                PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
 
             } while (exitShop == false);
         }

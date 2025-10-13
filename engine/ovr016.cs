@@ -147,7 +147,7 @@ namespace engine
 
             if (text.Length != 0)
             {
-                ovr025.DisplayPlayerStatusString(true, 10, text, gbl.SelectedPlayer);
+                PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, text, gbl.SelectedPlayer);
 
                 return false;
             }
@@ -188,14 +188,14 @@ namespace engine
                     }
                     else
                     {
-                        ovr025.DisplayPlayerStatusString(true, 10, "has no spells memorized", gbl.SelectedPlayer);
+                        PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "has no spells memorized", gbl.SelectedPlayer);
                     }
                 } while (spell_id != 0);
             }
 
             if (redraw == true)
             {
-                ovr025.LoadPic();
+                PartyPlayerFunctions.LoadPic();
             }
         }
 
@@ -232,7 +232,7 @@ namespace engine
 
             if (found == true)
             {
-                ovr025.DisplayPlayerStatusString(false, 10, "can memorize:", gbl.SelectedPlayer);
+                PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "can memorize:", gbl.SelectedPlayer);
                 int y_col = 3;
                 for (int spellClass = 0; spellClass < MaxSpellClass; spellClass++)
                 {
@@ -292,7 +292,7 @@ namespace engine
 
             gbl.timeToRest.Clear();
 
-            ovr025.display_map_position_time();
+            PartyPlayerFunctions.display_map_position_time();
 
             return action_interrupted;
         }
@@ -335,7 +335,7 @@ namespace engine
 
                     if (var_1 == true)
                     {
-                        ovr025.DisplayPlayerStatusString(true, 10, "cannot memorize any spells", gbl.SelectedPlayer);
+                        PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "cannot memorize any spells", gbl.SelectedPlayer);
                     }
                     else
                     {
@@ -368,7 +368,7 @@ namespace engine
 
                 if (redraw == true)
                 {
-                    ovr025.LoadPic();
+                    PartyPlayerFunctions.LoadPic();
                 }
             }
         }
@@ -416,7 +416,7 @@ namespace engine
 
                         if (var_2 == false)
                         {
-                            ovr025.DisplayPlayerStatusString(true, 10, "has no copyable scrolls", gbl.SelectedPlayer);
+                            PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "has no copyable scrolls", gbl.SelectedPlayer);
                         }
                         else
                         {
@@ -428,7 +428,7 @@ namespace engine
                         redraw = true;
                         if (gbl.SelectedPlayer.KnowsSpell((Classes.Spells)var_4))
                         {
-                            ovr025.string_print01("You already know that spell");
+                            PartyPlayerFunctions.string_print01("You already know that spell");
                         }
                         else
                         {
@@ -443,7 +443,7 @@ namespace engine
 
                             if (var_D == true)
                             {
-                                ovr025.string_print01("You are already scibing that spell");
+                                PartyPlayerFunctions.string_print01("You are already scibing that spell");
                             }
                             else
                             {
@@ -471,7 +471,7 @@ namespace engine
                                 }
                                 else
                                 {
-                                    ovr025.string_print01("You can not scribe that spell.");
+                                    PartyPlayerFunctions.string_print01("You can not scribe that spell.");
                                 }
                             }
                         }
@@ -493,7 +493,7 @@ namespace engine
 
                 if (redraw)
                 {
-                    ovr025.LoadPic();
+                    PartyPlayerFunctions.LoadPic();
                 }
             }
         }
@@ -593,7 +593,7 @@ namespace engine
                 0x16, 0x26, 4, 1, new MenuColorSet(15, 10, 11), string.Empty, string.Empty);
 
             var_C.Clear();
-            ovr025.LoadPic();
+            PartyPlayerFunctions.LoadPic();
         }
 
 
@@ -610,7 +610,7 @@ namespace engine
                 if (controlKey == true)
                 {
                     PlayerCharacteristics.scroll_team_list(inputKey);
-                    ovr025.PartySummary(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                 }
                 else
                 {
@@ -699,7 +699,7 @@ namespace engine
                     if (reorderState == 0)
                     {
                         PlayerCharacteristics.scroll_team_list(inputKey);
-                        ovr025.PartySummary(gbl.SelectedPlayer);
+                        PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                     }
                     else
                     {
@@ -711,7 +711,7 @@ namespace engine
                         {
                             MoveCurrentPlayerDown();
                         }
-                        ovr025.PartySummary(gbl.SelectedPlayer);
+                        PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                     }
                 }
                 else if (reorderSet.MemberOf(inputKey) == true)
@@ -720,11 +720,11 @@ namespace engine
 
                     if (reorderState != 0)
                     {
-                        ovr025.DisplayPlayerStatusString(false, 10, "has been selected", gbl.SelectedPlayer);
+                        PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "has been selected", gbl.SelectedPlayer);
                     }
                     else
                     {
-                        ovr025.ClearPlayerTextArea();
+                        PartyPlayerFunctions.ClearPlayerTextArea();
                     }
                 }
             }
@@ -743,27 +743,27 @@ namespace engine
             }
             else
             {
-                ovr025.DisplayPlayerStatusString(false, 10, "will be gone", gbl.SelectedPlayer);
+                PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "will be gone", gbl.SelectedPlayer);
 
                 if (KeyInputHandler.yes_no(gbl.alertMenuColors, "Drop from party? ") == 'Y')
                 {
                     if (gbl.SelectedPlayer.in_combat == true)
                     {
-                        ovr025.DisplayPlayerStatusString(true, 10, "bids you farewell", gbl.SelectedPlayer);
+                        PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "bids you farewell", gbl.SelectedPlayer);
                     }
                     else
                     {
-                        ovr025.DisplayPlayerStatusString(true, 10, "is dumped in a ditch", gbl.SelectedPlayer);
+                        PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is dumped in a ditch", gbl.SelectedPlayer);
                     }
 
                     gbl.SelectedPlayer = StartGameScreen.FreeCurrentPlayer(gbl.SelectedPlayer, true, false);
                     FrameRenderer.draw8x8_clear_area(0x0b, 0x26, 1, 0x11);
 
-                    ovr025.PartySummary(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                 }
                 else
                 {
-                    ovr025.DisplayPlayerStatusString(true, 10, "Breathes A sigh of relief", gbl.SelectedPlayer);
+                    PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "Breathes A sigh of relief", gbl.SelectedPlayer);
                 }
             }
         }
@@ -825,7 +825,7 @@ namespace engine
 
             } while (AlterSet.MemberOf(inputKey) == false);
 
-            ovr025.ClearPlayerTextArea();
+            PartyPlayerFunctions.ClearPlayerTextArea();
         }
 
         static Set AlterSet = new Set(0, 69);
@@ -842,7 +842,7 @@ namespace engine
                 if (controlKey == true)
                 {
                     PlayerCharacteristics.scroll_team_list(inputKey);
-                    ovr025.PartySummary(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                 }
                 else
                 {
@@ -862,7 +862,7 @@ namespace engine
 
                         case 'I':
                             StartGameScreen.icon_builder();
-                            ovr025.LoadPic();
+                            PartyPlayerFunctions.LoadPic();
                             break;
                     }
                 }
@@ -1042,8 +1042,8 @@ namespace engine
 
                 if (TotalHitpointsLost() == 0)
                 {
-                    ovr025.PartySummary(gbl.SelectedPlayer);
-                    ovr025.display_map_position_time();
+                    PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.display_map_position_time();
                 }
                 else
                 {
@@ -1061,8 +1061,8 @@ namespace engine
                         CalculateHealing(ref healingAvailable, numCureLight, numCureSerious, numCureCritical);
                         DoTeamHealing(ref healingAvailable);
 
-                        ovr025.PartySummary(gbl.SelectedPlayer);
-                        ovr025.display_map_position_time();
+                        PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
+                        PartyPlayerFunctions.display_map_position_time();
 
                         gbl.timeToRest = new RestTime(timeBackup);
                     }
@@ -1088,7 +1088,7 @@ namespace engine
             gbl.byte_1D5AB = gbl.lastDaxFile;
             gbl.byte_1D5B5 = gbl.lastDaxBlockId;
 
-            ovr025.LoadPic();
+            PartyPlayerFunctions.LoadPic();
             FrameRenderer.draw8x8_clear_area(TextRegion.NormalBottom);
 
             TextRenderer.displayString("The party makes camp...", 0, 10, 18, 1);
@@ -1105,7 +1105,7 @@ namespace engine
                 if (special_key == true)
                 {
                     PlayerCharacteristics.scroll_team_list(input_key);
-                    ovr025.PartySummary(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                 }
                 else
                 {
@@ -1154,8 +1154,8 @@ namespace engine
             cancel_spells();
             gbl.lastSelectetSpellTarget = null;
             gbl.game_state = game_state_bkup;
-            ovr025.display_map_position_time();
-            ovr025.ClearPlayerTextArea();
+            PartyPlayerFunctions.display_map_position_time();
+            PartyPlayerFunctions.ClearPlayerTextArea();
             KeyInputHandler.ClearPromptArea();
 
             return actionInterrupted;

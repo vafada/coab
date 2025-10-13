@@ -445,12 +445,12 @@ namespace engine
 
                             default:
                                 PlayerCharacteristics.scroll_team_list(input_key);
-                                ovr025.PartySummary(gbl.SelectedPlayer);
+                                PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                                 break;
                         }
                     }
 
-                    ovr025.display_map_position_time();
+                    PartyPlayerFunctions.display_map_position_time();
 
                 } while (stop_loop == false);
             }
@@ -577,7 +577,7 @@ namespace engine
                         MovePartyForward();
                     }
 
-                    ovr025.display_map_position_time();
+                    PartyPlayerFunctions.display_map_position_time();
                 }
                 else
                 {

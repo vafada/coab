@@ -54,7 +54,7 @@ namespace engine
                     short uncompressed_size;
                     byte[] uncompressed_data;
 
-                    FileUtils.load_decode_dax(out uncompressed_data, out uncompressed_size, block_id, file_name + gbl.game_area.ToString() + ".dax");
+                    FileUtils.load_decode_dax(out uncompressed_data, out uncompressed_size, block_id, file_name + gbl.EclDaxFileNumber.ToString() + ".dax");
 
                     if (uncompressed_size == 0)
                     {
@@ -166,7 +166,7 @@ namespace engine
 
         internal static void head_body(byte body_id, byte head_id)
         {
-            string text = gbl.game_area.ToString();
+            string text = gbl.EclDaxFileNumber.ToString();
 
             if (head_id != 0xff &&
                 (gbl.current_head_id == 0xff || gbl.current_head_id != head_id))
@@ -232,7 +232,7 @@ namespace engine
 
             if (gbl.bigpic_block_id != block_id)
             {
-                gbl.bigpic_dax = DrawPicture.LoadDax(0, 0, block_id, "bigpic" + gbl.game_area.ToString());
+                gbl.bigpic_dax = DrawPicture.LoadDax(0, 0, block_id, "bigpic" + gbl.EclDaxFileNumber.ToString());
                 gbl.bigpic_block_id = block_id;
             }
         }

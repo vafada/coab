@@ -641,7 +641,7 @@ namespace engine
         {
             if (symbolSet >= 1 && symbolSet < 4)
             {
-                string area_text = gbl.game_area.ToString();
+                string area_text = gbl.EclDaxFileNumber.ToString();
                 byte[] data;
 
                 short decode_size;
@@ -690,7 +690,7 @@ namespace engine
             byte[] data;
             short bytesRead;
 
-            FileUtils.load_decode_dax(out data, out bytesRead, blockId, "GEO" + gbl.game_area.ToString() + ".dax");
+            FileUtils.load_decode_dax(out data, out bytesRead, blockId, "GEO" + gbl.EclDaxFileNumber.ToString() + ".dax");
 
             if (bytesRead == 0 || bytesRead != 0x402)
             {

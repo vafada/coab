@@ -136,12 +136,12 @@ namespace engine
             {
                 if (gbl.inDemo == true)
                 {
-                    gbl.game_area = 1;
+                    gbl.EclDaxFileNumber = 1;
                     gbl.game_speed_var = 9;
                 }
                 else
                 {
-                    gbl.game_area = 2;
+                    gbl.EclDaxFileNumber = 2;
                 }
 
                 if (gbl.inDemo == false)
@@ -275,8 +275,8 @@ namespace engine
             gbl.ecl_offset = 0x8000;
             gbl.game_speed_var = 4;
             gbl.inDemo = false;
-            gbl.game_area = 1;
-            gbl.game_area_backup = 1;
+            gbl.EclDaxFileNumber = 1;
+            gbl.EclDaxFileNumberBackup = 1;
             gbl.mapAreaDisplay = false;
             gbl.area2_ptr.party_size = 0;
             gbl.menuScreenIndex = 1;
@@ -368,8 +368,8 @@ namespace engine
 
             gbl.ecl_offset = 0x8000;
             gbl.game_speed_var = 4;
-            gbl.game_area = 1;
-            gbl.game_area_backup = 1;
+            gbl.EclDaxFileNumber = 1;
+            gbl.EclDaxFileNumberBackup = 1;
             gbl.mapAreaDisplay = false;
             gbl.area2_ptr.party_size = 0;
             gbl.menuScreenIndex = 1;

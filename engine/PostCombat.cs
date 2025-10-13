@@ -35,7 +35,7 @@ namespace engine
                         {
                             foreach (Item item in player.items)
                             {
-                                ovr025.ItemDisplayNameBuild(false, false, 0, 0, item);
+                                PartyPlayerFunctions.ItemDisplayNameBuild(false, false, 0, 0, item);
 
                                 Item newItem = item.ShallowClone();
                                 newItem.readied = false;
@@ -453,7 +453,7 @@ namespace engine
 
             gbl.items_pointer.ForEach(item =>
                 {
-                    ovr025.ItemDisplayNameBuild(false, false, 0, 0, item);
+                    PartyPlayerFunctions.ItemDisplayNameBuild(false, false, 0, 0, item);
                     list.Insert(0, new MenuItem(item.name, item));
                 });
 
@@ -498,7 +498,7 @@ namespace engine
                 }
             } while (stop == false);
 
-            ovr025.LoadPic();
+            PartyPlayerFunctions.LoadPic();
         }
 
 
@@ -517,7 +517,7 @@ namespace engine
                         {
                             case 'M':
                                 ovr022.TakePoolMoney();
-                                ovr025.LoadPic();
+                                PartyPlayerFunctions.LoadPic();
                                 break;
 
                             case 'I':
@@ -538,7 +538,7 @@ namespace engine
                                 break;
                         }
 
-                        ovr025.PartySummary(gbl.SelectedPlayer);
+                        PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                         ovr022.treasureOnGround(out items_present, out money_present);
 
                         if (money_present == false ||
@@ -551,7 +551,7 @@ namespace engine
                 else
                 {
                     ovr022.TakePoolMoney();
-                    ovr025.LoadPic();
+                    PartyPlayerFunctions.LoadPic();
                 }
             }
             else
@@ -565,7 +565,7 @@ namespace engine
         {
             byte spellId = 0; /* Simeon */
 
-            ovr025.LoadPic();
+            PartyPlayerFunctions.LoadPic();
 
             bool done = false;
             do
@@ -661,12 +661,12 @@ namespace engine
 
                     case 'G':
                         PlayerCharacteristics.scroll_team_list(input_key);
-                        ovr025.PartySummary(gbl.SelectedPlayer);
+                        PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                         break;
 
                     case 'O':
                         PlayerCharacteristics.scroll_team_list(input_key);
-                        ovr025.PartySummary(gbl.SelectedPlayer);
+                        PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                         break;
                 }
             } while (done == false);
@@ -778,7 +778,7 @@ namespace engine
             {
                 foreach (Player player in gbl.TeamList)
                 {
-                    ovr025.reclac_player_values(player);
+                    PartyPlayerFunctions.reclac_player_values(player);
                 }
 
                 if (gbl.party_killed == false ||

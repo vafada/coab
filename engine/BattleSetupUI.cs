@@ -790,7 +790,7 @@ namespace engine
 
             foreach (Player player in gbl.TeamList)
             {
-                ovr025.reclac_player_values(player);
+                PartyPlayerFunctions.reclac_player_values(player);
                 playerCount++;
 
                 player.actions = new Action();
@@ -1052,7 +1052,7 @@ namespace engine
 
         static void PlaceCombatants() /* sub_387FE */
         {
-            ovr025.CountCombatTeamMembers();
+            PartyPlayerFunctions.CountCombatTeamMembers();
 
             for (int i = 1; i <= gbl.MaxCombatantCount; i++)
             {
@@ -1208,7 +1208,7 @@ namespace engine
             Point pos = ovr033.PlayerMapPos(gbl.TeamList[0]);
             gbl.mapToBackGroundTile.mapScreenTopLeft = pos - Point.ScreenCenter;
 
-            ovr025.RedrawCombatScreen();
+            PartyPlayerFunctions.RedrawCombatScreen();
             foreach (Player player in gbl.TeamList)
             {
                 PlayerAffects.CheckAffectsEffect(player, CheckType.Type_8);

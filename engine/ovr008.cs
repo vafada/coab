@@ -145,7 +145,7 @@ namespace engine
                 KeyInputHandler.ClearPromptArea();
                 TextRenderer.displayString("Loading...Please Wait", 0, 10, 0x18, 0);
 
-                FileUtils.load_decode_dax(out block_mem, out block_size, block_id, string.Format("ECL{0}.dax", gbl.game_area));
+                FileUtils.load_decode_dax(out block_mem, out block_size, block_id, string.Format("ECL{0}.dax", gbl.EclDaxFileNumber));
             } while (block_size < 2);
 
             gbl.ecl_ptr.SetData(block_mem, 2, block_size - 2);
@@ -544,7 +544,7 @@ namespace engine
             }
             else if (arg_4 == 0x312)
             {
-                return_val = gbl.game_area;
+                return_val = gbl.EclDaxFileNumber;
             }
             else if (arg_4 == 0x33E)
             {
@@ -653,8 +653,8 @@ namespace engine
             }
             else if (switch_var == 0x312)
             {
-                gbl.game_area_backup = gbl.game_area;
-                gbl.game_area = (byte)(set_value);
+                gbl.EclDaxFileNumberBackup = gbl.EclDaxFileNumber;
+                gbl.EclDaxFileNumber = (byte)(set_value);
             }
             else if (switch_var == 0x322)
             {
@@ -1183,7 +1183,7 @@ namespace engine
                 if (special_key_pressed == true)
                 {
                     PlayerCharacteristics.scroll_team_list(key_pressed);
-                    ovr025.PartySummary(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                     key_pressed = '\0';
                 }
             } while (validkeys.MemberOf(key_pressed) == false && (key_pressed != '\r' || acceptReturn == false));
@@ -1430,10 +1430,10 @@ namespace engine
 
                 TextRenderer.press_any_key(text, clear_text_area, 15, 0x16, 0x26, 17, 1);
 
-                ovr025.damage_player(damage, player);
+                PartyPlayerFunctions.damage_player(damage, player);
                 FrameRenderer.draw8x8_clear_area(0x0f, 0x26, 1, 0x11);
 
-                ovr025.PartySummary(player);
+                PartyPlayerFunctions.PartySummary(player);
             }
         }
     }

@@ -45,7 +45,7 @@ namespace engine
         {
             FrameRenderer.DrawFrame_Outer();
 
-            ovr025.displayPlayerName(false, 1, 1, player);
+            PartyPlayerFunctions.displayPlayerName(false, 1, 1, player);
 
             if (player.control_morale >= Control.NPC_Base)
             {
@@ -115,14 +115,14 @@ namespace engine
             if (player.activeItems.primaryWeapon != null)
             {
                 TextRenderer.displayString("Weapon", 0, 15, yCol, 1);
-                ovr025.ItemDisplayNameBuild(true, false, yCol, 8, player.activeItems.primaryWeapon);
+                PartyPlayerFunctions.ItemDisplayNameBuild(true, false, yCol, 8, player.activeItems.primaryWeapon);
             }
 
             yCol++;
             if (player.activeItems.armor != null)
             {
                 TextRenderer.displayString("Armor", 0, 15, yCol, 2);
-                ovr025.ItemDisplayNameBuild(true, false, yCol, 8, player.activeItems.armor);
+                PartyPlayerFunctions.ItemDisplayNameBuild(true, false, yCol, 8, player.activeItems.armor);
             }
 
             yCol++;
@@ -154,14 +154,14 @@ namespace engine
         {
             Player player = gbl.SelectedPlayer;
 
-            ovr025.reclac_player_values(player);
+            PartyPlayerFunctions.reclac_player_values(player);
             int yCol = 0x11;
 
             TextRenderer.displayString("AC    ", 0, 15, yCol, 1);
             TextRenderer.displayString(player.DisplayAc.ToString(), 0, 10, yCol, 4);
 
             TextRenderer.displayString("HP    ", 0, 15, yCol + 1, 1);
-            ovr025.display_hp(false, yCol + 1, 4, player);
+            PartyPlayerFunctions.display_hp(false, yCol + 1, 4, player);
 
             int xCol = 8;
 
@@ -333,7 +333,7 @@ namespace engine
             {
                 ovr033.Color_0_8_inverse();
             }
-            ovr025.LoadPic();
+            PartyPlayerFunctions.LoadPic();
 
             return arg_0;
         }
@@ -345,7 +345,7 @@ namespace engine
 
             if (item.readied)
             {
-                ovr025.string_print01("Must be unreadied");
+                PartyPlayerFunctions.string_print01("Must be unreadied");
             }
             else if (item.IsScroll() == false)
             {
@@ -353,7 +353,7 @@ namespace engine
             }
             else if ((int)item.affect_1 > 0x7F || (int)item.affect_2 > 0x7F || (int)item.affect_3 > 0x7F)
             {
-                ovr025.displayPlayerName(false, 15, 1, gbl.SelectedPlayer);
+                PartyPlayerFunctions.displayPlayerName(false, 15, 1, gbl.SelectedPlayer);
 
                 gbl.textXCol = gbl.SelectedPlayer.name.Length + 2;
                 gbl.textYCol = 0x15;
@@ -493,14 +493,14 @@ namespace engine
                         text += " Id";
                     }
 
-                    player.items.ForEach(item => ovr025.ItemDisplayNameBuild(false, true, 0, 0, item));
+                    player.items.ForEach(item => PartyPlayerFunctions.ItemDisplayNameBuild(false, true, 0, 0, item));
 
 
                     if (redraw_player == true || gbl.byte_1D2C8 == true)
                     {
                         FrameRenderer.draw8x8_07();
 
-                        ovr025.displayPlayerName(true, 1, 1, player);
+                        PartyPlayerFunctions.displayPlayerName(true, 1, 1, player);
 
                         TextRenderer.displayString("Items", 0, 10, 1, player.name.Length + 4);
                         TextRenderer.displayString("Ready Item", 0, 15, 3, 1);
@@ -535,7 +535,7 @@ namespace engine
                             case 'U':
                                 if (curr_item.readied == false)
                                 {
-                                    ovr025.string_print01("Must be Readied");
+                                    PartyPlayerFunctions.string_print01("Must be Readied");
                                     inputKey = ' ';
                                 }
                                 else if (curr_item.IsScroll() == true ||
@@ -569,13 +569,13 @@ namespace engine
                             case 'D':
                                 if (CanSellDropTradeItem(curr_item) == true)
                                 {
-                                    ovr025.ItemDisplayNameBuild(false, false, 0, 0, curr_item);
+                                    PartyPlayerFunctions.ItemDisplayNameBuild(false, false, 0, 0, curr_item);
 
                                     TextRenderer.press_any_key("Your " + curr_item.name + " will be gone forever", true, 14, 22, 0x26, 21, 1);
 
                                     if (KeyInputHandler.yes_no(gbl.defaultMenuColors, "Drop It? ") == 'Y')
                                     {
-                                        ovr025.lose_item(curr_item, gbl.SelectedPlayer);
+                                        PartyPlayerFunctions.lose_item(curr_item, gbl.SelectedPlayer);
                                         redraw_items = true;
                                     }
 
@@ -612,7 +612,7 @@ namespace engine
                         }
                     }
 
-                    ovr025.reclac_player_values(player);
+                    PartyPlayerFunctions.reclac_player_values(player);
                 }
 
                 if (player.items.Count != oldItemCount)
@@ -719,7 +719,7 @@ namespace engine
                         gbl.damage_flags = DamageType.Magic;
                         if (gbl.game_state == GameState.Combat)
                         {
-                            ovr025.RedrawCombatScreen();
+                            PartyPlayerFunctions.RedrawCombatScreen();
                         }
 
                         PlayerAffects.damage_person(false, 0, damage, player);
@@ -795,7 +795,7 @@ namespace engine
                 // Remove
                 if (item.cursed == true)
                 {
-                    ovr025.string_print01("It's Cursed");
+                    PartyPlayerFunctions.string_print01("It's Cursed");
                 }
                 else
                 {
@@ -869,19 +869,19 @@ namespace engine
                         break;
 
                     case Weld.WrongClass:
-                        ovr025.string_print01("Wrong Class");
+                        PartyPlayerFunctions.string_print01("Wrong Class");
                         break;
 
                     case Weld.AlreadyUsingX:
-                        ovr025.ItemDisplayNameBuild(false, false, 0, 0, player.activeItems[item_slot]);
-                        ovr025.string_print01("already using " + player.activeItems[item_slot].name);
+                        PartyPlayerFunctions.ItemDisplayNameBuild(false, false, 0, 0, player.activeItems[item_slot]);
+                        PartyPlayerFunctions.string_print01("already using " + player.activeItems[item_slot].name);
                         break;
 
                     case Weld.HandsFull:
                         if (gbl.game_state != GameState.Combat ||
                             player.quick_fight == QuickFight.False)
                         {
-                            ovr025.string_print01("Your hands are full!");
+                            PartyPlayerFunctions.string_print01("Your hands are full!");
                         }
                         break;
                 }
@@ -892,22 +892,22 @@ namespace engine
         internal static void trade_item(Item item)
         {
             Player player = gbl.tradeWith;
-            ovr025.LoadPic();
+            PartyPlayerFunctions.LoadPic();
 
-            ovr025.selectAPlayer(ref player, true, "Trade with Whom?");
+            PartyPlayerFunctions.selectAPlayer(ref player, true, "Trade with Whom?");
 
             if (player != null)
             {
                 gbl.tradeWith = player;
                 if (canCarry(item, player) == true)
                 {
-                    ovr025.string_print01("Overloaded");
+                    PartyPlayerFunctions.string_print01("Overloaded");
                 }
                 else
                 {
                     player.items.Add(item);
-                    ovr025.lose_item(item, gbl.SelectedPlayer);
-                    ovr025.reclac_player_values(player);
+                    PartyPlayerFunctions.lose_item(item, gbl.SelectedPlayer);
+                    PartyPlayerFunctions.reclac_player_values(player);
                 }
             }
         }
@@ -931,7 +931,7 @@ namespace engine
             }
             else
             {
-                ovr025.string_print01("Can't halve that");
+                PartyPlayerFunctions.string_print01("Can't halve that");
             }
         }
 
@@ -963,7 +963,7 @@ namespace engine
                 if (item_ptr.count + item.count <= 255)
                 {
                     item.count += item_ptr.count;
-                    ovr025.lose_item(item_ptr, gbl.SelectedPlayer);
+                    PartyPlayerFunctions.lose_item(item_ptr, gbl.SelectedPlayer);
                 }
                 else
                 {
@@ -1005,26 +1005,26 @@ namespace engine
                 if (gbl.game_state == GameState.Combat &&
                     gbl.SelectedPlayer.quick_fight == QuickFight.False)
                 {
-                    ovr025.RedrawCombatScreen();
+                    PartyPlayerFunctions.RedrawCombatScreen();
                 }
 
                 if (gbl.spell_from_item == true)
                 {
-                    ovr025.DisplayPlayerStatusString(false, 10, "uses an item", gbl.SelectedPlayer);
+                    PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "uses an item", gbl.SelectedPlayer);
 
                     if (gbl.game_state == GameState.Combat)
                     {
                         TextRenderer.displayString("Item:", 0, 10, 0x17, 0);
 
-                        ovr025.ItemDisplayNameBuild(true, false, 0x17, 5, item);
+                        PartyPlayerFunctions.ItemDisplayNameBuild(true, false, 0x17, 5, item);
                     }
                     else
                     {
-                        ovr025.ItemDisplayNameBuild(true, false, 0x16, 1, item);
+                        PartyPlayerFunctions.ItemDisplayNameBuild(true, false, 0x16, 1, item);
                     }
 
                     TextRenderer.GameDelay();
-                    ovr025.ClearPlayerTextArea();
+                    PartyPlayerFunctions.ClearPlayerTextArea();
                 }
 
                 gbl.spell_from_item = true;
@@ -1043,7 +1043,7 @@ namespace engine
                     }
                     else
                     {
-                        ovr025.DisplayPlayerStatusString(true, gbl.textYCol, "oops!", gbl.SelectedPlayer);
+                        PartyPlayerFunctions.DisplayPlayerStatusString(true, gbl.textYCol, "oops!", gbl.SelectedPlayer);
                     }
                 }
                 else
@@ -1057,7 +1057,7 @@ namespace engine
                     gbl.spellCastingTable[spellId].whenCast != SpellWhen.Camp)
                 {
                     arg_0 = true;
-                    ovr025.clear_actions(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.clear_actions(gbl.SelectedPlayer);
                 }
             }
 
@@ -1078,7 +1078,7 @@ namespace engine
                         item.affect_1 -= 1;
                         if (item.affect_1 == 0)
                         {
-                            ovr025.lose_item(item, gbl.SelectedPlayer);
+                            PartyPlayerFunctions.lose_item(item, gbl.SelectedPlayer);
                         }
                     }
                 }
@@ -1108,7 +1108,7 @@ namespace engine
                 }
             }
 
-            ovr025.ItemDisplayNameBuild(false, false, 0, 0, item);
+            PartyPlayerFunctions.ItemDisplayNameBuild(false, false, 0, 0, item);
 
             string offer = "I'll give you " + item_value.ToString() + " gold pieces for your " + item.name;
 
@@ -1116,9 +1116,9 @@ namespace engine
 
             if (KeyInputHandler.yes_no(gbl.defaultMenuColors, "Is It a Deal? ") == 'Y')
             {
-                ovr025.string_print01("Sold!");
+                PartyPlayerFunctions.string_print01("Sold!");
 
-                ovr025.lose_item(item, gbl.SelectedPlayer);
+                PartyPlayerFunctions.lose_item(item, gbl.SelectedPlayer);
 
                 int plat = item_value / 5;
                 int gold = item_value % 5;
@@ -1126,7 +1126,7 @@ namespace engine
 
                 if (ovr022.willOverload(out overflow, plat + gold, gbl.SelectedPlayer) == true)
                 {
-                    ovr025.string_print01("Overloaded. Money will be put in pool.");
+                    PartyPlayerFunctions.string_print01("Overloaded. Money will be put in pool.");
 
                     if (overflow > plat)
                     {
@@ -1154,7 +1154,7 @@ namespace engine
         internal static void IdentifyItem(ref bool arg_0, Item item)
         {
             bool id_item = false;
-            ovr025.ItemDisplayNameBuild(false, false, 0, 0, item);
+            PartyPlayerFunctions.ItemDisplayNameBuild(false, false, 0, 0, item);
 
             TextRenderer.press_any_key("For 200 gold pieces I'll identify your " + item.name, true, 14, TextRegion.Normal2);
 
@@ -1176,7 +1176,7 @@ namespace engine
                     }
                     else
                     {
-                        ovr025.string_print01("Not Enough Money");
+                        PartyPlayerFunctions.string_print01("Not Enough Money");
                     }
                 }
             }
@@ -1190,7 +1190,7 @@ namespace engine
                 else
                 {
                     item.hidden_names_flag = 0;
-                    ovr025.ItemDisplayNameBuild(false, false, 0, 0, item);
+                    PartyPlayerFunctions.ItemDisplayNameBuild(false, false, 0, 0, item);
 
                     TextRenderer.press_any_key("It looks like some sort of " + item.name, true, 14, TextRegion.Normal2);
 
@@ -1210,9 +1210,9 @@ namespace engine
             do
             {
                 Player dest = gbl.tradeWith;
-                ovr025.LoadPic();
+                PartyPlayerFunctions.LoadPic();
 
-                ovr025.selectAPlayer(ref dest, true, "Trade to?");
+                PartyPlayerFunctions.selectAPlayer(ref dest, true, "Trade to?");
 
                 if (dest == null)
                 {
@@ -1322,7 +1322,7 @@ namespace engine
 
         internal static bool canCarry(Item item, Player player)
         {
-            ovr025.reclac_player_values(player);
+            PartyPlayerFunctions.reclac_player_values(player);
             bool too_heavy = false;
 
             if (player.items.Count >= Player.MaxItems)
@@ -1337,7 +1337,7 @@ namespace engine
                 item_weight *= item.count;
             }
 
-            if ((player.weight + item_weight) > (ovr025.max_encumberance(player) + 1500))
+            if ((player.weight + item_weight) > (PartyPlayerFunctions.max_encumberance(player) + 1500))
             {
                 too_heavy = true;
             }
@@ -1433,7 +1433,7 @@ namespace engine
                     }
                 }
 
-                ovr025.displayPlayerName(true, 1, 1, gbl.SelectedPlayer);
+                PartyPlayerFunctions.displayPlayerName(true, 1, 1, gbl.SelectedPlayer);
 
                 TextRenderer.displayString("Spells " + text, 0, 10, 1, gbl.SelectedPlayer.name.Length + 4);
 
@@ -1468,10 +1468,10 @@ namespace engine
 
         internal static void PaladinHeal(Player player)
         {
-            ovr025.LoadPic();
+            PartyPlayerFunctions.LoadPic();
             Player target = gbl.TeamList[0];
 
-            ovr025.selectAPlayer(ref target, true, "Heal whom? ");
+            PartyPlayerFunctions.selectAPlayer(ref target, true, "Heal whom? ");
 
             if (target == null)
             {
@@ -1483,11 +1483,11 @@ namespace engine
 
             if (PlayerAffects.heal_player(0, healAmount, target) == true)
             {
-                ovr025.string_print01(target.name + " feels better");
+                PartyPlayerFunctions.string_print01(target.name + " feels better");
             }
             else
             {
-                ovr025.string_print01(target.name + " is unaffected");
+                PartyPlayerFunctions.string_print01(target.name + " is unaffected");
             }
 
             PlayerAffects.add_affect(false, 0, 1440, Affects.paladinDailyHealCast, player);
@@ -1504,10 +1504,10 @@ namespace engine
 
         internal static void PaladinCureDisease(Player player) /* sub_577EC */
         {
-            ovr025.LoadPic();
+            PartyPlayerFunctions.LoadPic();
             Player target = gbl.TeamList[0];
 
-            ovr025.selectAPlayer(ref target, true, "Cure whom? ");
+            PartyPlayerFunctions.selectAPlayer(ref target, true, "Cure whom? ");
 
             if (target == null)
             {
@@ -1521,11 +1521,11 @@ namespace engine
 
                 if (is_diseased == false)
                 {
-                    ovr025.DisplayPlayerStatusString(false, 0, "is not diseased", target);
+                    PartyPlayerFunctions.DisplayPlayerStatusString(false, 0, "is not diseased", target);
 
                     input = KeyInputHandler.yes_no(gbl.defaultMenuColors, "cure anyway: ");
 
-                    ovr025.ClearPlayerTextArea();
+                    PartyPlayerFunctions.ClearPlayerTextArea();
                 }
 
                 if (input == 'Y')
@@ -1545,7 +1545,7 @@ namespace engine
                         PlayerAffects.add_affect(true, 0, 0x2760, Affects.paladinDailyCureRefresh, player);
                     }
 
-                    ovr025.string_print01(target.name + " is cured");
+                    PartyPlayerFunctions.string_print01(target.name + " is cured");
                 }
 
                 playerDisplayFull(gbl.SelectedPlayer);

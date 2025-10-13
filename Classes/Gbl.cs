@@ -507,8 +507,8 @@ namespace Classes
 
         public static Player tradeWith; //player_ptr01
 
-        public static byte game_area;
-        public static byte game_area_backup;
+        public static byte EclDaxFileNumber;
+        public static byte EclDaxFileNumberBackup;
 
         public static Area1 area_ptr;
         public static Area2 area2_ptr;

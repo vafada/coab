@@ -82,8 +82,8 @@ namespace engine
 
         internal static void LoadPlayerCombatIcon(bool recolour) /* sub_47A90 */
         {
-            gbl.game_area_backup = gbl.game_area;
-            gbl.game_area = 1;
+            gbl.EclDaxFileNumberBackup = gbl.EclDaxFileNumber;
+            gbl.EclDaxFileNumber = 1;
 
             Player player = gbl.SelectedPlayer;
 
@@ -115,7 +115,7 @@ namespace engine
             }
 
             ovr034.ReleaseCombatIcon(11);
-            gbl.game_area = gbl.game_area_backup;
+            gbl.EclDaxFileNumber = gbl.EclDaxFileNumberBackup;
             seg043.clear_keyboard();
         }
 
@@ -606,7 +606,7 @@ namespace engine
             }
 
             seg043.clear_keyboard();
-            ovr025.reclac_player_values(player);
+            PartyPlayerFunctions.reclac_player_values(player);
             ovr026.ReclacClassBonuses(player);
         }
 
@@ -815,7 +815,7 @@ namespace engine
 
         internal static Player load_mob(int monster_id, bool exit)
         {
-            string area_text = gbl.game_area.ToString();
+            string area_text = gbl.EclDaxFileNumber.ToString();
 
             byte[] data;
             short decode_size;
@@ -978,7 +978,7 @@ namespace engine
             byte[] data = new byte[0x2000];
 
             StringRandomIOUtils.BlockRead(1, data, file);
-            gbl.game_area = data[0];
+            gbl.EclDaxFileNumber = data[0];
 
             StringRandomIOUtils.BlockRead(0x800, data, file);
             gbl.area_ptr = new Area1(data, 0);
@@ -1062,7 +1062,7 @@ namespace engine
 
             gbl.SelectedPlayer = gbl.TeamList[0];
 
-            gbl.game_area = gbl.area2_ptr.game_area;
+            gbl.EclDaxFileNumber = gbl.area2_ptr.game_area;
 
             if (gbl.area_ptr.inDungeon != 0)
             {
@@ -1136,11 +1136,11 @@ namespace engine
 
                 gbl.area_ptr.game_speed = (byte)gbl.game_speed_var;
                 gbl.area_ptr.pics_on = (byte)(((gbl.PicsOn) ? 0x02 : 0) | ((gbl.AnimationsOn) ? 0x01 : 0));
-                gbl.area2_ptr.game_area = gbl.game_area;
+                gbl.area2_ptr.game_area = gbl.EclDaxFileNumber;
 
                 byte[] data = new byte[0x1E00];
 
-                data[0] = gbl.game_area;
+                data[0] = gbl.EclDaxFileNumber;
                 StringRandomIOUtils.BlockWrite(1, data, save_file);
 
                 StringRandomIOUtils.BlockWrite(0x800, gbl.area_ptr.ToByteArray(), save_file);

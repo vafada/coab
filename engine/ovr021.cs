@@ -380,11 +380,11 @@ namespace engine
 
                 if (update_ui)
                 {
-                    ovr025.PartySummary(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                 }
 
                 TextRenderer.GameDelay();
-                ovr025.ClearPlayerTextArea();
+                PartyPlayerFunctions.ClearPlayerTextArea();
                 gbl.rest_10_seconds = 0;
             }
         }
@@ -593,7 +593,7 @@ namespace engine
 
                             if (PlayerAffects.roll_dice(100, 1) <= gbl.area2_ptr.rest_incounter_percentage)
                             {
-                                ovr025.ClearPlayerTextArea();
+                                PartyPlayerFunctions.ClearPlayerTextArea();
                                 display_resting_time(0);
                                 TextRenderer.displayString("Your repose is suddenly interrupted!", 0, 15, 0x13, 1);
                                 stop_resting = true;

@@ -79,7 +79,7 @@ namespace engine
                     FrameRenderer.DrawFrame_Outer();
                     if (gbl.SelectedPlayer != null)
                     {
-                        ovr025.PartySummary(gbl.SelectedPlayer);
+                        PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                         menuFlags[allow_drop] = true;
                         menuFlags[allow_modify] = true;
 
@@ -143,7 +143,7 @@ namespace engine
                         bool previousDuelClassState = gbl.SelectedPlayer.CanDuelClass();
 
                         PlayerCharacteristics.scroll_team_list(inputkey);
-                        ovr025.PartySummary(gbl.SelectedPlayer);
+                        PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
 
                         previousDuelClassState ^= gbl.SelectedPlayer.CanDuelClass();
 
@@ -256,7 +256,7 @@ namespace engine
                                         {
                                             FrameRenderer.draw8x8_03();
                                         }
-                                        ovr025.PartySummary(gbl.SelectedPlayer);
+                                        PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                                     }
                                     else
                                     {
@@ -932,11 +932,11 @@ namespace engine
                 {
                     if (player.in_combat == false)
                     {
-                        ovr025.string_print01("You dump " + player.name + " out back.");
+                        PartyPlayerFunctions.string_print01("You dump " + player.name + " out back.");
                     }
                     else
                     {
-                        ovr025.string_print01(player.name + " bids you farewell.");
+                        PartyPlayerFunctions.string_print01(player.name + " bids you farewell.");
                     }
 
                     ovr017.remove_player_file(player);
@@ -944,11 +944,11 @@ namespace engine
                 }
                 else
                 {
-                    ovr025.string_print01(player.name + " breathes a sigh of relief.");
+                    PartyPlayerFunctions.string_print01(player.name + " breathes a sigh of relief.");
                 }
             }
 
-            ovr025.PartySummary(gbl.SelectedPlayer);
+            PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
         }
 
         /// <summary>
@@ -962,7 +962,7 @@ namespace engine
             }
             else if (edited_stat == 6)
             {
-                ovr025.display_hp(highlighted, 18, 4, gbl.SelectedPlayer);
+                PartyPlayerFunctions.display_hp(highlighted, 18, 4, gbl.SelectedPlayer);
             }
             else if (edited_stat == 7)
             {
@@ -1353,7 +1353,7 @@ namespace engine
 
                             gbl.SelectedPlayer.name = nameBackup;
 
-                            ovr025.reclac_player_values(gbl.SelectedPlayer);
+                            PartyPlayerFunctions.reclac_player_values(gbl.SelectedPlayer);
                             return;
                         }
                     }
@@ -1365,12 +1365,12 @@ namespace engine
                         gbl.SelectedPlayer.name = nameBackup;
 
                         gbl.SelectedPlayer.hit_point_current = gbl.SelectedPlayer.hit_point_max;
-                        ovr025.reclac_player_values(gbl.SelectedPlayer);
+                        PartyPlayerFunctions.reclac_player_values(gbl.SelectedPlayer);
                         return;
                     }
                 }
 
-                ovr025.reclac_player_values(gbl.SelectedPlayer);
+                PartyPlayerFunctions.reclac_player_values(gbl.SelectedPlayer);
                 PlayerCharacteristics.display_player_stats01();
 
                 draw_highlight_stat(true, edited_stat, name_cursor_pos);
@@ -1544,17 +1544,17 @@ namespace engine
 
                                 if (new_player.paladin_lvl > 0 && evil_present == true)
                                 {
-                                    ovr025.string_print01("paladins do not join with evil scum");
+                                    PartyPlayerFunctions.string_print01("paladins do not join with evil scum");
                                     TextRenderer.GameDelay();
                                 }
                                 else if (new_player.ranger_lvl > 0 && ranger_count > 2)
                                 {
-                                    ovr025.string_print01("too many rangers in party");
+                                    PartyPlayerFunctions.string_print01("too many rangers in party");
                                 }
                                 else if (((new_player.alignment + 1) % 3) == 0 &&
                                         paladin_present == true)
                                 {
-                                    ovr025.string_print01(paladins_name + " will tolerate no evil!");
+                                    PartyPlayerFunctions.string_print01(paladins_name + " will tolerate no evil!");
                                 }
 
                                 new_player = null; // FreeMem( Player.StructSize, player_ptr1 );
@@ -2329,7 +2329,7 @@ namespace engine
 
                 int y_offset = 4;
 
-                ovr025.displayPlayerName(false, y_offset, 4, gbl.SelectedPlayer);
+                PartyPlayerFunctions.displayPlayerName(false, y_offset, 4, gbl.SelectedPlayer);
 
                 TextRenderer.displayString(" will become:", 0, 10, y_offset, player.name.Length + 4);
 
@@ -2362,7 +2362,7 @@ namespace engine
             {
                 if (skipBits == false)
                 {
-                    ovr025.string_print01("Congratulations...");
+                    PartyPlayerFunctions.string_print01("Congratulations...");
 
                     if (Cheats.free_training == false &&
                         gbl.gameWon == false)

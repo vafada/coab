@@ -206,7 +206,7 @@ namespace engine
                 }
                 gbl.SelectedPlayer = StartGameScreen.FreeCurrentPlayer(gbl.SelectedPlayer, true, false);
 
-                ovr025.PartySummary(gbl.SelectedPlayer);
+                PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                 gbl.redrawPartySummary1 = false;
                 gbl.redrawPartySummary2 = false;
             }
@@ -597,8 +597,8 @@ namespace engine
                     gbl.byte_1EE98 == true)
                 {
                     FrameRenderer.draw8x8_03();
-                    ovr025.PartySummary(gbl.SelectedPlayer);
-                    ovr025.display_map_position_time();
+                    PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.display_map_position_time();
                 }
                 gbl.byte_1EE98 = false;
             }
@@ -986,7 +986,7 @@ namespace engine
                 {
                     gbl.area2_ptr.EnterTemple = 0;
 
-                    ovr005.temple_shop();
+                    Temple.temple_shop();
                 }
                 else
                 {
@@ -1026,7 +1026,7 @@ namespace engine
             gbl.encounter_flags[0] = false;
             gbl.encounter_flags[1] = false;
             gbl.spriteChanged = false;
-            ovr025.LoadPic();
+            PartyPlayerFunctions.LoadPic();
         }
 
 
@@ -1083,7 +1083,7 @@ namespace engine
 
             if (block_id < 0x80)
             {
-                string filename = string.Format("ITEM{0}.dax", gbl.game_area);
+                string filename = string.Format("ITEM{0}.dax", gbl.EclDaxFileNumber);
                 FileUtils.load_decode_dax(out data, out dataSize, block_id, filename);
 
                 if (dataSize == 0)
@@ -1195,7 +1195,7 @@ namespace engine
                     gbl.items_pointer.Add(ovr022.create_item(item_type));
                 }
 
-                gbl.items_pointer.ForEach(item => ovr025.ItemDisplayNameBuild(false, false, 0, 0, item));
+                gbl.items_pointer.ForEach(item => PartyPlayerFunctions.ItemDisplayNameBuild(false, false, 0, 0, item));
             }
         }
 
@@ -1746,11 +1746,11 @@ namespace engine
             VmLog.WriteLine("CMD_ClearBox:");
 
             FrameRenderer.draw8x8_03();
-            ovr025.PartySummary(gbl.SelectedPlayer);
-            ovr025.display_map_position_time();
+            PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
+            PartyPlayerFunctions.display_map_position_time();
 
             ovr030.DrawMaybeOverlayed(gbl.pictureAnimation.frames[0].picture, true, 3, 3);
-            ovr025.display_map_position_time();
+            PartyPlayerFunctions.display_map_position_time();
             gbl.byte_1EE98 = false;
         }
 
@@ -1763,7 +1763,7 @@ namespace engine
             VmLog.WriteLine("CMD_Who: Prompt: '{0}'", prompt);
 
             FrameRenderer.draw8x8_clear_area(TextRegion.NormalBottom);
-            ovr025.selectAPlayer(ref gbl.SelectedPlayer, false, prompt);
+            PartyPlayerFunctions.selectAPlayer(ref gbl.SelectedPlayer, false, prompt);
         }
 
 
@@ -1778,8 +1778,8 @@ namespace engine
 
             gbl.SelectedPlayer.control_morale = (byte)((morale >> 1) + Control.NPC_Base);
 
-            ovr025.reclac_player_values(gbl.SelectedPlayer);
-            ovr025.PartySummary(gbl.SelectedPlayer);
+            PartyPlayerFunctions.reclac_player_values(gbl.SelectedPlayer);
+            PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
         }
 
 
@@ -1854,7 +1854,7 @@ namespace engine
                         {
                             gbl.can_draw_bigpic = true;
                             ovr029.RedrawView();
-                            ovr025.display_map_position_time();
+                            PartyPlayerFunctions.display_map_position_time();
                             gbl.byte_1EE94 = false;
                             gbl.byte_1EE91 = false;
                             gbl.positionChanged = false;
@@ -1917,7 +1917,7 @@ namespace engine
 
             if (ovr016.MakeCamp() == true)
             {
-                ovr025.LoadPic();
+                PartyPlayerFunctions.LoadPic();
                 RunEclVm(gbl.CampInterruptedAddr);
             }
 
@@ -1945,7 +1945,7 @@ namespace engine
                 if (gbl.lastDaxBlockId != 0x50 &&
                     gbl.area_ptr.inDungeon == 0)
                 {
-                    ovr025.LoadPic();
+                    PartyPlayerFunctions.LoadPic();
                 }
             }
             else if (var_1 == 8)
@@ -2001,7 +2001,7 @@ namespace engine
             {
                 CopyProtection.copy_protection();
             }
-            ovr025.LoadPic();
+            PartyPlayerFunctions.LoadPic();
         }
 
 
@@ -2015,7 +2015,7 @@ namespace engine
 
             gbl.LastSelectedPlayer = gbl.SelectedPlayer;
 
-            ovr025.PartySummary(gbl.SelectedPlayer);
+            PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
         }
 
 
@@ -2051,7 +2051,7 @@ namespace engine
             {
                 player.items.RemoveAll(item => item.type == item_type);
 
-                ovr025.reclac_player_values(player);
+                PartyPlayerFunctions.reclac_player_values(player);
             }
         }
 
@@ -2217,7 +2217,7 @@ namespace engine
                         if (gbl.vmFlag01 == false)
                         {
                             gbl.SelectedPlayer = gbl.LastSelectedPlayer;
-                            ovr025.PartySummary(gbl.SelectedPlayer);
+                            PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                         }
                     }
 
@@ -2253,7 +2253,7 @@ namespace engine
                 {
                     gbl.EclBlockId = 1;
 
-                    ovr025.PartySummary(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                 }
             }
             else
@@ -2304,7 +2304,7 @@ namespace engine
                 {
                     if (gbl.byte_1EE98 == true)
                     {
-                        ovr025.LoadPic();
+                        PartyPlayerFunctions.LoadPic();
                     }
 
                     gbl.can_draw_bigpic = true;

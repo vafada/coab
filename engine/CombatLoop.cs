@@ -34,7 +34,7 @@ namespace engine
 
             while (end_combat == false)
             {
-                ovr025.CountCombatTeamMembers();
+                PartyPlayerFunctions.CountCombatTeamMembers();
 
                 foreach (Player player in gbl.TeamList)
                 {
@@ -119,9 +119,9 @@ namespace engine
                 gbl.focusCombatAreaOnPlayer = ((player.combat_team == CombatTeam.Ours) || (ovr033.PlayerOnScreen(false, player) == true));
 
                 ovr033.RedrawCombatIfFocusOn(true, 2, player);
-                ovr025.reclac_player_values(player);
+                PartyPlayerFunctions.reclac_player_values(player);
                 gbl.display_hitpoints_ac = true;
-                ovr025.CombatDisplayPlayerSummary(player);
+                PartyPlayerFunctions.CombatDisplayPlayerSummary(player);
                 PlayerAffects.CheckAffectsEffect(player, CheckType.Type_15);
 
                 if (player.actions.spell_id == 0)
@@ -160,7 +160,7 @@ namespace engine
                     player.actions.spell_id = 0;
 
                     Spells.sub_5D2E1(true, QuickFight.False, spell_id);
-                    ovr025.clear_actions(player);
+                    PartyPlayerFunctions.clear_actions(player);
                 }
                 else
                 {
@@ -192,7 +192,7 @@ namespace engine
                                     ovr014.reclac_attacks(player);
                                     if (var_2 == false)
                                     {
-                                        ovr025.RedrawCombatScreen();
+                                        PartyPlayerFunctions.RedrawCombatScreen();
                                     }
                                     break;
 
@@ -206,7 +206,7 @@ namespace engine
                                     ovr014.reclac_attacks(player);
                                     if (var_2 == false)
                                     {
-                                        ovr025.RedrawCombatScreen();
+                                        PartyPlayerFunctions.RedrawCombatScreen();
                                     }
                                     break;
 
@@ -217,7 +217,7 @@ namespace engine
                                 case 'T':
                                     ovr014.turns_undead(player);
                                     var_2 = true;
-                                    ovr025.clear_actions(player);
+                                    PartyPlayerFunctions.clear_actions(player);
                                     break;
 
                                 case 'D':
@@ -256,11 +256,11 @@ namespace engine
 
                                     if (gbl.AutoPCsCastMagic == true)
                                     {
-                                        ovr025.string_print01("Magic On");
+                                        PartyPlayerFunctions.string_print01("Magic On");
                                     }
                                     else
                                     {
-                                        ovr025.string_print01("Magic Off");
+                                        PartyPlayerFunctions.string_print01("Magic Off");
                                     }
                                     break;
 
@@ -284,7 +284,7 @@ namespace engine
                                     }
                                     else
                                     {
-                                        ovr025.string_print01("That doesn't work");
+                                        PartyPlayerFunctions.string_print01("That doesn't work");
                                     }
                                     break;
 
@@ -295,14 +295,14 @@ namespace engine
                         {
                             ovr033.RedrawCombatIfFocusOn(true, 2, player);
                             gbl.display_hitpoints_ac = true;
-                            ovr025.CombatDisplayPlayerSummary(player);
+                            PartyPlayerFunctions.CombatDisplayPlayerSummary(player);
                         }
                     }
                 }
             }
             else
             {
-                ovr025.clear_actions(player);
+                PartyPlayerFunctions.clear_actions(player);
             }
         }
 
@@ -383,12 +383,12 @@ namespace engine
                 }
             }
 
-            if (ovr025.bandage(false))
+            if (PartyPlayerFunctions.bandage(false))
             {
-                ovr025.string_print01("Your Teammate is Dying");
+                PartyPlayerFunctions.string_print01("Your Teammate is Dying");
             }
 
-            ovr025.CountCombatTeamMembers();
+            PartyPlayerFunctions.CountCombatTeamMembers();
 
             ovr033.redrawCombatArea(8, 0xff, gbl.mapToBackGroundTile.mapScreenTopLeft + Point.ScreenCenter);
 
@@ -538,7 +538,7 @@ namespace engine
 
                         if (cost > player.actions.move)
                         {
-                            ovr025.string_print01("can't go there");
+                            PartyPlayerFunctions.string_print01("can't go there");
                         }
                         else
                         {
@@ -547,7 +547,7 @@ namespace engine
                             if (player.in_combat == false)
                             {
                                 arg_0 = true;
-                                ovr025.clear_actions(player);
+                                PartyPlayerFunctions.clear_actions(player);
                             }
                             else
                             {
@@ -559,7 +559,7 @@ namespace engine
                                 if (player.in_combat == false)
                                 {
                                     arg_0 = true;
-                                    ovr025.clear_actions(player);
+                                    PartyPlayerFunctions.clear_actions(player);
                                 }
 
                                 PlayerAffects.in_poison_cloud(1, player);
@@ -567,7 +567,7 @@ namespace engine
                                 if (player.IsHeld())
                                 {
                                     arg_0 = true;
-                                    ovr025.clear_actions(player);
+                                    PartyPlayerFunctions.clear_actions(player);
                                 }
                             }
                         }
@@ -590,10 +590,10 @@ namespace engine
 
         internal static void sub_33F03(ref bool arg_0, Player target, Player player)
         {
-            if (ovr025.is_weapon_ranged(player) == true &&
-                ovr025.is_weapon_ranged_melee(player) == false)
+            if (PartyPlayerFunctions.is_weapon_ranged(player) == true &&
+                PartyPlayerFunctions.is_weapon_ranged_melee(player) == false)
             {
-                ovr025.string_print01("Not with that weapon");
+                PartyPlayerFunctions.string_print01("Not with that weapon");
             }
             else if (ovr014.can_attack_target(target, player) == true)
             {
@@ -618,15 +618,15 @@ namespace engine
             turnEnded = false;
             string menuText = string.Empty;
 
-            if (ovr025.is_weapon_ranged(player) == false ||
-                ovr025.is_weapon_ranged_melee(player) == true)
+            if (PartyPlayerFunctions.is_weapon_ranged(player) == false ||
+                PartyPlayerFunctions.is_weapon_ranged_melee(player) == true)
             {
                 menuText += "Guard ";
             }
 
             menuText += "Delay Quit ";
 
-            if (ovr025.bandage(false) == true)
+            if (PartyPlayerFunctions.bandage(false) == true)
             {
                 menuText += "Bandage ";
             }
@@ -641,7 +641,7 @@ namespace engine
                 switch (input)
                 {
                     case 'G':
-                        ovr025.guarding(player);
+                        PartyPlayerFunctions.guarding(player);
                         turnEnded = true;
                         break;
 
@@ -651,13 +651,13 @@ namespace engine
                         break;
 
                     case 'Q':
-                        ovr025.clear_actions(player);
+                        PartyPlayerFunctions.clear_actions(player);
                         turnEnded = true;
                         break;
 
                     case 'B':
-                        ovr025.bandage(true);
-                        ovr025.clear_actions(player);
+                        PartyPlayerFunctions.bandage(true);
+                        PartyPlayerFunctions.clear_actions(player);
                         turnEnded = true;
                         break;
 

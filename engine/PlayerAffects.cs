@@ -35,7 +35,7 @@ namespace engine
     {
         internal static void KillPlayer(string text, Status new_health_status, Player player) // sub_63014
         {
-            ovr025.DisplayPlayerStatusString(false, 10, text, player);
+            PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, text, player);
 
             if (player.health_status != Status.stoned &&
                 player.health_status != Status.dead &&
@@ -54,11 +54,11 @@ namespace engine
                 }
 
                 TextRenderer.GameDelay();
-                ovr025.ClearPlayerTextArea();
+                PartyPlayerFunctions.ClearPlayerTextArea();
 
                 if (gbl.game_state != GameState.Combat)
                 {
-                    ovr025.PartySummary(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.PartySummary(gbl.SelectedPlayer);
                 }
             }
         }
@@ -101,7 +101,7 @@ namespace engine
             bool found = false;
 
             Affect affect;
-            if (ovr025.FindAffect(out affect, affect_type, player) == true)
+            if (PartyPlayerFunctions.FindAffect(out affect, affect_type, player) == true)
             {
                 found = true;
             }
@@ -111,7 +111,7 @@ namespace engine
                 {
                     if (found) break;
 
-                    if (ovr025.FindAffect(out affect, affect_type, team_member) == true)
+                    if (PartyPlayerFunctions.FindAffect(out affect, affect_type, team_member) == true)
                     {
                         if (gbl.game_state == GameState.Combat)
                         {
@@ -410,10 +410,10 @@ namespace engine
                 Affect affect;
 
                 if (isNoxiouxCloud && arg_0 != 0 &&
-                    ovr025.FindAffect(out affect, Affects.helpless, player) == false &&
-                    ovr025.FindAffect(out affect, Affects.animate_dead, player) == false &&
-                    ovr025.FindAffect(out affect, Affects.affect_6f, player) == false &&
-                    ovr025.FindAffect(out affect, Affects.affect_7d, player) == false)
+                    PartyPlayerFunctions.FindAffect(out affect, Affects.helpless, player) == false &&
+                    PartyPlayerFunctions.FindAffect(out affect, Affects.animate_dead, player) == false &&
+                    PartyPlayerFunctions.FindAffect(out affect, Affects.affect_6f, player) == false &&
+                    PartyPlayerFunctions.FindAffect(out affect, Affects.affect_7d, player) == false)
                 {
                     bool save_passed = RollSavingThrow(0, 0, player);
 
@@ -440,7 +440,7 @@ namespace engine
 
                         ApplyAttackSpellAffect("chokes and gags from nausea", save_passed, 0, false, 0xff, (ushort)(roll_dice(4, 1) + 1), Affects.helpless, player);
 
-                        if (ovr025.FindAffect(out affect, Affects.helpless, player) == true)
+                        if (PartyPlayerFunctions.FindAffect(out affect, Affects.helpless, player) == true)
                         {
                             ovr013.CallAffectTable(Effect.Add, affect, player, Affects.helpless);
                         }
@@ -454,7 +454,7 @@ namespace engine
                 {
                     if (player.HitDice >= 0 && player.HitDice <= 4)
                     {
-                        ovr025.DisplayPlayerStatusString(false, 10, "is Poisoned", player);
+                        PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "is Poisoned", player);
                         TextRenderer.GameDelay();
                         add_affect(false, 0xff, 0, Affects.minor_globe_of_invulnerability, player);
                         KillPlayer("is killed", Status.dead, player);
@@ -463,7 +463,7 @@ namespace engine
                     {
                         if (RollSavingThrow(-4, 0, player) == false)
                         {
-                            ovr025.DisplayPlayerStatusString(false, 10, "is Poisoned", player);
+                            PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "is Poisoned", player);
                             TextRenderer.GameDelay();
                             add_affect(false, 0xff, 0, Affects.poisoned, player);
                             KillPlayer("is killed", Status.dead, player);
@@ -473,7 +473,7 @@ namespace engine
                     {
                         if (RollSavingThrow(0, 0, player) == false)
                         {
-                            ovr025.DisplayPlayerStatusString(false, 10, "is Poisoned", player);
+                            PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "is Poisoned", player);
                             TextRenderer.GameDelay();
                             add_affect(false, 0xff, 0, Affects.poisoned, player);
                             KillPlayer("is killed", Status.dead, player);
@@ -622,7 +622,7 @@ namespace engine
 
                 ovr033.RedrawCombatIfFocusOn(false, 3, player);
 
-                ovr025.DisplayPlayerStatusString(true, 10, msg, player);
+                PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, msg, player);
 
                 player.in_combat = false;
 
@@ -639,7 +639,7 @@ namespace engine
 
                 ovr033.setup_mapToPlayerIndex_and_playerScreen();
 
-                ovr025.clear_actions(player);
+                PartyPlayerFunctions.clear_actions(player);
                 RemoveCombatAffects(player);
             }
         }
@@ -649,7 +649,7 @@ namespace engine
         {
             Affect affect;
 
-            while (ovr025.FindAffect(out affect, Affects.invisibility, player) == true)
+            while (PartyPlayerFunctions.FindAffect(out affect, Affects.invisibility, player) == true)
             {
                 remove_affect(affect, Affects.invisibility, player);
             }
@@ -705,7 +705,7 @@ namespace engine
             Affect affect = player.GetAffect(affectId);
             if (affect != null)
             {
-                ovr025.DisplayPlayerStatusString(true, 10, "is Cured", player);
+                PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is Cured", player);
 
                 remove_affect(affect, affectId, player);
 
@@ -987,7 +987,7 @@ namespace engine
             {
                 Affect affect_ptr;
 
-                if (ovr025.FindAffect(out affect_ptr, Affects.strength, player) == true)
+                if (PartyPlayerFunctions.FindAffect(out affect_ptr, Affects.strength, player) == true)
                 {
                     decode_strength(out str_00_b, out stat_b, affect_ptr);
 
@@ -1025,13 +1025,13 @@ namespace engine
                     max_strength(ref stat_a, stat_b, ref str_00_a, str_00_b);
                 }
 
-                if (ovr025.FindAffect(out affect_ptr, Affects.strength_spell, player) == true)
+                if (PartyPlayerFunctions.FindAffect(out affect_ptr, Affects.strength_spell, player) == true)
                 {
                     decode_strength(out str_00_b, out stat_b, affect_ptr);
                     max_strength(ref stat_a, stat_b, ref str_00_a, str_00_b);
                 }
 
-                if (ovr025.FindAffect(out affect_ptr, Affects.enlarge, player) == true)
+                if (PartyPlayerFunctions.FindAffect(out affect_ptr, Affects.enlarge, player) == true)
                 {
                     decode_strength(out str_00_b, out stat_b, affect_ptr);
                     max_strength(ref stat_a, stat_b, ref str_00_a, str_00_b);
@@ -1166,7 +1166,7 @@ namespace engine
             else if (stat_index == Stat.CHA)
             {
                 Affect affect;
-                if (ovr025.FindAffect(out affect, Affects.friends, player) == true)
+                if (PartyPlayerFunctions.FindAffect(out affect, Affects.friends, player) == true)
                 {
                     stat_a = affect.affect_data;
                 }
@@ -1233,8 +1233,8 @@ namespace engine
                     text += "from Magic";
                 }
 
-                ovr025.MagicAttackDisplay(text, false, player);
-                ovr025.damage_player(gbl.damage, player);
+                PartyPlayerFunctions.MagicAttackDisplay(text, false, player);
+                PartyPlayerFunctions.damage_player(gbl.damage, player);
 
                 if (gbl.game_state == GameState.Combat)
                 {
@@ -1257,7 +1257,7 @@ namespace engine
                         text = "is killed";
                     }
 
-                    ovr025.DisplayPlayerStatusString(false, gbl.textYCol + 1, text, player);
+                    PartyPlayerFunctions.DisplayPlayerStatusString(false, gbl.textYCol + 1, text, player);
 
                     if (gbl.game_state != GameState.Combat)
                     {
@@ -1280,7 +1280,7 @@ namespace engine
                     }
                 }
 
-                ovr025.ClearPlayerTextArea();
+                PartyPlayerFunctions.ClearPlayerTextArea();
             }
         }
 
@@ -1290,7 +1290,7 @@ namespace engine
 
             if (player.actions.spell_id > 0)
             {
-                ovr025.DisplayPlayerStatusString(true, 12, "lost a spell", player);
+                PartyPlayerFunctions.DisplayPlayerStatusString(true, 12, "lost a spell", player);
 
                 player.spellList.ClearSpell(player.actions.spell_id);
                 player.actions.spell_id = 0;
@@ -1307,13 +1307,13 @@ namespace engine
             if (gbl.current_affect == 0 ||
                 (saved == true && can_save == DamageOnSave.Zero))
             {
-                ovr025.DisplayPlayerStatusString(true, 10, "is Unaffected", target);
+                PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is Unaffected", target);
             }
             else
             {
                 Affect found_affect;
 
-                if (ovr025.FindAffect(out found_affect, affect_id, target) == true &&
+                if (PartyPlayerFunctions.FindAffect(out found_affect, affect_id, target) == true &&
                     found_affect.minutes > 0)
                 {
                     remove_affect(found_affect, affect_id, target);
@@ -1323,8 +1323,8 @@ namespace engine
 
                 if (text.Length != 0)
                 {
-                    ovr025.MagicAttackDisplay(text, true, target);
-                    ovr025.ClearPlayerTextArea();
+                    PartyPlayerFunctions.MagicAttackDisplay(text, true, target);
+                    PartyPlayerFunctions.ClearPlayerTextArea();
                 }
             }
         }
@@ -1393,9 +1393,9 @@ namespace engine
                     text = "gets back up";
                 }
 
-                ovr025.DisplayPlayerStatusString(true, 10, text, player);
+                PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, text, player);
 
-                ovr025.CountCombatTeamMembers();
+                PartyPlayerFunctions.CountCombatTeamMembers();
 
                 return true;
             }

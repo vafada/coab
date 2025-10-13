@@ -514,7 +514,7 @@ namespace engine
 
 		internal static int SpellRange(int spellId) // sub_5CDE5
 		{
-			int castingLvl = (gbl.spell_from_item == true) ? 6 : ovr025.spellMaxTargetCount(spellId);
+			int castingLvl = (gbl.spell_from_item == true) ? 6 : PartyPlayerFunctions.spellMaxTargetCount(spellId);
 			int range = gbl.spellCastingTable[spellId].fixedRange + (gbl.spellCastingTable[spellId].perLvlRange * castingLvl);
 
 			if (range == 0 &&
@@ -565,7 +565,7 @@ namespace engine
 			}
 			else
 			{
-				var_4 = gbl.spellCastingTable[(int)spellId].fixedDuration + (gbl.spellCastingTable[(int)spellId].perLvlDuration * ovr025.spellMaxTargetCount((int)spellId));
+				var_4 = gbl.spellCastingTable[(int)spellId].fixedDuration + (gbl.spellCastingTable[(int)spellId].perLvlDuration * PartyPlayerFunctions.spellMaxTargetCount((int)spellId));
 			}
 
 			return (ushort)var_4;
@@ -578,7 +578,7 @@ namespace engine
 
 			if (gbl.spellTargets.Count > 0)
 			{
-				int target_count = TargetCount > 0 ? TargetCount : ovr025.spellMaxTargetCount(spell_id);
+				int target_count = TargetCount > 0 ? TargetCount : PartyPlayerFunctions.spellMaxTargetCount(spell_id);
 
 				foreach (var target in gbl.spellTargets)
 				{
@@ -595,7 +595,7 @@ namespace engine
 
 					if (gbl.spellCastingTable[spell_id].fixedRange == -1)
 					{
-						ovr025.reclac_player_values(target);
+						PartyPlayerFunctions.reclac_player_values(target);
 
 						PlayerAffects.CheckAffectsEffect(target, CheckType.Type_11);
 
@@ -642,9 +642,9 @@ namespace engine
 					break;
 
 				case SpellTargets.PartyMember:
-					ovr025.LoadPic();
+					PartyPlayerFunctions.LoadPic();
 
-					ovr025.selectAPlayer(ref gbl.lastSelectetSpellTarget, true, "Cast Spell on whom");
+					PartyPlayerFunctions.selectAPlayer(ref gbl.lastSelectetSpellTarget, true, "Cast Spell on whom");
 
 					gbl.spellTargets.Clear();
 					if (gbl.lastSelectetSpellTarget == null)
@@ -738,7 +738,7 @@ namespace engine
 
 					if (gbl.game_state == GameState.Combat)
 					{
-						ovr025.load_missile_icons(0x12);
+						PartyPlayerFunctions.load_missile_icons(0x12);
 						var casterPos = ovr033.PlayerMapPos(caster);
 
 						byte direction = ovr032.FindCombatantDirection(gbl.targetPos, casterPos);
@@ -759,7 +759,7 @@ namespace engine
 							seg044.PlaySound(Sound.sound_2);
 						}
 
-						ovr025.draw_missile_attack(0x1E, 4, gbl.targetPos, casterPos);
+						PartyPlayerFunctions.draw_missile_attack(0x1E, 4, gbl.targetPos, casterPos);
 
 						if (ovr033.PlayerOnScreen(false, caster) == true)
 						{
@@ -792,7 +792,7 @@ namespace engine
 					else if (quick_fight == QuickFight.True ||
 							KeyInputHandler.yes_no(gbl.alertMenuColors, "Abort Spell? ") == 'Y')
 					{
-						ovr025.string_print01("Spell Aborted");
+						PartyPlayerFunctions.string_print01("Spell Aborted");
 						if (gbl.spell_from_item == false)
 						{
 							caster.spellList.ClearSpell(spell_id);
@@ -803,7 +803,7 @@ namespace engine
 				}
 			}
 
-			ovr025.ClearPlayerTextArea();
+			PartyPlayerFunctions.ClearPlayerTextArea();
 
 			if (gbl.game_state == GameState.Combat)
 			{
@@ -956,9 +956,9 @@ namespace engine
 				if (firstTimeRound == false)
 				{
 					seg044.PlaySound(Sound.sound_2);
-					ovr025.load_missile_icons(0x12);
+					PartyPlayerFunctions.load_missile_icons(0x12);
 
-					ovr025.draw_missile_attack(0x1E, 4, ovr033.PlayerMapPos(target), ovr033.PlayerMapPos(gbl.SelectedPlayer));
+					PartyPlayerFunctions.draw_missile_attack(0x1E, 4, ovr033.PlayerMapPos(target), ovr033.PlayerMapPos(gbl.SelectedPlayer));
 				}
 
 				bool saved;
@@ -982,7 +982,7 @@ namespace engine
 					saved = true;
 				}
 
-                PlayerAffects.ApplyAttackSpellAffect(text, saved, can_save_flag, false, ovr025.spellMaxTargetCount(gbl.spell_id), GetSpellAffectTimeout((Classes.Spells)gbl.spell_id),
+                PlayerAffects.ApplyAttackSpellAffect(text, saved, can_save_flag, false, PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id), GetSpellAffectTimeout((Classes.Spells)gbl.spell_id),
                     gbl.spellCastingTable[gbl.spell_id].affect_id, target);
 			}
 		}
@@ -993,7 +993,7 @@ namespace engine
 			gbl.byte_1D2C7 = true;
 
             gbl.spellTargets.RemoveAll(target => target.combat_team != team ||
-				(gbl.spell_id == (int)Classes.Spells.bless && gbl.game_state == GameState.Combat && ovr025.BuildNearTargets(1, target).Count > 0));
+				(gbl.spell_id == (int)Classes.Spells.bless && gbl.game_state == GameState.Combat && PartyPlayerFunctions.BuildNearTargets(1, target).Count > 0));
 
 			DoSpellCastingWork(text, 0, 0, false, 0, gbl.spell_id);
 		}
@@ -1016,7 +1016,7 @@ namespace engine
 			if (gbl.spellTargets.Count > 0 &&
 				PlayerAffects.heal_player(0, PlayerAffects.roll_dice(8, 1), gbl.spellTargets[0]) == true)
 			{
-				ovr025.DescribeHealing(gbl.spellTargets[0]);
+				PartyPlayerFunctions.DescribeHealing(gbl.spellTargets[0]);
 			}
 		}
 
@@ -1047,7 +1047,7 @@ namespace engine
 
 		internal static void SpellBuringHands() // sub_5DEE1
 		{
-			DoSpellCastingWork("", DamageType.Magic | DamageType.Fire, ovr025.spellMaxTargetCount(gbl.spell_id), false, 0, gbl.spell_id);
+			DoSpellCastingWork("", DamageType.Magic | DamageType.Fire, PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id), false, 0, gbl.spell_id);
 		}
 
 
@@ -1058,11 +1058,11 @@ namespace engine
 			if (target.monsterType > MonsterType.type_1 ||
 				target.field_DE > 1)
 			{
-				ovr025.DisplayPlayerStatusString(true, 10, "is unaffected", target);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is unaffected", target);
 			}
 			else
 			{
-				DoSpellCastingWork("is charmed", 0, 0, true, (byte)(((int)gbl.SelectedPlayer.combat_team << 7) + ovr025.spellMaxTargetCount(gbl.spell_id)), gbl.spell_id);
+				DoSpellCastingWork("is charmed", 0, 0, true, (byte)(((int)gbl.SelectedPlayer.combat_team << 7) + PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id)), gbl.spell_id);
 
 				Affect affect = target.GetAffect(Affects.charm_person);
 
@@ -1080,7 +1080,7 @@ namespace engine
 			int new_str = 18;
 			int new_str100 = 0;
 
-			switch (ovr025.spellMaxTargetCount(gbl.spell_id))
+			switch (PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id))
 			{
 				case 1:
 					new_str100 = 0;
@@ -1127,7 +1127,7 @@ namespace engine
 			int encoded_strength;
 			if (PlayerAffects.TryEncodeStrength(out encoded_strength, new_str100, new_str, target) == true)
 			{
-				ovr025.DisplayPlayerStatusString(true, 10, "is stronger", target);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is stronger", target);
 
                 PlayerAffects.add_affect(true, encoded_strength, GetSpellAffectTimeout((Classes.Spells)gbl.spell_id), Affects.enlarge, target);
 
@@ -1135,7 +1135,7 @@ namespace engine
 			}
 			else
 			{
-				ovr025.DisplayPlayerStatusString(true, 10, "is unaffected", target);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is unaffected", target);
 			}
 		}
 
@@ -1151,7 +1151,7 @@ namespace engine
 			{
 				PlayerAffects.remove_affect(null, Affects.enlarge, target);
 				PlayerAffects.CalcStatBonuses(Stat.STR, target);
-				ovr025.DisplayPlayerStatusString(true, 10, "has been reduced", target);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "has been reduced", target);
 			}
 		}
 
@@ -1165,7 +1165,7 @@ namespace engine
 
 		internal static void SpellMagicMissile() // sub_5E221
 		{
-			int var_1 = ovr025.spellMaxTargetCount(gbl.spell_id) + 1;
+			int var_1 = PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id) + 1;
 
 			DoSpellCastingWork("", DamageType.Magic, (var_1 / 2) + PlayerAffects.roll_dice_save(4, var_1 / 2), false, 0, gbl.spell_id);
 		}
@@ -1179,7 +1179,7 @@ namespace engine
 
 		internal static void SpellShockingGrasp() // sub_5E2B2
 		{
-			DoSpellCastingWork("", DamageType.Acid | DamageType.Cold, PlayerAffects.roll_dice_save(8, 1) + ovr025.spellMaxTargetCount(gbl.spell_id),
+			DoSpellCastingWork("", DamageType.Acid | DamageType.Cold, PlayerAffects.roll_dice_save(8, 1) + PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id),
 				false, 0, gbl.spell_id);
 		}
 
@@ -1356,7 +1356,7 @@ namespace engine
 		{
 			int var_1 = PlayerAffects.roll_dice(4, 1) << 4;
 
-			var_1 += ovr025.spellMaxTargetCount(gbl.spell_id);
+			var_1 += PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id);
 
 			DoSpellCastingWork("is duplicated", 0, 0, false, var_1, gbl.spell_id);
 		}
@@ -1377,7 +1377,7 @@ namespace engine
 
 			gbl.byte_1D2C7 = true;
 
-			byte var_10 = (byte)ovr025.spellMaxTargetCount(gbl.spell_id);
+			byte var_10 = (byte)PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id);
 			int count = gbl.StinkingCloud.FindAll(cell => cell.player == gbl.SelectedPlayer).Count;
 
 			GasCloud var_8 = new GasCloud(gbl.SelectedPlayer, count, gbl.targetPos);
@@ -1437,11 +1437,11 @@ namespace engine
 				}
 			}
 
-			ovr025.DisplayPlayerStatusString(false, 10, "Creates a noxious cloud", gbl.SelectedPlayer);
+			PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "Creates a noxious cloud", gbl.SelectedPlayer);
 
 			ovr033.redrawCombatArea(8, 0xff, gbl.targetPos);
 			TextRenderer.GameDelay();
-			ovr025.ClearPlayerTextArea();
+			PartyPlayerFunctions.ClearPlayerTextArea();
 			for (int var_11 = 0; var_11 < 4; var_11++)
 			{
 				for (int var_D = 0; var_D < 4; var_D++)
@@ -1532,7 +1532,7 @@ namespace engine
 		{
 			gbl.byte_1D2C7 = true;
 
-			int var_3 = ovr025.spellMaxTargetCount(gbl.spell_id);
+			int var_3 = PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id);
 
 			gbl.spellTargets.Clear();
 
@@ -1543,7 +1543,7 @@ namespace engine
 				{
 					if (ovr033.sub_7515A(true, ovr033.PlayerMapPos(player), player) == true)
 					{
-						byte var_2 = (byte)(((int)player.combat_team << 4) + ovr025.spellMaxTargetCount(gbl.spell_id));
+						byte var_2 = (byte)(((int)player.combat_team << 4) + PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id));
 
 						player.combat_team = gbl.SelectedPlayer.combat_team;
 						player.quick_fight = QuickFight.True;
@@ -1588,7 +1588,7 @@ namespace engine
 		{
 			if (PlayerAffects.cure_affect(Affects.blinded, gbl.spellTargets[0]) == true)
 			{
-				ovr025.MagicAttackDisplay("can see", true, gbl.spellTargets[0]);
+				PartyPlayerFunctions.MagicAttackDisplay("can see", true, gbl.spellTargets[0]);
 			}
 		}
 
@@ -1667,7 +1667,7 @@ namespace engine
 		internal static void SpellDispelMagic() // is_affected3
 		{
 			gbl.byte_1D2C7 = true;
-			int maxTargetCount = ovr025.spellMaxTargetCount(gbl.spell_id);
+			int maxTargetCount = PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id);
 
 			if (gbl.spellTargets.Count > 0)
 			{
@@ -1712,7 +1712,7 @@ namespace engine
 
 				if (is_affected == true)
 				{
-					ovr025.MagicAttackDisplay("is affected", true, target);
+					PartyPlayerFunctions.MagicAttackDisplay("is affected", true, target);
 				}
 			}
 
@@ -1822,7 +1822,7 @@ namespace engine
 
 		internal static void SpellPrayer() // is_praying
 		{
-			byte tmpByte = (byte)(((int)gbl.SelectedPlayer.combat_team * 16) + ovr025.spellMaxTargetCount(gbl.spell_id));
+			byte tmpByte = (byte)(((int)gbl.SelectedPlayer.combat_team * 16) + PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id));
 
 			DoSpellCastingWork("is praying", 0, 0, false, tmpByte, gbl.spell_id);
 		}
@@ -1832,7 +1832,7 @@ namespace engine
 		{
 			if (PlayerAffects.cure_affect(Affects.bestow_curse, gbl.spellTargets[0]) == true)
 			{
-				ovr025.MagicAttackDisplay("is un-cursed", true, gbl.spellTargets[0]);
+				PartyPlayerFunctions.MagicAttackDisplay("is un-cursed", true, gbl.spellTargets[0]);
 			}
 			else
 			{
@@ -1857,7 +1857,7 @@ namespace engine
 						PlayerAffects.CalcStatBonuses(Stat.CHA, target);
 					}
 
-					ovr025.MagicAttackDisplay("has an item un-cursed", true, gbl.spellTargets[0]);
+					PartyPlayerFunctions.MagicAttackDisplay("has an item un-cursed", true, gbl.spellTargets[0]);
 				}
 			}
 		}
@@ -1887,7 +1887,7 @@ namespace engine
 			}
 			else
 			{
-				dice_count = ovr025.spellMaxTargetCount(gbl.spell_id);
+				dice_count = PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id);
 			}
 
 			if (gbl.area_ptr.inDungeon == 0)
@@ -1911,7 +1911,7 @@ namespace engine
 		{
 			gbl.byte_1D2C7 = true;
 
-			int maxTargets = ovr025.spellMaxTargetCount(gbl.spell_id);
+			int maxTargets = PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id);
 
 			gbl.spellTargets.RemoveAll(target =>
 				{
@@ -1957,7 +1957,7 @@ namespace engine
 				gbl.damage_flags = DamageType.Magic | DamageType.Electricity;
 
 				PlayerAffects.damage_person(PlayerAffects.RollSavingThrow(0, bonusType, player), DamageOnSave.Half, damage, player);
-				ovr025.load_missile_icons(0x13);
+				PartyPlayerFunctions.load_missile_icons(0x13);
 				gbl.damage_flags = 0;
 			}
 		}
@@ -1992,7 +1992,7 @@ namespace engine
 		{
 			int var_3A = 0; /* Simeon */
 			bool var_36 = false;
-			ovr025.load_missile_icons(0x13);
+			PartyPlayerFunctions.load_missile_icons(0x13);
 
 			int var_39;
 			int groundTile;
@@ -2049,7 +2049,7 @@ namespace engine
 							var_3C = 0;
 						}
 
-						ovr025.draw_missile_attack(0x32, 4, path_a.current, tmppos);
+						PartyPlayerFunctions.draw_missile_attack(0x32, 4, path_a.current, tmppos);
 
 						var_36 = DoElecDamage(var_36, var_39, bonusType, damage, path_a.current);
 						var_39 = var_3A;
@@ -2102,7 +2102,7 @@ namespace engine
 
 		internal static void SpellLightningBolt() // sub_5FCD9
 		{
-			int damage = PlayerAffects.roll_dice(6, ovr025.spellMaxTargetCount(gbl.spell_id));
+			int damage = PlayerAffects.roll_dice(6, PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id));
 
 			DoElecDamage(0, SaveVerseType.Spell, damage, gbl.targetPos);
 			sub_5FA44(1, SaveVerseType.Spell, damage, 7);
@@ -2160,7 +2160,7 @@ namespace engine
 				}
 
 				ovr026.ReclacClassBonuses(player);
-				ovr025.DisplayPlayerStatusString(true, 10, "is restored", player);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is restored", player);
 			}
 		}
 
@@ -2179,7 +2179,7 @@ namespace engine
 			if (gbl.spellTargets.Count > 0 &&
 				PlayerAffects.heal_player(0, PlayerAffects.roll_dice(8, 2) + 1, gbl.spellTargets[0]) == true)
 			{
-				ovr025.DescribeHealing(gbl.spellTargets[0]);
+				PartyPlayerFunctions.DescribeHealing(gbl.spellTargets[0]);
 			}
 		}
 
@@ -2191,7 +2191,7 @@ namespace engine
 
 			if (PlayerAffects.TryEncodeStrength(out encodedStrength, 0, 0x15, target) == true)
 			{
-				ovr025.DisplayPlayerStatusString(true, 10, "is stronger", target);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is stronger", target);
 			}
 
 			PlayerAffects.add_affect(true, encodedStrength, (ushort)((PlayerAffects.roll_dice(4, 1) * 10) + 0x28), Affects.strength_spell, target);
@@ -2216,7 +2216,7 @@ namespace engine
 		{
 			if (PlayerAffects.heal_player(0, PlayerAffects.roll_dice(4, 2) + 2, gbl.spellTargets[0]) == true)
 			{
-				ovr025.MagicAttackDisplay("is Healed", true, gbl.spellTargets[0]);
+				PartyPlayerFunctions.MagicAttackDisplay("is Healed", true, gbl.spellTargets[0]);
 			}
 		}
 
@@ -2262,14 +2262,14 @@ namespace engine
 
 				gbl.cureSpell = false;
 
-				ovr025.DisplayPlayerStatusString(true, 10, "is unpoisoned", target);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is unpoisoned", target);
 
 				target.in_combat = true;
 				target.health_status = Status.okey;
 			}
 			else
 			{
-				ovr025.DisplayPlayerStatusString(true, 10, "is unaffected", target);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is unaffected", target);
 			}
 		}
 
@@ -2294,17 +2294,17 @@ namespace engine
 		{
 			if (gbl.spellTargets[0].HitDice < 6)
 			{
-				DoSpellCastingWork("", DamageType.Magic, 0, false, ovr025.spellMaxTargetCount(gbl.spell_id), gbl.spell_id);
+				DoSpellCastingWork("", DamageType.Magic, 0, false, PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id), gbl.spell_id);
 
 				Affect affect;
-				if (ovr025.FindAffect(out affect, Affects.sticks_to_snakes, gbl.spellTargets[0]) == true)
+				if (PartyPlayerFunctions.FindAffect(out affect, Affects.sticks_to_snakes, gbl.spellTargets[0]) == true)
 				{
 					ovr013.CallAffectTable(Effect.Add, affect, gbl.spellTargets[0], Affects.sticks_to_snakes);
 				}
 			}
 			else
 			{
-				ovr025.DisplayPlayerStatusString(true, 10, "smashes them flat", gbl.spellTargets[0]);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "smashes them flat", gbl.spellTargets[0]);
 			}
 		}
 
@@ -2314,7 +2314,7 @@ namespace engine
 			if (gbl.spellTargets.Count > 0 &&
 				PlayerAffects.heal_player(0, PlayerAffects.roll_dice(8, 3) + 3, gbl.spellTargets[0]) == true)
 			{
-				ovr025.DescribeHealing(gbl.spellTargets[0]);
+				PartyPlayerFunctions.DescribeHealing(gbl.spellTargets[0]);
 			}
 		}
 
@@ -2359,7 +2359,7 @@ namespace engine
 				PlayerAffects.CalcStatBonuses(Stat.CON, player);
 				player.hit_point_current = 1;
 
-				ovr025.DisplayPlayerStatusString(true, 10, "is raised", player);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is raised", player);
 			}
 		}
 
@@ -2386,7 +2386,7 @@ namespace engine
 			}
 			else
 			{
-				ovr025.DisplayPlayerStatusString(true, 10, "is unaffected", target);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is unaffected", target);
 			}
 		}
 
@@ -2425,7 +2425,7 @@ namespace engine
 			{
 				Affect affect;
 
-				if (ovr025.FindAffect(out affect, Affects.charm_person, target) == true)
+				if (PartyPlayerFunctions.FindAffect(out affect, Affects.charm_person, target) == true)
 				{
 					ovr013.CallAffectTable(Effect.Add, affect, target, Affects.charm_person);
 				}
@@ -2456,7 +2456,7 @@ namespace engine
 			Affect affect;
 			Player player = gbl.SelectedPlayer;
 
-			if (ovr025.FindAffect(out affect, Affects.clear_movement, player) == true)
+			if (PartyPlayerFunctions.FindAffect(out affect, Affects.clear_movement, player) == true)
 			{
 				var scl = ovr032.Rebuild_SortedCombatantList(1, 1, ovr033.PlayerMapPos(player), sc => true);
 
@@ -2464,8 +2464,8 @@ namespace engine
 				{
 					Player playerB = sc.player;
 
-					if (ovr025.FindAffect(out affect, Affects.owlbear_hug_round_attack, playerB) == true ||
-						ovr025.FindAffect(out affect, Affects.affect_8b, playerB) == true)
+					if (PartyPlayerFunctions.FindAffect(out affect, Affects.owlbear_hug_round_attack, playerB) == true ||
+						PartyPlayerFunctions.FindAffect(out affect, Affects.affect_8b, playerB) == true)
 					{
 						if (gbl.player_array[affect.affect_data] == player)
 						{
@@ -2482,7 +2482,7 @@ namespace engine
 
 			ovr033.redrawCombatArea(8, 0, ovr033.PlayerMapPos(player));
 
-			ovr025.DisplayPlayerStatusString(true, 10, "teleports", player);
+			PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "teleports", player);
 		}
 
 
@@ -2511,7 +2511,7 @@ namespace engine
 				}
 				else
 				{
-					ovr025.DisplayPlayerStatusString(true, 10, "is unaffected", target);
+					PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "is unaffected", target);
 				}
 			}
 		}
@@ -2616,7 +2616,7 @@ namespace engine
 
 			gbl.byte_1D2C7 = true;
 
-			byte var_15 = (byte)ovr025.spellMaxTargetCount(gbl.spell_id);
+			byte var_15 = (byte)PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id);
 			int count = gbl.CloudKillCloud.FindAll(cell => cell.player == gbl.SelectedPlayer).Count;
 
 			GasCloud var_8 = new GasCloud(gbl.SelectedPlayer, count, gbl.targetPos);
@@ -2713,11 +2713,11 @@ namespace engine
 				gbl.mapToBackGroundTile[pos] = gbl.Tile_CloudKill;
 			}
 
-			ovr025.DisplayPlayerStatusString(false, 10, "Creates a poisonous cloud", gbl.SelectedPlayer);
+			PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "Creates a poisonous cloud", gbl.SelectedPlayer);
 
 			ovr033.redrawCombatArea(8, 0xFF, gbl.targetPos);
 			TextRenderer.GameDelay();
-			ovr025.ClearPlayerTextArea();
+			PartyPlayerFunctions.ClearPlayerTextArea();
 
 			for (int idx = 0; idx < max_targets; idx++)
 			{
@@ -2732,7 +2732,7 @@ namespace engine
 		internal static void SpellConeOfCold() // sub_61550
 		{
 			Player player = gbl.SelectedPlayer;
-			int target_count = ovr025.spellMaxTargetCount(gbl.spell_id);
+			int target_count = PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id);
 			int max_range = (target_count + 1) / 2;
 
 			if (max_range < 1)
@@ -2805,7 +2805,7 @@ namespace engine
 		{
 			if (PlayerAffects.heal_player(0, PlayerAffects.roll_dice(4, 2) + 2, gbl.spellTargets[0]) == true)
 			{
-				ovr025.MagicAttackDisplay("is Healed", true, gbl.spellTargets[0]);
+				PartyPlayerFunctions.MagicAttackDisplay("is Healed", true, gbl.spellTargets[0]);
 			}
 		}
 
@@ -2820,10 +2820,10 @@ namespace engine
 			{
 				gbl.spell_target = player.actions.target;
 
-				ovr025.DisplayPlayerStatusString(false, 10, "gazes...", player);
-				ovr025.load_missile_icons(0x12);
+				PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "gazes...", player);
+				PartyPlayerFunctions.load_missile_icons(0x12);
 
-				ovr025.draw_missile_attack(0x2d, 4, ovr033.PlayerMapPos(gbl.spell_target), ovr033.PlayerMapPos(player));
+				PartyPlayerFunctions.draw_missile_attack(0x2d, 4, ovr033.PlayerMapPos(gbl.spell_target), ovr033.PlayerMapPos(player));
 
 				if (player.HasAffect(Affects.affect_7f) == true)
 				{
@@ -2831,9 +2831,9 @@ namespace engine
 
 					if (item != null)
 					{
-						ovr025.DisplayPlayerStatusString(false, 12, "reflects it!", gbl.spell_target);
+						PartyPlayerFunctions.DisplayPlayerStatusString(false, 12, "reflects it!", gbl.spell_target);
 
-						ovr025.draw_missile_attack(0x2d, 4, ovr033.PlayerMapPos(player), ovr033.PlayerMapPos(gbl.spell_target));
+						PartyPlayerFunctions.draw_missile_attack(0x2d, 4, ovr033.PlayerMapPos(player), ovr033.PlayerMapPos(gbl.spell_target));
 						gbl.spell_target = player;
 					}
 				}
@@ -2857,7 +2857,7 @@ namespace engine
 				gbl.damage_flags = DamageType.DragonBreath | DamageType.Electricity;
 				var var_2 = ovr033.PlayerMapPos(player);
 
-				ovr025.DisplayPlayerStatusString(true, 10, "Breathes!", player);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "Breathes!", player);
 
                 gbl.byte_1DA70 = gbl.SpellCastFunction(QuickFight.True, (int)Classes.Spells.lightning_bolt);
 
@@ -2875,9 +2875,9 @@ namespace engine
 				}
 
 				PlayerAffects.remove_invisibility(player);
-				ovr025.load_missile_icons(0x13);
+				PartyPlayerFunctions.load_missile_icons(0x13);
 
-				ovr025.draw_missile_attack(0x32, 4, gbl.targetPos, var_2);
+				PartyPlayerFunctions.draw_missile_attack(0x32, 4, gbl.targetPos, var_2);
 				var_1 = DoElecDamage(var_1, 0, SaveVerseType.BreathWeapon, player.hit_point_max, gbl.targetPos);
 				sub_5FA44(0, SaveVerseType.BreathWeapon, player.hit_point_max, 10);
 
@@ -2891,7 +2891,7 @@ namespace engine
 				}
 
 				var_1 = true;
-				ovr025.clear_actions(player);
+				PartyPlayerFunctions.clear_actions(player);
 			}
 		}
 
@@ -2904,21 +2904,21 @@ namespace engine
 
 			int roll = PlayerAffects.roll_dice(100, 1);
 
-			if (ovr025.getTargetRange(gbl.spell_target, player) < 7 &&
+			if (PartyPlayerFunctions.getTargetRange(gbl.spell_target, player) < 7 &&
 				gbl.spell_target != null)
 			{
 				if (roll <= 30)
 				{
-					ovr025.DisplayPlayerStatusString(true, 10, "Spits Acid", player);
-					ovr025.load_missile_icons(0x17);
+					PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "Spits Acid", player);
+					PartyPlayerFunctions.load_missile_icons(0x17);
 
-					ovr025.draw_missile_attack(30, 1, ovr033.PlayerMapPos(gbl.spell_target), ovr033.PlayerMapPos(player));
+					PartyPlayerFunctions.draw_missile_attack(30, 1, ovr033.PlayerMapPos(gbl.spell_target), ovr033.PlayerMapPos(player));
 
 					PlayerAffects.damage_person(PlayerAffects.RollSavingThrow(0, SaveVerseType.BreathWeapon, gbl.spell_target), DamageOnSave.Half, player.hit_point_max, gbl.spell_target);
 				}
 				else
 				{
-					ovr025.DisplayPlayerStatusString(true, 10, "Spits Acid and Misses", player);
+					PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "Spits Acid and Misses", player);
 				}
 			}
 		}
@@ -2956,10 +2956,10 @@ namespace engine
 				if (gbl.byte_1DA70 == true &&
 					gbl.spellTargets.Count > 0)
 				{
-					ovr025.DisplayPlayerStatusString(true, 10, "breathes acid", attacker);
-					ovr025.load_missile_icons(0x12);
+					PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "breathes acid", attacker);
+					PartyPlayerFunctions.load_missile_icons(0x12);
 
-					ovr025.draw_missile_attack(0x1E, 1, ovr033.PlayerMapPos(gbl.spellTargets[0]), ovr033.PlayerMapPos(attacker));
+					PartyPlayerFunctions.draw_missile_attack(0x1E, 1, ovr033.PlayerMapPos(gbl.spellTargets[0]), ovr033.PlayerMapPos(attacker));
 
 					foreach (var target in gbl.spellTargets)
 					{
@@ -2969,7 +2969,7 @@ namespace engine
 
 					affect.affect_data--;
 
-					ovr025.clear_actions(attacker);
+					PartyPlayerFunctions.clear_actions(attacker);
 				}
 			}
 		}
@@ -2997,10 +2997,10 @@ namespace engine
 
 					if (gbl.spellTargets.Count > 0)
 					{
-						ovr025.DisplayPlayerStatusString(true, 10, "breathes fire", attacker);
-						ovr025.load_missile_icons(0x12);
+						PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "breathes fire", attacker);
+						PartyPlayerFunctions.load_missile_icons(0x12);
 
-						ovr025.draw_missile_attack(0x1E, 1, ovr033.PlayerMapPos(gbl.spellTargets[0]), ovr033.PlayerMapPos(attacker));
+						PartyPlayerFunctions.draw_missile_attack(0x1E, 1, ovr033.PlayerMapPos(gbl.spellTargets[0]), ovr033.PlayerMapPos(attacker));
 
 						foreach (var target in gbl.spellTargets)
 						{
@@ -3010,7 +3010,7 @@ namespace engine
 						}
 
 						affect.affect_data -= 1;
-						ovr025.clear_actions(attacker);
+						PartyPlayerFunctions.clear_actions(attacker);
 					}
 				}
 			}
@@ -3024,16 +3024,16 @@ namespace engine
 
 			if ((gbl.spell_target != null) &&
 				(PlayerAffects.roll_dice(100, 1) <= 50) &&
-				ovr025.getTargetRange(gbl.spell_target, arg_6) < 2)
+				PartyPlayerFunctions.getTargetRange(gbl.spell_target, arg_6) < 2)
 			{
 				gbl.damage_flags = DamageType.Fire;
 				gbl.byte_1DA70 = true;
-				ovr025.clear_actions(arg_6);
+				PartyPlayerFunctions.clear_actions(arg_6);
 
-				ovr025.DisplayPlayerStatusString(true, 10, "Breathes Fire", arg_6);
-				ovr025.load_missile_icons(0x17);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "Breathes Fire", arg_6);
+				PartyPlayerFunctions.load_missile_icons(0x17);
 
-				ovr025.draw_missile_attack(0x1E, 1, ovr033.PlayerMapPos(gbl.spell_target), ovr033.PlayerMapPos(arg_6));
+				PartyPlayerFunctions.draw_missile_attack(0x1E, 1, ovr033.PlayerMapPos(gbl.spell_target), ovr033.PlayerMapPos(arg_6));
 
 				PlayerAffects.damage_person(PlayerAffects.RollSavingThrow(0, SaveVerseType.BreathWeapon, gbl.spell_target), DamageOnSave.Half, 7, gbl.spell_target);
 			}
@@ -3048,17 +3048,17 @@ namespace engine
 			{
 				var pos = ovr033.PlayerMapPos(caster);
 
-				ovr025.DisplayPlayerStatusString(true, 10, "throws lightning", caster);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "throws lightning", caster);
                 gbl.byte_1DA70 = gbl.SpellCastFunction(QuickFight.True, (int)Classes.Spells.lightning_bolt);
 
 				PlayerAffects.remove_invisibility(caster);
-				ovr025.load_missile_icons(0x13);
-				ovr025.draw_missile_attack(0x32, 4, gbl.targetPos, pos);
+				PartyPlayerFunctions.load_missile_icons(0x13);
+				PartyPlayerFunctions.draw_missile_attack(0x32, 4, gbl.targetPos, pos);
 
 				var_1 = DoElecDamage(var_1, 0, SaveVerseType.Spell, PlayerAffects.roll_dice_save(6, 16), gbl.targetPos);
 				sub_5FA44(0, 0, PlayerAffects.roll_dice_save(6, 16), 10);
 				var_1 = true;
-				ovr025.clear_actions(caster);
+				PartyPlayerFunctions.clear_actions(caster);
 			}
 		}
 
@@ -3073,16 +3073,16 @@ namespace engine
 
 			if (gbl.spell_target != null)
 			{
-				ovr025.DisplayPlayerStatusString(false, 10, "gazes...", arg_6);
+				PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "gazes...", arg_6);
 
-				ovr025.load_missile_icons(0x12);
+				PartyPlayerFunctions.load_missile_icons(0x12);
 
-				ovr025.draw_missile_attack(0x2d, 4, ovr033.PlayerMapPos(gbl.spell_target), ovr033.PlayerMapPos(arg_6));
+				PartyPlayerFunctions.draw_missile_attack(0x2d, 4, ovr033.PlayerMapPos(gbl.spell_target), ovr033.PlayerMapPos(arg_6));
 
 				if (PlayerAffects.RollSavingThrow(0, SaveVerseType.Petrification, gbl.spell_target) == false)
 				{
 					PlayerAffects.add_affect(false, 0xff, 0x3c, Affects.paralyze, gbl.spell_target);
-					ovr025.DisplayPlayerStatusString(false, 10, "is paralyzed", gbl.spell_target);
+					PartyPlayerFunctions.DisplayPlayerStatusString(false, 10, "is paralyzed", gbl.spell_target);
 				}
 			}
 		}
@@ -3105,7 +3105,7 @@ namespace engine
 				item.namenum2 -= 1;
 				if (item.namenum2 < 0xd2)
 				{
-					ovr025.lose_item(item, player);
+					PartyPlayerFunctions.lose_item(item, player);
 				}
 			}
 		}
@@ -3115,7 +3115,7 @@ namespace engine
 		{
 			if (gbl.game_state == GameState.Combat)
 			{
-				ovr025.DisplayPlayerStatusString(true, 10, "Casts a Spell", player);
+				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "Casts a Spell", player);
 				FrameRenderer.draw8x8_clear_area(0x17, 0x27, 0x17, 0);
 
 				TextRenderer.displayString("Spell:" + SpellNames[spellId], 0, 10, 0x17, 0);
@@ -3124,12 +3124,12 @@ namespace engine
 			{
 				FrameRenderer.draw8x8_clear_area(0x16, 0x26, 0x12, 1);
 
-				ovr025.displayPlayerName(false, 0x13, 1, player);
+				PartyPlayerFunctions.displayPlayerName(false, 0x13, 1, player);
 
 				TextRenderer.displayString(arg_2, 0, 10, 0x13, player.name.Length + 2);
 				TextRenderer.displayString(SpellNames[spellId], 0, 10, 0x14, 1);
 				TextRenderer.GameDelay();
-				ovr025.ClearPlayerTextArea();
+				PartyPlayerFunctions.ClearPlayerTextArea();
 			}
 		}
 

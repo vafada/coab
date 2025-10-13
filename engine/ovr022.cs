@@ -7,7 +7,7 @@ namespace engine
     {
         internal static int get_max_load(Player player)
         {
-            return 1500 + ovr025.max_encumberance(player);
+            return 1500 + PartyPlayerFunctions.max_encumberance(player);
         }
 
         internal static bool willOverload(int item_weight, Player player)
@@ -41,7 +41,7 @@ namespace engine
 
             if (willOverload(out capasity, item_weight, gbl.SelectedPlayer) == true)
             {
-                ovr025.string_print01("Overloaded. Money will be put in Pool.");
+                PartyPlayerFunctions.string_print01("Overloaded. Money will be put in Pool.");
                 gbl.SelectedPlayer.Money.AddCoins(Money.Platinum, capasity);
                 gbl.SelectedPlayer.AddWeight(capasity);
 
@@ -130,7 +130,7 @@ namespace engine
             }
             else
             {
-                ovr025.string_print01("Overloaded");
+                PartyPlayerFunctions.string_print01("Overloaded");
             }
         }
 
@@ -274,7 +274,7 @@ namespace engine
         {
             if (willOverload(num_coins, player) == true)
             {
-                ovr025.string_print01("Overloaded");
+                PartyPlayerFunctions.string_print01("Overloaded");
             }
             else
             {
@@ -839,7 +839,7 @@ namespace engine
 
             if (gbl.SelectedPlayer.Money.Gems == 0 && gbl.SelectedPlayer.Money.Jewels == 0)
             {
-                ovr025.string_print01("No Gems or Jewelry");
+                PartyPlayerFunctions.string_print01("No Gems or Jewelry");
                 return false;
             }
 
@@ -885,7 +885,7 @@ namespace engine
                     }
 
                     FrameRenderer.draw8x8_clear_area(0x16, 0x26, 1, 1);
-                    ovr025.displayPlayerName(false, 1, 1, gbl.SelectedPlayer);
+                    PartyPlayerFunctions.displayPlayerName(false, 1, 1, gbl.SelectedPlayer);
 
                     TextRenderer.displayString("You have a fine collection of:", 0, 0xf, 7, 1);
                     TextRenderer.displayString(gem_text, 0, 0x0f, 9, 1);
@@ -1053,7 +1053,7 @@ namespace engine
                         stop_loop = true;
                     }
 
-                    ovr025.reclac_player_values(gbl.SelectedPlayer);
+                    PartyPlayerFunctions.reclac_player_values(gbl.SelectedPlayer);
                 }
 
             } while (stop_loop == false);

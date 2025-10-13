@@ -239,7 +239,7 @@ namespace engine
 
         public static void DumpMonstersFiltered()
         {
-            var bkupArea = gbl.game_area;
+            var bkupArea = gbl.EclDaxFileNumber;
 
             string filename = System.IO.Path.Combine(Logger.GetPath(), "MonsterFiltered.txt");
             if (System.IO.File.Exists(filename))
@@ -303,20 +303,20 @@ namespace engine
 
             dw.Close();
 
-            gbl.game_area = bkupArea;
+            gbl.EclDaxFileNumber = bkupArea;
         }
 
         static void DumpMonstersFilteredSub(DebugWriter dw, System.Predicate<Player> filter)
         {
             for (byte area = 1; area <= 6; area++)
             {
-                gbl.game_area = area;
+                gbl.EclDaxFileNumber = area;
                 for (int id = 0; id < 256; id++)
                 {
                     Player p = ovr017.load_mob(id, false);
                     if (p != null)
                     {
-                        ovr025.reclac_player_values(p);
+                        PartyPlayerFunctions.reclac_player_values(p);
 
                         if (filter(p))
                         {
@@ -331,7 +331,7 @@ namespace engine
         {
             DumpMonstersFiltered();
 
-            var bkupArea = gbl.game_area;
+            var bkupArea = gbl.EclDaxFileNumber;
 
             string filename = System.IO.Path.Combine(Logger.GetPath(), "Monster.html");
             if (System.IO.File.Exists(filename))
@@ -344,13 +344,13 @@ namespace engine
 
             for (byte area = 1; area <= 6; area++)
             {
-                gbl.game_area = area;
+                gbl.EclDaxFileNumber = area;
                 for (int id = 0; id < 256; id++)
                 {
                     Player p = ovr017.load_mob(id, false);
                     if (p != null)
                     {
-                        ovr025.reclac_player_values(p);
+                        PartyPlayerFunctions.reclac_player_values(p);
 
                         //TxtDumpPlayer(p, area, id);
                         HtmlTableDumpPlayer(dw, p, area, id);
@@ -361,7 +361,7 @@ namespace engine
             dw.WriteLine("</tbody></table></body></html>");
             dw.Close();
 
-            gbl.game_area = bkupArea;
+            gbl.EclDaxFileNumber = bkupArea;
         }
     }
 }
