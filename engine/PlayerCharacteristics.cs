@@ -647,7 +647,7 @@ namespace engine
             {
                 case 0: // apply affect_2
                     gbl.applyItemAffect = true;
-                    ovr013.CallAffectTable((add_item) ? Effect.Add : Effect.Remove, item, player, item.affect_3);
+                    SpellAffect.CallAffectTable((add_item) ? Effect.Add : Effect.Remove, item, player, item.affect_3);
                     break;
 
                 case 1: // ring of wizardy

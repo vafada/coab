@@ -325,7 +325,7 @@ namespace engine
             gbl.ItemDataTable = new ItemDataTable("ITEMS");
 
             Spells.setup_spells();
-            ovr013.SetupAffectTables();
+            SpellAffect.SetupAffectTables();
         }
 
 

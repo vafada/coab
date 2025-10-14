@@ -75,7 +75,7 @@ namespace engine
             {
                 if (affect.callAffectTable == true)
                 {
-                    ovr013.CallAffectTable(Effect.Remove, affect, player, affect_id);
+                    SpellAffect.CallAffectTable(Effect.Remove, affect, player, affect_id);
                 }
 
                 player.affects.Remove(affect);
@@ -131,7 +131,7 @@ namespace engine
 
             if (found == true)
             {
-                ovr013.CallAffectTable(Effect.Add, affect, player, affect_type);
+                SpellAffect.CallAffectTable(Effect.Add, affect, player, affect_type);
             }
         }
 
@@ -427,7 +427,7 @@ namespace engine
 
                         if (player.HasAffect(Affects.stinking_cloud) == true)
                         {
-                            ovr013.CallAffectTable(Effect.Add, affect, player, Affects.stinking_cloud);
+                            SpellAffect.CallAffectTable(Effect.Add, affect, player, Affects.stinking_cloud);
                         }
 
                         gbl.SelectedPlayer = tmp_player_ptr;
@@ -442,7 +442,7 @@ namespace engine
 
                         if (PartyPlayerFunctions.FindAffect(out affect, Affects.helpless, player) == true)
                         {
-                            ovr013.CallAffectTable(Effect.Add, affect, player, Affects.helpless);
+                            SpellAffect.CallAffectTable(Effect.Add, affect, player, Affects.helpless);
                         }
 
                         gbl.SelectedPlayer = tmp_player_ptr;
@@ -1358,7 +1358,7 @@ namespace engine
                         if (player.health_status == Status.unconscious &&
                             gbl.game_state != GameState.Combat)
                         {
-                            ovr013.CallAffectTable(Effect.Remove, null, player, Affects.affect_4e);
+                            SpellAffect.CallAffectTable(Effect.Remove, null, player, Affects.affect_4e);
                         }
                     }
 

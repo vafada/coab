@@ -155,7 +155,7 @@
     <Compile Include="BattleSetupUI.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr013.cs">
+    <Compile Include="SpellAffect.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr014.cs">
