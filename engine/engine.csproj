@@ -140,7 +140,7 @@
     <Compile Include="PostCombat.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr007.cs">
+    <Compile Include="Shop.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr008.cs">
@@ -149,7 +149,7 @@
     <Compile Include="CombatLoop.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr010.cs">
+    <Compile Include="QuickFight.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BattleSetupUI.cs">

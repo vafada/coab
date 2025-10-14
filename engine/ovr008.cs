@@ -113,7 +113,7 @@ namespace engine
             gbl.area_ptr.can_cast_spells = false;
 
             vm_LoadCmdSets(1);
-            gbl.vm_run_addr_1 = gbl.cmd_opps[1].Word;
+            gbl.MoveAddr = gbl.cmd_opps[1].Word;
             vm_LoadCmdSets(1);
             gbl.SearchLocationAddr = gbl.cmd_opps[1].Word;
             vm_LoadCmdSets(1);
@@ -121,7 +121,7 @@ namespace engine
             vm_LoadCmdSets(1);
             gbl.CampInterruptedAddr = gbl.cmd_opps[1].Word;
             vm_LoadCmdSets(1);
-            gbl.ecl_initial_entryPoint = gbl.cmd_opps[1].Word;
+            gbl.OnInitAddr = gbl.cmd_opps[1].Word;
 
             gbl.area_ptr.inDungeon = 1;
 
@@ -443,7 +443,7 @@ namespace engine
             else if (arg_4 == 0x10C)
             {
                 if (gbl.SelectedPlayer.combat_team == CombatTeam.Ours &&
-                    gbl.SelectedPlayer.quick_fight == QuickFight.True)
+                    gbl.SelectedPlayer.quick_fight == Classes.QuickFight.True)
                 {
                     return_val = 0x80;
                 }
@@ -637,17 +637,17 @@ namespace engine
                 {
                     case 0:
                         gbl.SelectedPlayer.combat_team = CombatTeam.Ours;
-                        gbl.SelectedPlayer.quick_fight = QuickFight.False;
+                        gbl.SelectedPlayer.quick_fight = Classes.QuickFight.False;
                         break;
 
                     case 0x80:
                         gbl.SelectedPlayer.combat_team = CombatTeam.Ours;
-                        gbl.SelectedPlayer.quick_fight = QuickFight.True;
+                        gbl.SelectedPlayer.quick_fight = Classes.QuickFight.True;
                         break;
 
                     case 0x81:
                         gbl.SelectedPlayer.combat_team = CombatTeam.Enemy;
-                        gbl.SelectedPlayer.quick_fight = QuickFight.True;
+                        gbl.SelectedPlayer.quick_fight = Classes.QuickFight.True;
                         break;
                 }
             }
@@ -692,8 +692,7 @@ namespace engine
 
             int memType = vm_GetMemoryValueType(location);
 
-            //System.Console.WriteLine("  vm_SetMemoryValue: value: {0:X} loc: {1:X} type: {2:X}",
-            //    value, location, memType);
+            System.Console.WriteLine(" *** vm_SetMemoryValue: value: {0:X} loc: {1:X} type: {2:X}", value, location, memType);
 
             if (memType == 0)
             {
@@ -1243,7 +1242,7 @@ namespace engine
         /// </summary>
         internal static void compare_variables(ushort arg_0, ushort arg_2) /* sub_31A11 */
         {
-            //System.Console.WriteLine("  Compare_variables: {0} {1}", arg_2, arg_0);
+            System.Console.WriteLine(" *** Compare_variables: {0} {1}", arg_2, arg_0);
 
             gbl.compare_flags[0] = arg_2 == arg_0;
             gbl.compare_flags[1] = arg_2 != arg_0;
@@ -1325,7 +1324,7 @@ namespace engine
                 Player DuelMaster = dueler.ShallowClone();
                 DuelMaster.in_combat = true;
                 DuelMaster.name = "ROLF";
-                DuelMaster.quick_fight = QuickFight.True;
+                DuelMaster.quick_fight = Classes.QuickFight.True;
                 DuelMaster.combat_team = CombatTeam.Enemy;
 
                 DuelMaster.control_morale = Control.NPC_Berzerk;

@@ -180,7 +180,7 @@ namespace engine
                         redraw = true;
                         FrameRenderer.draw8x8_clear_area(TextRegion.NormalBottom);
 
-                        Spells.sub_5D2E1(true, QuickFight.False, spell_id);
+                        Spells.sub_5D2E1(true, Classes.QuickFight.False, spell_id);
                     }
                     else if (var_3 == true)
                     {

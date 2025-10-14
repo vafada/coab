@@ -624,7 +624,7 @@ namespace engine
 		}
 
 
-		internal static bool NonCombatSpellCast(QuickFight quick_fight, int spellId) // cast_spell_on
+		internal static bool NonCombatSpellCast(Classes.QuickFight quick_fight, int spellId) // cast_spell_on
 		{
 			if (gbl.lastSelectetSpellTarget == null)
 			{
@@ -671,14 +671,14 @@ namespace engine
 		}
 
 
-		internal static void sub_5D2E1(bool showCastingText, QuickFight quick_fight, int spell_id) // sub_5D2E1
+		internal static void sub_5D2E1(bool showCastingText, Classes.QuickFight quick_fight, int spell_id) // sub_5D2E1
 		{
 			bool dummy = false;
 			sub_5D2E1(ref dummy, showCastingText, quick_fight, spell_id);
 		}
 
 
-		internal static void sub_5D2E1(ref bool arg_0, bool showCastingText, QuickFight quick_fight, int spell_id) // sub_5D2E1
+		internal static void sub_5D2E1(ref bool arg_0, bool showCastingText, Classes.QuickFight quick_fight, int spell_id) // sub_5D2E1
 		{
 			Player caster = gbl.SelectedPlayer;
 			bool stillCast = true;
@@ -789,10 +789,10 @@ namespace engine
 					{
 						stillCast = false;
 					}
-					else if (quick_fight == QuickFight.True ||
-							KeyInputHandler.yes_no(gbl.alertMenuColors, "Abort Spell? ") == 'Y')
+					else if (quick_fight == Classes.QuickFight.True ||
+                            KeyInputHandler.yes_no(gbl.alertMenuColors, "Abort Spell? ") == 'Y')
 					{
-						PartyPlayerFunctions.string_print01("Spell Aborted");
+                        PartyPlayerFunctions.string_print01("Spell Aborted");
 						if (gbl.spell_from_item == false)
 						{
 							caster.spellList.ClearSpell(spell_id);
@@ -1546,7 +1546,7 @@ namespace engine
 						byte var_2 = (byte)(((int)player.combat_team << 4) + PartyPlayerFunctions.spellMaxTargetCount(gbl.spell_id));
 
 						player.combat_team = gbl.SelectedPlayer.combat_team;
-						player.quick_fight = QuickFight.True;
+						player.quick_fight = Classes.QuickFight.True;
 						player.field_E9 = 1;
 						player.attackLevel = 0;
 						player.base_movement = 6;
@@ -2500,7 +2500,7 @@ namespace engine
 				{
                     PlayerAffects.ApplyAttackSpellAffect("runs in terror", saves, DamageOnSave.Zero, true, 0, GetSpellAffectTimeout(Classes.Spells.fear), Affects.fear, target);
 					target.actions.fleeing = true;
-					target.quick_fight = QuickFight.True;
+					target.quick_fight = Classes.QuickFight.True;
 
 					if (target.control_morale < Control.NPC_Base)
 					{
@@ -2525,7 +2525,7 @@ namespace engine
 
 			do
 			{
-				if (gbl.SelectedPlayer.quick_fight == QuickFight.True)
+				if (gbl.SelectedPlayer.quick_fight == Classes.QuickFight.True)
 				{
 					if (PlayerAffects.roll_dice(10, 1) > 5)
 					{
@@ -2814,7 +2814,7 @@ namespace engine
 		{
 			player.actions.target = null;
 
-            gbl.byte_1DA70 = gbl.SpellCastFunction(QuickFight.True, (int)Classes.Spells.spell_41);
+            gbl.byte_1DA70 = gbl.SpellCastFunction(Classes.QuickFight.True, (int)Classes.Spells.spell_41);
 
 			if (player.actions.target != null)
 			{
@@ -2859,7 +2859,7 @@ namespace engine
 
 				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "Breathes!", player);
 
-                gbl.byte_1DA70 = gbl.SpellCastFunction(QuickFight.True, (int)Classes.Spells.lightning_bolt);
+                gbl.byte_1DA70 = gbl.SpellCastFunction(Classes.QuickFight.True, (int)Classes.Spells.lightning_bolt);
 
 				gbl.targetPos.x = var_2.x + Math.Sign(gbl.targetPos.x - var_2.x);
 				gbl.targetPos.y = var_2.y + Math.Sign(gbl.targetPos.y - var_2.y);
@@ -2898,7 +2898,7 @@ namespace engine
 
 		internal static void AffectSpitAcid(Effect arg_0, object param, Player player) // spell_spit_acid
 		{
-            gbl.byte_1DA70 = gbl.SpellCastFunction(QuickFight.True, (int)Classes.Spells.spell_41);
+            gbl.byte_1DA70 = gbl.SpellCastFunction(Classes.QuickFight.True, (int)Classes.Spells.spell_41);
 
 			gbl.spell_target = player.actions.target;
 
@@ -2941,7 +2941,7 @@ namespace engine
 
 				var attackerPos = ovr033.PlayerMapPos(attacker);
 
-                gbl.byte_1DA70 = gbl.SpellCastFunction(QuickFight.True, (int)Classes.Spells.spell_3d);
+                gbl.byte_1DA70 = gbl.SpellCastFunction(Classes.QuickFight.True, (int)Classes.Spells.spell_3d);
 
 				if (gbl.byte_1DA70 == true)
 				{
@@ -2989,7 +2989,7 @@ namespace engine
 				gbl.damage_flags = DamageType.DragonBreath | DamageType.Fire;
 				var attackPos = ovr033.PlayerMapPos(attacker);
 
-                gbl.byte_1DA70 = gbl.SpellCastFunction(QuickFight.True, (int)Classes.Spells.spell_3d);
+                gbl.byte_1DA70 = gbl.SpellCastFunction(Classes.QuickFight.True, (int)Classes.Spells.spell_3d);
 
 				if (gbl.byte_1DA70 == true)
 				{
@@ -3019,7 +3019,7 @@ namespace engine
 
 		internal static void cast_breath_fire(Effect arg_0, object param, Player arg_6)
 		{
-            gbl.byte_1DA70 = gbl.SpellCastFunction(QuickFight.True, (int)Classes.Spells.spell_41);
+            gbl.byte_1DA70 = gbl.SpellCastFunction(Classes.QuickFight.True, (int)Classes.Spells.spell_41);
 			gbl.spell_target = arg_6.actions.target;
 
 			if ((gbl.spell_target != null) &&
@@ -3049,7 +3049,7 @@ namespace engine
 				var pos = ovr033.PlayerMapPos(caster);
 
 				PartyPlayerFunctions.DisplayPlayerStatusString(true, 10, "throws lightning", caster);
-                gbl.byte_1DA70 = gbl.SpellCastFunction(QuickFight.True, (int)Classes.Spells.lightning_bolt);
+                gbl.byte_1DA70 = gbl.SpellCastFunction(Classes.QuickFight.True, (int)Classes.Spells.lightning_bolt);
 
 				PlayerAffects.remove_invisibility(caster);
 				PartyPlayerFunctions.load_missile_icons(0x13);
@@ -3067,7 +3067,7 @@ namespace engine
 		{
 			arg_6.actions.target = null;
 
-            gbl.byte_1DA70 = gbl.SpellCastFunction(QuickFight.True, (int)Classes.Spells.animate_dead);
+            gbl.byte_1DA70 = gbl.SpellCastFunction(Classes.QuickFight.True, (int)Classes.Spells.animate_dead);
 
 			gbl.spell_target = arg_6.actions.target;
 

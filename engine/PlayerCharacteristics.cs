@@ -879,7 +879,7 @@ namespace engine
 
                     case Weld.HandsFull:
                         if (gbl.game_state != GameState.Combat ||
-                            player.quick_fight == QuickFight.False)
+                            player.quick_fight == Classes.QuickFight.False)
                         {
                             PartyPlayerFunctions.string_print01("Your hands are full!");
                         }
@@ -1003,7 +1003,7 @@ namespace engine
             else
             {
                 if (gbl.game_state == GameState.Combat &&
-                    gbl.SelectedPlayer.quick_fight == QuickFight.False)
+                    gbl.SelectedPlayer.quick_fight == Classes.QuickFight.False)
                 {
                     PartyPlayerFunctions.RedrawCombatScreen();
                 }

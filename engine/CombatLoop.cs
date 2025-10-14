@@ -131,9 +131,9 @@ namespace engine
 
                 if (player.actions.delay > 0)
                 {
-                    if (player.quick_fight == QuickFight.True)
+                    if (player.quick_fight == Classes.QuickFight.True)
                     {
-                        ovr010.PlayerQuickFight(player);
+                        QuickFight.PlayerQuickFight(player);
                     }
                     else
                     {
@@ -159,7 +159,7 @@ namespace engine
                     spell_id = player.actions.spell_id;
                     player.actions.spell_id = 0;
 
-                    Spells.sub_5D2E1(true, QuickFight.False, spell_id);
+                    Spells.sub_5D2E1(true, Classes.QuickFight.False, spell_id);
                     PartyPlayerFunctions.clear_actions(player);
                 }
                 else
@@ -180,7 +180,7 @@ namespace engine
                                     seg043.clear_keyboard();
                                     KeyInputQueue.SysDelay(0x0C8);
                                     var_2 = true;
-                                    ovr010.PlayerQuickFight(player);
+                                    QuickFight.PlayerQuickFight(player);
                                     break;
 
                                 case 'M':
@@ -230,7 +230,7 @@ namespace engine
                                     {
                                         if (p.control_morale < Control.NPC_Base)
                                         {
-                                            p.quick_fight = QuickFight.False;
+                                            p.quick_fight = Classes.QuickFight.False;
                                         }
                                     }
                                     break;
@@ -706,7 +706,7 @@ namespace engine
 
         internal static void SetPlayerQuickFight(Player player) // sub_3432F
         {
-            player.quick_fight = QuickFight.True;
+            player.quick_fight = Classes.QuickFight.True;
             if (player.actions.target != null &&
                 player.actions.target.combat_team == player.combat_team)
             {

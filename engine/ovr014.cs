@@ -284,7 +284,7 @@ namespace engine
 
             byte radius = 1;
 
-            if (player.quick_fight == QuickFight.True)
+            if (player.quick_fight == Classes.QuickFight.True)
             {
                 radius = 3;
 
@@ -1092,10 +1092,10 @@ namespace engine
 
         static Affects[] unk_18ADB = { Affects.bless, Affects.snake_charm, Affects.paralyze, Affects.sleep, Affects.helpless }; // seg600:27CB first is filler (off by 1)
 
-        internal static bool sub_4001C(DownedPlayerTile arg_0, bool canTargetEmptyGround, QuickFight quick_fight, int spellId)
+        internal static bool sub_4001C(DownedPlayerTile arg_0, bool canTargetEmptyGround, Classes.QuickFight quick_fight, int spellId)
         {
             bool var_2 = false;
-            if (quick_fight == QuickFight.False)
+            if (quick_fight == Classes.QuickFight.False)
             {
                 bool allowTarget = spellId != 0x53;
 
@@ -1161,7 +1161,7 @@ namespace engine
             return var_2;
         }
 
-        internal static bool target(QuickFight quick_fight, int spellId)
+        internal static bool target(Classes.QuickFight quick_fight, int spellId)
         {
             DownedPlayerTile var_C = new DownedPlayerTile();
 
@@ -1370,7 +1370,7 @@ namespace engine
         }
 
 
-        internal static void spell_menu3(out bool casting_spell, QuickFight quick_fight, int spell_id)
+        internal static void spell_menu3(out bool casting_spell, Classes.QuickFight quick_fight, int spell_id)
         {
             Player player = gbl.SelectedPlayer;
             bool var_6 = true;
@@ -1389,7 +1389,7 @@ namespace engine
                 spell_id = 0;
             }
 
-            if (quick_fight == QuickFight.False)
+            if (quick_fight == Classes.QuickFight.False)
             {
                 PartyPlayerFunctions.RedrawCombatScreen();
                 gbl.focusCombatAreaOnPlayer = true;
@@ -1719,7 +1719,7 @@ namespace engine
             bool result;
 
             if (target.OppositeTeam() == attacker.combat_team ||
-                attacker.quick_fight == QuickFight.True)
+                attacker.quick_fight == Classes.QuickFight.True)
             {
                 result = true;
             }
@@ -2420,17 +2420,17 @@ namespace engine
                     }
                     else if ((attacksTired & 0x10) == 0)
                     {
-                        Spells.sub_5D2E1(true, QuickFight.True, 0x54);
+                        Spells.sub_5D2E1(true, Classes.QuickFight.True, 0x54);
                         attacksTired |= 0x10;
                     }
                     else if ((attacksTired & 0x20) == 0)
                     {
-                        Spells.sub_5D2E1(true, QuickFight.True, 0x37);
+                        Spells.sub_5D2E1(true, Classes.QuickFight.True, 0x37);
                         attacksTired |= 0x20;
                     }
                     else if ((attacksTired & 0x40) == 0)
                     {
-                        Spells.sub_5D2E1(true, QuickFight.True, 0x15);
+                        Spells.sub_5D2E1(true, Classes.QuickFight.True, 0x15);
                         attacksTired |= 0x40;
                     }
                 }

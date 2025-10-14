@@ -202,7 +202,7 @@ namespace engine
 					affect.affect_data += (byte)(0x20 + (((int)player.combat_team) << 6));
 
 					player.combat_team = (CombatTeam)(affect.affect_data >> 7);
-					player.quick_fight = QuickFight.True;
+					player.quick_fight = Classes.QuickFight.True;
 
 					if (player.control_morale < Control.NPC_Base)
 					{
@@ -435,7 +435,7 @@ namespace engine
 			}
 
 			player.combat_team = (CombatTeam)(affect.affect_data >> 4);
-			player.quick_fight = QuickFight.True;
+			player.quick_fight = Classes.QuickFight.True;
 			player.field_E9 = 0;
 
 			player.attackLevel = (byte)player.SkillLevel(SkillType.Fighter);
@@ -476,7 +476,7 @@ namespace engine
 			{
 				PlayerAffects.remove_affect(null, Affects.confuse, player);
 				player.actions.fleeing = true;
-				player.quick_fight = QuickFight.True;
+				player.quick_fight = Classes.QuickFight.True;
 
 				if (player.control_morale < Control.NPC_Base)
 				{
@@ -988,7 +988,7 @@ namespace engine
 		{
 			if (arg_0 == Effect.Add)
 			{
-				player.quick_fight = QuickFight.True;
+				player.quick_fight = Classes.QuickFight.True;
 
 				if (player.control_morale < Control.NPC_Base ||
 					player.control_morale == Control.PC_Berzerk)
@@ -1679,7 +1679,7 @@ namespace engine
 
 			if (arg_0 == Effect.Add)
 			{
-				player.quick_fight = QuickFight.True;
+				player.quick_fight = Classes.QuickFight.True;
 
 				if (player.control_morale < Control.NPC_Base ||
 					player.control_morale == Control.PC_Berzerk)
@@ -1732,7 +1732,7 @@ namespace engine
 				if (player.control_morale == Control.PC_Berzerk)
 				{
 					player.control_morale = Control.PC_Base;
-					player.quick_fight = QuickFight.False;
+					player.quick_fight = Classes.QuickFight.False;
 				}
 
 				player.actions.fleeing = false;

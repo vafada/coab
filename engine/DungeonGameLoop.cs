@@ -980,7 +980,7 @@ namespace engine
                 {
                     gbl.area2_ptr.EnterShop = 0;
 
-                    ovr007.CityShop();
+                    Shop.CityShop();
                 }
                 else if (gbl.area2_ptr.EnterTemple == 1)
                 {
@@ -2192,7 +2192,7 @@ namespace engine
 
                 gbl.LastSelectedPlayer = gbl.SelectedPlayer;
 
-                RunEclVm(gbl.ecl_initial_entryPoint);
+                RunEclVm(gbl.OnInitAddr);
 
                 if (gbl.vmFlag01 == false)
                 {
@@ -2208,7 +2208,7 @@ namespace engine
                     }
                     gbl.vmFlag01 = false;
 
-                    RunEclVm(gbl.vm_run_addr_1);
+                    RunEclVm(gbl.MoveAddr);
 
                     if (gbl.vmFlag01 == false)
                     {
@@ -2278,7 +2278,7 @@ namespace engine
 
             ovr008.vm_init_ecl();
 
-            RunEclVm(gbl.ecl_initial_entryPoint);
+            RunEclVm(gbl.OnInitAddr);
 
             if (gbl.inDemo == true)
             {
@@ -2359,7 +2359,7 @@ namespace engine
 
                     if (gbl.party_killed == false)
                     {
-                        RunEclVm(gbl.vm_run_addr_1);
+                        RunEclVm(gbl.MoveAddr);
                     }
 
                     if (gbl.vmFlag01 == true)

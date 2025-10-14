@@ -487,7 +487,7 @@ namespace engine
                 {
                     stop = false;
 
-                    bool willOverload = ovr007.PlayerAddItem(item);
+                    bool willOverload = Shop.PlayerAddItem(item);
 
                     if (willOverload == false)
                     {
@@ -631,7 +631,7 @@ namespace engine
                         break;
 
                     case 'D':
-                        Spells.sub_5D2E1(false, QuickFight.False, spellId);
+                        Spells.sub_5D2E1(false, Classes.QuickFight.False, spellId);
                         break;
 
                     case 'E':

@@ -432,11 +432,11 @@ namespace Classes
         public static short word_1AE19;
 
 
-        public static ushort vm_run_addr_1; // word_1B2D3
+        public static ushort MoveAddr; // word_1B2D3
         public static ushort SearchLocationAddr; // word_1B2D5 vm_run_addr_2
         public static ushort PreCampCheckAddr; // word_1B2D7 vm_run_addr_3
         public static ushort CampInterruptedAddr; // word_1B2D9 vm_run_addr_4
-        public static ushort ecl_initial_entryPoint; // word_1B2DB
+        public static ushort OnInitAddr; // word_1B2DB
         public static short rest_incounter_count;
         public static DaxBlock dword_1C8FC; //TODO - overlay dax block, not currently used.
         public static DaxBlock bigpic_dax; /* word_1D5B6 */
