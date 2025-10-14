@@ -81,9 +81,9 @@ namespace engine
         }
 
 
-        internal static void BlockWrite(int arg_4, byte[] arg_6, File arg_A)
+        internal static void BlockWrite(int count, byte[] data, File file)
         {
-            arg_A.stream.Write(arg_6, 0, arg_4);
+            file.stream.Write(data, 0, count);
         }
 
         internal static void FillChar(byte fill_byte, int buffer_size, byte[] buffer)

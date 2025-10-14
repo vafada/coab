@@ -5,8 +5,6 @@ namespace engine
 {
     class ovr033
     {
-        const int MaxSize = 4;
-
         static Point[][] Steps = new Point[][] {
             new Point[] { },
             new Point[] { new Point( 0, 0 ) },

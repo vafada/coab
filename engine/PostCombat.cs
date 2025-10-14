@@ -642,7 +642,7 @@ namespace engine
                         {
                             TextRenderer.press_any_key("There is still treasure left.  ", true, 10, TextRegion.NormalBottom);
                             TextRenderer.press_any_key("Do you want to go back and claim your treasure?", false, 15, TextRegion.NormalBottom);
-                            int menu_selected = ovr008.sub_317AA(false, false, gbl.defaultMenuColors, "~Yes ~No", "");
+                            int menu_selected = VirtualMachine.sub_317AA(false, false, gbl.defaultMenuColors, "~Yes ~No", "");
 
                             if (menu_selected == 1)
                             {

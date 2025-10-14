@@ -143,7 +143,7 @@
     <Compile Include="Shop.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr008.cs">
+    <Compile Include="VirtualMachine.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CombatLoop.cs">

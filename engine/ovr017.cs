@@ -171,6 +171,8 @@ namespace engine
 
             string filePath = Path.Combine(Config.GetSavePath(), file_text);
 
+            Console.WriteLine("Save Player path = " + filePath);
+
             file.Assign(filePath + ext_text);
 
             StringRandomIOUtils.Rewrite(file);

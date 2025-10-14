@@ -462,7 +462,7 @@ namespace engine
 
                             TextRenderer.press_any_key("As you leave a priest says, \"Excuse me but you have left some money here\" ", true, 10, TextRegion.NormalBottom);
                             TextRenderer.press_any_key("Do you want to go back and retrieve your money?", true, 10, TextRegion.NormalBottom);
-                            int menu_selected = ovr008.sub_317AA(false, false, gbl.defaultMenuColors, prompt, "");
+                            int menu_selected = VirtualMachine.sub_317AA(false, false, gbl.defaultMenuColors, prompt, "");
 
                             if (menu_selected == 1)
                             {

@@ -879,6 +879,9 @@ namespace engine
                 ovr017.SavePlayer(string.Empty, player);
             }
 
+            // set background color back to black
+            ovr033.Color_0_8_normal();
+
             gbl.SelectedPlayer = gblPlayerPtrBkup;
         }
 
@@ -1961,9 +1964,7 @@ namespace engine
 
                 inputKey = KeyInputHandler.yes_no(gbl.defaultMenuColors, "Is this icon ok? ");
 
-            } while (inputKey != 'Y');
-
-            ovr033.Color_0_8_normal();
+            } while (inputKey != 'Y');            
         }
 
         /// <summary> seg600:4281 </summary>
