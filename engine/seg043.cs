@@ -313,7 +313,7 @@ namespace engine
                 gbl.EclDaxFileNumber = area;
                 for (int id = 0; id < 256; id++)
                 {
-                    Player p = ovr017.load_mob(id, false);
+                    Player p = FileIO.load_mob(id, false);
                     if (p != null)
                     {
                         PartyPlayerFunctions.reclac_player_values(p);
@@ -347,7 +347,7 @@ namespace engine
                 gbl.EclDaxFileNumber = area;
                 for (int id = 0; id < 256; id++)
                 {
-                    Player p = ovr017.load_mob(id, false);
+                    Player p = FileIO.load_mob(id, false);
                     if (p != null)
                     {
                         PartyPlayerFunctions.reclac_player_values(p);

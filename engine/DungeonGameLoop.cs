@@ -245,7 +245,7 @@ namespace engine
             {
                 int mod_id = VirtualMachine.vm_GetCmdValue(1) & 0xFF;
 
-                Player mobMasterCopy = ovr017.load_mob(mod_id, true);
+                Player mobMasterCopy = FileIO.load_mob(mod_id, true);
 
                 Player newMob = mobMasterCopy.ShallowClone();
 
@@ -1772,7 +1772,7 @@ namespace engine
             VirtualMachine.vm_LoadCmdSets(2);
             int npc_id = (byte)VirtualMachine.vm_GetCmdValue(1);
 
-            ovr017.load_npc(npc_id);
+            FileIO.load_npc(npc_id);
 
             byte morale = (byte)VirtualMachine.vm_GetCmdValue(2);
 
@@ -1968,7 +1968,7 @@ namespace engine
 
                 if (saveYes == 'Y')
                 {
-                    ovr017.SaveGame();
+                    FileIO.SaveGame();
                 }
 
                 seg043.print_and_exit();

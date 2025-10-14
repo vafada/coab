@@ -1112,7 +1112,7 @@ namespace engine
                     switch (input_key)
                     {
                         case 'S':
-                            ovr017.SaveGame();
+                            FileIO.SaveGame();
                             if (KeyInputHandler.yes_no(gbl.alertMenuColors, "Quit TO DOS ") == 'Y')
                             {
                                 seg043.print_and_exit();

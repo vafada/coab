@@ -211,7 +211,7 @@ namespace engine
                             {
                                 if (gbl.SelectedPlayer.control_morale < Control.NPC_Base)
                                 {
-                                    ovr017.SavePlayer(string.Empty, gbl.SelectedPlayer);
+                                    FileIO.SavePlayer(string.Empty, gbl.SelectedPlayer);
                                     gbl.SelectedPlayer = FreeCurrentPlayer(gbl.SelectedPlayer, true, false);
                                 }
                                 else
@@ -224,7 +224,7 @@ namespace engine
                         case 'L':
                             if (menuFlags[allow_load] == true)
                             {
-                                ovr017.loadGameMenu();
+                                FileIO.loadGameMenu();
                             }
                             break;
 
@@ -232,7 +232,7 @@ namespace engine
                             if (menuFlags[allow_save] == true &&
                                 gbl.TeamList.Count > 0)
                             {
-                                ovr017.SaveGame();
+                                FileIO.SaveGame();
                             }
 
                             break;
@@ -288,7 +288,7 @@ namespace engine
                                         inputkey = KeyInputHandler.yes_no(gbl.alertMenuColors, "Game not saved.  Quit anyway? ");
                                         if (inputkey == 'N')
                                         {
-                                            ovr017.SaveGame();
+                                            FileIO.SaveGame();
                                         }
                                     }
 
@@ -827,7 +827,7 @@ namespace engine
                 player.hit_point_rolled = (byte)(player.hit_point_rolled / var_20);
                 byte trainingClassMaskBackup = gbl.area2_ptr.training_class_mask;
 
-                ovr017.SilentTrainPlayer();
+                FileIO.SilentTrainPlayer();
 
                 gbl.area2_ptr.training_class_mask = trainingClassMaskBackup;
                 bool first_lvl = true;
@@ -876,7 +876,7 @@ namespace engine
 
             if (input_key == 'Y')
             {
-                ovr017.SavePlayer(string.Empty, player);
+                FileIO.SavePlayer(string.Empty, player);
             }
 
             // set background color back to black
@@ -942,7 +942,7 @@ namespace engine
                         PartyPlayerFunctions.string_print01(player.name + " bids you farewell.");
                     }
 
-                    ovr017.remove_player_file(player);
+                    FileIO.remove_player_file(player);
                     gbl.SelectedPlayer = FreeCurrentPlayer(gbl.SelectedPlayer, true, false);
                 }
                 else
@@ -1450,7 +1450,7 @@ namespace engine
 
             List<MenuItem> strList;
             List<MenuItem> nameList;
-            ovr017.BuildLoadablePlayersLists(out strList, out nameList);
+            FileIO.BuildLoadablePlayersLists(out strList, out nameList);
 
             if (nameList.Count > 0)
             {
@@ -1475,7 +1475,7 @@ namespace engine
 
                         MenuItem var_10 = KeyInputHandler.getStringListEntry(strList, strList_index);
 
-                        ovr017.import_char01(ref new_player, var_10.Text);
+                        FileIO.import_char01(ref new_player, var_10.Text);
 
                         select_sl.Text = "* " + select_sl.Text;
                         pc_count = 0;
@@ -1483,9 +1483,9 @@ namespace engine
                         if (gbl.TeamList.Count == 0)
                         {
                             gbl.area2_ptr.party_size = 0;
-                            ovr017.AssignPlayerIconId(new_player);
+                            FileIO.AssignPlayerIconId(new_player);
 
-                            ovr017.LoadPlayerCombatIcon(true);
+                            FileIO.LoadPlayerCombatIcon(true);
                         }
                         else
                         {
@@ -1533,8 +1533,8 @@ namespace engine
                                 (new_player.ranger_lvl == 0 || ranger_count < 3) &&
                                 (((new_player.alignment + 1) % 3) != 0 || paladin_present == false))
                             {
-                                ovr017.AssignPlayerIconId(new_player);
-                                ovr017.LoadPlayerCombatIcon(true);
+                                FileIO.AssignPlayerIconId(new_player);
+                                FileIO.LoadPlayerCombatIcon(true);
 
                                 if (new_player.control_morale < Control.NPC_Base)
                                 {
@@ -1648,7 +1648,7 @@ namespace engine
 
             do
             {
-                ovr017.LoadPlayerCombatIcon(false);
+                FileIO.LoadPlayerCombatIcon(false);
 
                 player = gbl.SelectedPlayer;
 
@@ -1657,7 +1657,7 @@ namespace engine
 
                 byte bkup_icon_id = player.icon_id;
                 player.icon_id = 0x0C;
-                ovr017.LoadPlayerCombatIcon(false);
+                FileIO.LoadPlayerCombatIcon(false);
                 player.icon_id = bkup_icon_id;
 
                 headIcon = player.head_icon;
@@ -1801,12 +1801,12 @@ namespace engine
                                 {
                                     case 'L':
                                         player.icon_size = 2;
-                                        ovr017.LoadPlayerCombatIcon(false);
+                                        FileIO.LoadPlayerCombatIcon(false);
                                         break;
 
                                     case 'S':
                                         player.icon_size = 1;
-                                        ovr017.LoadPlayerCombatIcon(false);
+                                        FileIO.LoadPlayerCombatIcon(false);
                                         break;
 
                                     case 'K':
@@ -1825,7 +1825,7 @@ namespace engine
                                         break;
                                 }
 
-                                ovr017.LoadPlayerCombatIcon(false);
+                                FileIO.LoadPlayerCombatIcon(false);
                                 break;
 
                             case 5:
@@ -1855,7 +1855,7 @@ namespace engine
                                             inputKey = ' ';
                                         }
 
-                                        ovr017.LoadPlayerCombatIcon(false);
+                                        FileIO.LoadPlayerCombatIcon(false);
                                     }
                                     else if (var_1B == 'W')
                                     {
@@ -1895,7 +1895,7 @@ namespace engine
                                             inputKey = ' ';
                                         }
 
-                                        ovr017.LoadPlayerCombatIcon(false);
+                                        FileIO.LoadPlayerCombatIcon(false);
                                     }
                                 }
                                 else if (var_1A == 3)
