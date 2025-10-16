@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Classes
 {
     public class GeoBlock
@@ -11,8 +7,8 @@ namespace Classes
 
         public void LoadData(byte[] _data)
         {
-            data = new byte[0x400];
-            System.Array.Copy(_data, 2, data, 0, 0x400);
+            data = new byte[1024];
+            System.Array.Copy(_data, 2, data, 0, 1024);
 
             maps = new MapInfo[16, 16];
 
@@ -92,12 +88,12 @@ namespace Classes
 
     public class MapInfo
     {
-        public byte wall_type_dir_0;
-        public byte wall_type_dir_2;
-        public byte wall_type_dir_4;
-        public byte wall_type_dir_6;
+        public byte northWall;
+        public byte eastWall;
+        public byte southWall;
+        public byte westWall;
 
-        public byte x2;
+        public byte eventNumber;
 
         public byte x3_dir_0;
         public byte x3_dir_2;
@@ -108,14 +104,16 @@ namespace Classes
         {
             int map_y_x16 = map_y << 4;
 
-            wall_type_dir_0 = (byte)((data[map_x + map_y_x16] >> 4) & 0x0f);
-            wall_type_dir_2 = (byte)((data[map_x + map_y_x16]) & 0x0f);
-            wall_type_dir_4 = (byte)((data[0x100 + map_x + map_y_x16] >> 4) & 0x0f);
-            wall_type_dir_6 = (byte)((data[0x100 + map_x + map_y_x16]) & 0x0f);
+            northWall = (byte)((data[map_x + map_y_x16] >> 4) & 0x0f);
+            eastWall = (byte)((data[map_x + map_y_x16]) & 0x0f);
+            southWall = (byte)((data[256 + map_x + map_y_x16] >> 4) & 0x0f);
+            westWall = (byte)((data[256 + map_x + map_y_x16]) & 0x0f);
 
-            x2 = data[0x200 + map_y_x16 + map_x];
+            // event data
+            eventNumber = data[512 + map_y_x16 + map_x];
 
-            byte b = data[0x300 + map_y_x16 + map_x];
+            // door info
+            byte b = data[768 + map_y_x16 + map_x];
 
             x3_dir_6 = (byte)((b >> 6) & 3);
             x3_dir_4 = (byte)((b >> 4) & 3);

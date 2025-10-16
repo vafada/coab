@@ -29,21 +29,21 @@ namespace engine
         //            var p1 = new Point(x1,y1);
         //            for (int y2 = 0; y2 < Point.MapMaxY; y2++)
         //            {
-        //                for (int x2 = 0; x2 < Point.MapMaxX; x2++)
+        //                for (int eventNumber = 0; eventNumber < Point.MapMaxX; eventNumber++)
         //                {
         //                    gbl.mapToBackGroundTile.field_6 = false;
-        //                    Point p2 = new Point(x2, y2);
+        //                    Point p2 = new Point(eventNumber, y2);
         //                    int range = -1;
         //                    bool reach = canReachTargetCalc(gbl.mapToBackGroundTile, ref range, ref p2, p1);
         //                    
-        //                    mapReachCache[(y1 * Point.MapMaxX) + x1, (y2 * Point.MapMaxX) + x2, 0] = new MapReach(reach, range, p2);
+        //                    mapReachCache[(y1 * Point.MapMaxX) + x1, (y2 * Point.MapMaxX) + eventNumber, 0] = new MapReach(reach, range, p2);
         //                    
         //                    gbl.mapToBackGroundTile.field_6 = true;
-        //                    p2 = new Point(x2, y2);
+        //                    p2 = new Point(eventNumber, y2);
         //                    range = -1;
         //                    reach = canReachTargetCalc(gbl.mapToBackGroundTile, ref range, ref p2, p1);
         //
-        //                    mapReachCache[(y1 * Point.MapMaxX) + x1, (y2 * Point.MapMaxX) + x2, 1] = new MapReach(reach, range, p2);
+        //                    mapReachCache[(y1 * Point.MapMaxX) + x1, (y2 * Point.MapMaxX) + eventNumber, 1] = new MapReach(reach, range, p2);
         //                }
         //            }
         //        }

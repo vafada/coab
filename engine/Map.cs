@@ -56,10 +56,10 @@ namespace engine
                     MapInfo mi = getMap_XXX(mapY, mapX);
                     if (mi != null)
                     {
-                        if (mi.wall_type_dir_0 > 0) symbol_id += 1;
-                        if (mi.wall_type_dir_2 > 0) symbol_id += 2;
-                        if (mi.wall_type_dir_4 > 0) symbol_id += 4;
-                        if (mi.wall_type_dir_6 > 0) symbol_id += 8;
+                        if (mi.northWall > 0) symbol_id += 1;
+                        if (mi.eastWall > 0) symbol_id += 2;
+                        if (mi.southWall > 0) symbol_id += 4;
+                        if (mi.westWall > 0) symbol_id += 8;
 
                         if (mi.x3_dir_0 > 0) door_id += 1;
                         if (mi.x3_dir_2 > 0) door_id += 2;
@@ -194,22 +194,22 @@ namespace engine
             switch (mapDir)
             {
                 case 6:
-                    if (mi.wall_type_dir_6 != 0)
+                    if (mi.westWall != 0)
                         var_1 = mi.x3_dir_6;
                     break;
 
                 case 4:
-                    if (mi.wall_type_dir_4 != 0)
+                    if (mi.southWall != 0)
                         var_1 = mi.x3_dir_4;
                     break;
 
                 case 2:
-                    if (mi.wall_type_dir_2 != 0)
+                    if (mi.eastWall != 0)
                         var_1 = mi.x3_dir_2;
                     break;
 
                 case 0:
-                    if (mi.wall_type_dir_0 != 0)
+                    if (mi.northWall != 0)
                         var_1 = mi.x3_dir_0;
                     break;
             }
@@ -229,19 +229,19 @@ namespace engine
                 switch (direction)
                 {
                     case 0:
-                        result = mi.wall_type_dir_0;
+                        result = mi.northWall;
                         break;
 
                     case 2:
-                        result = mi.wall_type_dir_2;
+                        result = mi.eastWall;
                         break;
 
                     case 4:
-                        result = mi.wall_type_dir_4;
+                        result = mi.southWall;
                         break;
 
                     case 6:
-                        result = mi.wall_type_dir_6;
+                        result = mi.westWall;
                         break;
                 }
             }
@@ -313,7 +313,7 @@ namespace engine
 
             MapInfo mi = gbl.geo_ptr.maps[mapY, mapX];
 
-            return mi.x2;
+            return mi.eventNumber;
         }
 
 
