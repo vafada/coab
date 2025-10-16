@@ -76,6 +76,25 @@ namespace engine
                         Render8By8Symbol.Put8x8Symbol(true, door_id, y + displayOffset, x + displayOffset);
                         DrawPicture.draw_clipped_recolor(17, 17);
                         DrawPicture.draw_clipped_nodraw(17);
+                        if ((mi.eventNumber & 127) != 0)
+                        {
+                            // render tile green in the tile has an event
+                            int eY = y + displayOffset + 1;
+                            int eX = x + displayOffset + 1;
+                            int minY = (eY * 8) + 1;
+                            int maxY = (minY + 8) - 2;
+
+                            int minX = (eX * 8) + 1;
+                            int maxX = (minX + 8) - 2;
+
+                            for (int pixY = minY; pixY < maxY; pixY++)
+                            {
+                                for (int pixX = minX; pixX < maxX; pixX++)
+                                {
+                                    Display.SetPixel3(pixX, pixY, 2);                                    
+                                }
+                            }
+                        }
                     }
                 }
             }
