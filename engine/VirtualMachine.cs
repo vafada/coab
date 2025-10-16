@@ -692,7 +692,7 @@ namespace engine
 
             int memType = vm_GetMemoryValueType(location);
 
-            System.Console.WriteLine(" *** vm_SetMemoryValue: value: {0:X} loc: {1:X} type: {2:X}", value, location, memType);
+            System.Console.WriteLine(" *** vm_SetMemoryValue: value: 0x{0:X} loc: {1:X} type: {2:X}", value, location, memType);
 
             if (memType == 0)
             {

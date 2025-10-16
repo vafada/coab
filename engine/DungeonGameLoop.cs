@@ -2083,8 +2083,8 @@ namespace engine
             CommandTable.Add(0x13, new CmdItem(0, "RETURN", CMD_Return));
             CommandTable.Add(0x14, new CmdItem(4, "COMPARE AND", CMD_CompareAnd));
             CommandTable.Add(0x15, new CmdItem(0, "VERTICAL MENU", CMD_VertMenu));
-            CommandTable.Add(0x16, new CmdItem(0, "IF =", CMD_If));
-            CommandTable.Add(0x17, new CmdItem(0, "IF <>", CMD_If));
+            CommandTable.Add(0x16, new CmdItem(0, "IF ==", CMD_If));
+            CommandTable.Add(0x17, new CmdItem(0, "IF !=", CMD_If));
             CommandTable.Add(0x18, new CmdItem(0, "IF <", CMD_If));
             CommandTable.Add(0x19, new CmdItem(0, "IF >", CMD_If));
             CommandTable.Add(0x1A, new CmdItem(0, "IF <=", CMD_If));
@@ -2208,10 +2208,12 @@ namespace engine
                     }
                     gbl.vmFlag01 = false;
 
+                    Console.WriteLine("MoveAddr:");
                     RunEclVm(gbl.MoveAddr);
 
                     if (gbl.vmFlag01 == false)
                     {
+                        Console.WriteLine("onSearchLocation:");
                         RunEclVm(gbl.SearchLocationAddr);
 
                         if (gbl.vmFlag01 == false)
@@ -2339,6 +2341,7 @@ namespace engine
                             gbl.can_draw_bigpic = true;
                             ovr029.RedrawView();
 
+                            Console.WriteLine("onSearchLocation:");
                             RunEclVm(gbl.SearchLocationAddr);
 
                             if (gbl.vmFlag01 == true)
@@ -2359,6 +2362,7 @@ namespace engine
 
                     if (gbl.party_killed == false)
                     {
+                        Console.WriteLine("MoveAddr:");
                         RunEclVm(gbl.MoveAddr);
                     }
 
@@ -2384,6 +2388,7 @@ namespace engine
 
                             gbl.spriteChanged = false;
                             gbl.byte_1EE8D = true;
+                            Console.WriteLine("onSearchLocation:");
                             RunEclVm(gbl.SearchLocationAddr);
                             if (gbl.vmFlag01 == true)
                             {
