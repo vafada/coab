@@ -522,7 +522,7 @@ namespace engine
                     gbl.area_ptr.inDungeon != 0)
                 {
                     gbl.area_ptr.current_3DMap_block_id = var_3;
-                    ovr031.Load3DMap(var_3);
+                    Map.Load3DMap(var_3);
                     gbl.area2_ptr.field_592 = 0;
                 }
 
@@ -539,7 +539,7 @@ namespace engine
 
                 if (var_3 == 0x7F)
                 {
-                    ovr031.LoadWalldef(1, 0);
+                    Map.LoadWalldef(1, 0);
                 }
                 else
                 {
@@ -548,19 +548,19 @@ namespace engine
                     {
                         if (var_3 != 0xff)
                         {
-                            ovr031.LoadWalldef(1, var_3);
+                            Map.LoadWalldef(1, var_3);
                         }
 
                         if (var_1 != 0xff)
                         {
-                            ovr031.LoadWalldef(3, var_1);
+                            Map.LoadWalldef(3, var_1);
                         }
                     }
                     else
                     {
                         if (var_3 != 0xff)
                         {
-                            ovr031.LoadWalldef(1, var_3);
+                            Map.LoadWalldef(1, var_3);
                         }
                         else
                         {
@@ -569,7 +569,7 @@ namespace engine
 
                         if (var_2 != 0xff)
                         {
-                            ovr031.LoadWalldef(2, var_2);
+                            Map.LoadWalldef(2, var_2);
                         }
                         else
                         {
@@ -578,7 +578,7 @@ namespace engine
 
                         if (var_1 != 0xff)
                         {
-                            ovr031.LoadWalldef(3, var_1);
+                            Map.LoadWalldef(3, var_1);
                         }
                         else
                         {
@@ -1842,7 +1842,7 @@ namespace engine
             switch (var_4)
             {
                 case 0xAE11:
-                    gbl.mapWallRoof = ovr031.get_wall_x2(gbl.mapPosY, gbl.mapPosX);
+                    gbl.mapWallRoof = Map.get_wall_x2(gbl.mapPosY, gbl.mapPosX);
 
                     if (gbl.byte_1AB0B == true)
                     {
@@ -1861,7 +1861,7 @@ namespace engine
                             gbl.spriteChanged = false;
                             gbl.displayPlayerSprite = false;
 
-                            gbl.mapWallType = ovr031.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+                            gbl.mapWallType = Map.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
                         }
                     }
                     break;
@@ -1896,7 +1896,7 @@ namespace engine
                 case 0x4019:
                     if (gbl.area_ptr.inDungeon == 0)
                     {
-                        gbl.mapWallType = ovr031.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+                        gbl.mapWallType = Map.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
                     }
                     break;
 
@@ -2186,7 +2186,7 @@ namespace engine
                 gbl.byte_1D5AB = string.Empty;
                 gbl.byte_1D5B5 = 0x0FF;
                 gbl.vmFlag01 = false;
-                gbl.mapWallRoof = ovr031.get_wall_x2(gbl.mapPosY, gbl.mapPosX);
+                gbl.mapWallRoof = Map.get_wall_x2(gbl.mapPosY, gbl.mapPosX);
 
                 gbl.area2_ptr.tried_to_exit_map = false;
 

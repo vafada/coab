@@ -170,7 +170,7 @@ namespace engine
 
                 while (var_3 < 2 && var_2 == false)
                 {
-                    if (ovr031.getMap_wall_type(map_dir, map_y, map_x) == 0)
+                    if (Map.getMap_wall_type(map_dir, map_y, map_x) == 0)
                     {
                         var_3++;
                         var_1 = var_3;
@@ -662,7 +662,7 @@ namespace engine
                 {
                     set_value &= 0x7f;
 
-                    ovr031.LoadWalldef(1, set_value & 0xFF);
+                    Map.LoadWalldef(1, set_value & 0xFF);
                 }
             }
             else if (switch_var == 0x324)
@@ -671,7 +671,7 @@ namespace engine
                 {
                     set_value &= 0x7f;
 
-                    ovr031.LoadWalldef(2, set_value & 0xFF);
+                    Map.LoadWalldef(2, set_value & 0xFF);
                 }
             }
             else if (switch_var == 0x326)
@@ -680,7 +680,7 @@ namespace engine
                 {
                     set_value &= 0x7f;
 
-                    ovr031.LoadWalldef(3, set_value & 0xFF);
+                    Map.LoadWalldef(3, set_value & 0xFF);
                 }
             }
         }
@@ -1272,8 +1272,8 @@ namespace engine
                 gbl.mapPosX = DecrimentWrap(gbl.mapPosX, 15);
             }
 
-            gbl.mapWallRoof = ovr031.get_wall_x2(gbl.mapPosY, gbl.mapPosX);
-            gbl.mapWallType = ovr031.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+            gbl.mapWallRoof = Map.get_wall_x2(gbl.mapPosY, gbl.mapPosX);
+            gbl.mapWallType = Map.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
 
             gbl.positionChanged = true;
         }

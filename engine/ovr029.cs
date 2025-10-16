@@ -18,7 +18,7 @@ namespace engine
             {
                 if (gbl.area_ptr.inDungeon != 0)
                 {
-                    gbl.mapWallRoof = ovr031.get_wall_x2(gbl.mapPosY, gbl.mapPosX);
+                    gbl.mapWallRoof = Map.get_wall_x2(gbl.mapPosY, gbl.mapPosX);
 
                     if (gbl.mapWallRoof > 0x7F)
                     {
@@ -37,7 +37,7 @@ namespace engine
                         gbl.mapAreaDisplay = false;
                     }
 
-                    ovr031.Draw3dWorld(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+                    Map.Draw3dWorld(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
                 }
                 else if (gbl.can_draw_bigpic == true)
                 {

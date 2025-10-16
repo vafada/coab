@@ -1073,14 +1073,14 @@ namespace engine
                 {
                     if (gbl.setBlocks[0].blockId > 0)
                     {
-                        ovr031.Load3DMap(gbl.area_ptr.current_3DMap_block_id);
+                        Map.Load3DMap(gbl.area_ptr.current_3DMap_block_id);
                     }
 
                     for (int i = 0; i < 3; i++)
                     {
                         if (gbl.setBlocks[i].blockId > 0)
                         {
-                            ovr031.LoadWalldef(gbl.setBlocks[i].setId, gbl.setBlocks[i].blockId);
+                            Map.LoadWalldef(gbl.setBlocks[i].setId, gbl.setBlocks[i].blockId);
                         }
                     }
                 }

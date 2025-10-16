@@ -58,7 +58,7 @@ namespace engine
                     break;
                 }
 
-                if (ovr031.WallDoorFlagsGet(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX) == 3)
+                if (Map.WallDoorFlagsGet(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX) == 3)
                 {
                     if (player.stats2.Str.full == 18)
                     {
@@ -284,7 +284,7 @@ namespace engine
 
             gbl.area2_ptr.tried_to_exit_map = false;
 
-            if (ovr031.WallDoorFlagsGet(mapDir, mapY, mapX) != 0)
+            if (Map.WallDoorFlagsGet(mapDir, mapY, mapX) != 0)
             {
                 mapX += gbl.MapDirectionXDelta[mapDir];
                 mapY += gbl.MapDirectionYDelta[mapDir];
@@ -327,13 +327,13 @@ namespace engine
             gbl.mapPosX &= 0x0f; // wrap via masking
             gbl.mapPosY &= 0x0f; // wrap via masking
 
-            gbl.mapWallType = ovr031.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+            gbl.mapWallType = Map.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
 
             gbl.can_bash_door = true;
             gbl.can_pick_door = true;
             gbl.can_knock_door = true;
 
-            gbl.mapWallRoof = ovr031.get_wall_x2(gbl.mapPosY, gbl.mapPosX);
+            gbl.mapWallRoof = Map.get_wall_x2(gbl.mapPosY, gbl.mapPosX);
 
             if ((gbl.area2_ptr.search_flags & 1) > 0)
             {
@@ -372,7 +372,7 @@ namespace engine
                                 {
                                     gbl.mapAreaDisplay = !gbl.mapAreaDisplay;
 
-                                    ovr031.Draw3dWorld(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+                                    Map.Draw3dWorld(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
                                 }
                                 else
                                 {
@@ -422,16 +422,16 @@ namespace engine
                             case 'P': // turn 180
                                 gbl.mapDirection = (byte)((gbl.mapDirection + 4) % 8);
 
-                                gbl.mapWallType = ovr031.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
-                                ovr031.Draw3dWorld(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+                                gbl.mapWallType = Map.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+                                Map.Draw3dWorld(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
                                 break;
 
                             case 'K': // turn left
                                 gbl.mapDirection = (byte)((gbl.mapDirection + 6) % 8);
 
                                 seg044.PlaySound(Sound.sound_a);
-                                gbl.mapWallType = ovr031.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
-                                ovr031.Draw3dWorld(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+                                gbl.mapWallType = Map.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+                                Map.Draw3dWorld(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
                                 break;
 
                             case 'M': // turn right
@@ -439,8 +439,8 @@ namespace engine
 
                                 seg044.PlaySound(Sound.sound_a);
 
-                                gbl.mapWallType = ovr031.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
-                                ovr031.Draw3dWorld(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+                                gbl.mapWallType = Map.getMap_wall_type(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+                                Map.Draw3dWorld(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
                                 break;
 
                             default:
@@ -479,7 +479,7 @@ namespace engine
                 {
                     gbl.can_draw_bigpic = true;
 
-                    byte al = ovr031.WallDoorFlagsGet(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
+                    byte al = Map.WallDoorFlagsGet(gbl.mapDirection, gbl.mapPosY, gbl.mapPosX);
 
                     if (al == 1)
                     {

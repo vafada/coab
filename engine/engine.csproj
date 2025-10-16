@@ -209,7 +209,7 @@
     <Compile Include="ovr030.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ovr031.cs">
+    <Compile Include="Map.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ovr032.cs">
